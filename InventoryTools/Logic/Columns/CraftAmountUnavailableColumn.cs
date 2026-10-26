@@ -42,12 +42,12 @@ namespace InventoryTools.Logic.Columns
             return null;
         }
         public override FilterType AvailableIn { get; } = Logic.FilterType.CraftFilter;
-        public override string Name { get; set; } = "Amount Missing";
-        public override string RenderName => "Missing";
+        public override string Name { get; set; } = "缺少数量";
+        public override string RenderName => "缺少";
         public override float Width { get; set; } = 60;
         public override bool? CraftOnly => true;
         public override string HelpText { get; set; } =
-            "This is the amount that needs to be sourced from MB/gathering excluding potential items to be withdrawn from retainers.";
+            "还需从市场板/采集获取的数量（不含可从雇员处取出的部分）。";
         public override bool HasFilter { get; set; } = false;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

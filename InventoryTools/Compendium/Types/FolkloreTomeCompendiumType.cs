@@ -55,9 +55,9 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
         _staticIcon = new Lazy<(string?, uint?)>(BuildStaticIcon, LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
-    public override string Singular => "Folklore Tome";
-    public override string Plural => "Folklore Tomes";
-    public override string Description => "Folklore tomes unlock hidden gathering nodes.";
+    public override string Singular => "采集秘籍";
+    public override string Plural => "采集秘籍";
+    public override string Description => "解锁隐藏采集点的秘籍。";
     public override string Key => "folklore_tomes";
     public override (string?, uint?) Icon => _staticIcon.Value;
 
@@ -142,7 +142,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "The icon of the folklore tome",
+            HelpText = "秘籍图标",
             Version = "15.0.6",
             ValueSelector = GetIcon,
             CompendiumType = this,
@@ -151,48 +151,48 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the folklore tome",
+            Name = "名称",
+            HelpText = "秘籍名称",
             Version = "15.0.6",
             ValueSelector = GetName,
         });
         builder.AddStringColumn(new()
         {
             Key = "gathering_types",
-            Name = "Gathering Types",
-            HelpText = "The gathering types unlocked by this tome",
+            Name = "采集类型",
+            HelpText = "此秘籍解锁的采集类型",
             Version = "15.0.6",
             ValueSelector = row => FormatGatheringTypes(row),
         });
         builder.AddStringColumn(new()
         {
             Key = "class_job",
-            Name = "Class/Job",
-            HelpText = "The classes or jobs this tome applies to",
+            Name = "职业",
+            HelpText = "此秘籍适用的职业",
             Version = "15.0.6",
             ValueSelector = row => FormatClassJobs(row),
         });
         builder.AddStringColumn(new()
         {
             Key = "unlock_quest",
-            Name = "Unlock Quest",
-            HelpText = "The quest required to unlock this tome",
+            Name = "解锁任务",
+            HelpText = "解锁此秘籍所需的任务",
             Version = "15.0.6",
             ValueSelector = row => row.UnlockQuest?.ValueNullable?.Name.ToImGuiString() ?? "",
         });
         builder.AddBooleanColumn(new()
         {
             Key = "unlocked",
-            Name = "Unlocked?",
-            HelpText = "Has the player unlocked this folklore tome?",
+            Name = "已解锁？",
+            HelpText = "玩家是否已解锁此秘籍？",
             Version = "15.0.6",
             ValueSelector = row => _unlockState.IsItemUnlocked(row.TomeItem!.Value.Value),
         });
         builder.AddItemColumn(new()
         {
             Key = "tome_item",
-            Name = "Tome Item",
-            HelpText = "The folklore tome item itself",
+            Name = "秘籍物品",
+            HelpText = "秘籍物品本身",
             Version = "15.0.6",
             ValueSelector = row => row.TomeItem?.RowId,
         });
@@ -203,19 +203,19 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
         viewBuilder.SetupDefaults(this, row);
 
         viewBuilder.AddTag(
-            () => _unlockState.IsItemUnlocked(row.TomeItem!.Value.Value) ? "Read" : "Not Read",
-            () => "Whether the player has read this folklore tome.",
+            () => _unlockState.IsItemUnlocked(row.TomeItem!.Value.Value) ? "已阅读" : "未阅读",
+            () => "玩家是否已阅读此秘籍。",
             () => _unlockState.IsItemUnlocked(row.TomeItem!.Value.Value) ? Dalamud.Interface.Colors.ImGuiColors.HealerGreen : Dalamud.Interface.Colors.ImGuiColors.DalamudRed);
 
         var info = new List<(string Header, string Value, bool IsVisible)>
         {
-            ("Gathering Types", FormatGatheringTypes(row), row.GatheringTypes.Count > 0),
-            ("Class/Job", FormatClassJobs(row), row.ClassJobs.Count > 0),
+            ("采集类型", FormatGatheringTypes(row), row.GatheringTypes.Count > 0),
+            ("职业", FormatClassJobs(row), row.ClassJobs.Count > 0),
         };
         viewBuilder.AddInfoTableSection(new InfoTableSectionOptions()
         {
             SectionKey = "info",
-            SectionName = "Info",
+            SectionName = "信息",
             Items = info,
         });
 
@@ -224,7 +224,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = $"class_job_{classJob.RowId}",
-                SectionName = "Class/Job",
+                SectionName = "职业",
                 RelatedRef = (RowRef)classJob,
             });
         }
@@ -234,7 +234,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = "tome_item",
-                SectionName = "Tome Item",
+                SectionName = "秘籍物品",
                 RelatedRef = (RowRef)row.TomeItem.Value,
             });
 
@@ -242,7 +242,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
             viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
             {
                 SectionKey = "tome_item_sources",
-                SectionName = "Tome Item Sources",
+                SectionName = "秘籍获取途径",
                 Sources = itemSources ?? [],
                 SourceType = SourceType.Source,
             });
@@ -255,7 +255,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
         viewBuilder.AddItemListSection(new ItemListSectionOptions()
         {
             SectionKey = "unlocked_items",
-            SectionName = "Items Unlocked",
+            SectionName = "解锁的物品",
             Items = unlockedItems.Select(i => new ItemInfo(i)),
         });
 
@@ -264,7 +264,7 @@ public class FolkloreTomeCompendiumType : CompendiumType<FolkloreTome>
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = "unlock_quest",
-                SectionName = "Unlock Quest",
+                SectionName = "解锁任务",
                 RelatedRef = (RowRef)row.UnlockQuest.Value,
             });
         }

@@ -20,9 +20,9 @@ public class ItemSecretRecipeBookUseRenderer : ItemInfoRenderer<ItemSecretRecipe
 
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.SecretRecipeBook;
-    public override string SingularName => "Master Recipe Book";
-    public override string? PluralName => "Master Recipe Books";
-    public override string HelpText => "Is this item used to unlock master recipes?";
+    public override string SingularName => "秘传配方书";
+    public override string? PluralName => "秘传配方书";
+    public override string HelpText => "该物品是否用于解锁秘传配方？";
     public override bool ShouldGroup => false;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Crafting];
 
@@ -32,12 +32,12 @@ public class ItemSecretRecipeBookUseRenderer : ItemInfoRenderer<ItemSecretRecipe
         var bookName = asSource.SecretRecipeBook.ValueNullable?.Name.ExtractText();
         if (!string.IsNullOrEmpty(bookName))
         {
-            ImGui.Text("Unlocks: " + bookName);
+            ImGui.Text("解锁：" + bookName);
         }
 
         if (asSource.RelatedItems.Count > 0)
         {
-            this.DrawItems("Recipes Unlocked:", asSource.RelatedItems.First().Value);
+            this.DrawItems("解锁的配方：", asSource.RelatedItems.First().Value);
         }
     };
 
@@ -56,6 +56,6 @@ public class ItemSecretRecipeBookUseRenderer : ItemInfoRenderer<ItemSecretRecipe
     public override Func<ItemSource, string> GetDescription => source =>
     {
         var asSource = AsSource(source);
-        return $"Unlocks {asSource.Recipes.Count} recipes";
+        return $"解锁 {asSource.Recipes.Count} 个配方";
     };
 }

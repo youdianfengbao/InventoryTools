@@ -17,10 +17,10 @@ public class CraftTrackerTrackMarketBoardFilter : BooleanFilter
     public override FilterType AvailableIn { get; set; } = FilterType.CraftFilter;
 
     public override string Key { get; set; } = "CraftTrackerTrackMarketBoard";
-    public override string Name { get; set; } = "Track Market Board?";
+    public override string Name { get; set; } = "跟踪市场板？";
 
     public override string HelpText { get; set; } =
-        "When you buy something off the market board and it matches one of the output items in this craft list, should it reduce the quantity of that item? The craft list must be active for this to count.";
+        "从市场板购买且匹配此清单中的成品物品时，是否减少该物品的数量？制作清单须处于激活状态才会生效。";
 
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.CompletionTracking;
     public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)

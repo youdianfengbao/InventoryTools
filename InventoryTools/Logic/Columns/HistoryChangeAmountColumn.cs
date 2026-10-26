@@ -21,10 +21,10 @@ public class HistoryChangeAmountColumn : TextColumn
         return null;
     }
 
-    public override string Name { get; set; } = "History Event Amount";
-    public override string RenderName => "Amount";
+    public override string Name { get; set; } = "库存变动数量";
+    public override string RenderName => "数量";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "The amount that changed(if applicable)";
+    public override string HelpText { get; set; } = "变动的数量（如适用）";
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     public override FilterType AvailableIn { get; } = Logic.FilterType.HistoryFilter;

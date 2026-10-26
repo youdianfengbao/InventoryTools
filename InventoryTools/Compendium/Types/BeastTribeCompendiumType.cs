@@ -39,7 +39,7 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
     {
         return Factory.Invoke(new CompendiumTableOptions<BeastTribe>()
         {
-            Name = "Beast Tribes",
+            Name = "蛮族",
             Key = "beast_tribes",
             Columns = BuiltColumns,
             CompendiumType = this
@@ -53,7 +53,7 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
 
     public override string? GetSubtitle(BeastTribe row)
     {
-        return row.Expansion.Value.Name.ToImGuiString() + ", Uses " + row.CurrencyItem.Value.Name.ToImGuiString();
+        return row.Expansion.Value.Name.ToImGuiString() + "，使用 " + row.CurrencyItem.Value.Name.ToImGuiString();
     }
 
     public override (string?, uint?) GetIcon(BeastTribe row)
@@ -78,9 +78,9 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
 
     public override unsafe void BuildColumns(CompendiumColumnBuilder<BeastTribe> builder)
     {
-        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "The icon of the beast tribe", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
-        builder.AddStringColumn(new (){Key = "name", Name = "Name", HelpText = "The name of the beast tribe", Version = "14.0.3", ValueSelector = this.GetName});
-        builder.AddStringColumn(new (){Key = "expansion", Name = "Expansion", HelpText = "The expansion the beast tribe was introduced", Version = "14.0.3", ValueSelector = row => row.Expansion.Value.Name.ToImGuiString()});
+        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "蛮族图标", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
+        builder.AddStringColumn(new (){Key = "name", Name = "名称", HelpText = "蛮族名称", Version = "14.0.3", ValueSelector = this.GetName});
+        builder.AddStringColumn(new (){Key = "expansion", Name = "资料片", HelpText = "蛮族加入游戏的资料片", Version = "14.0.3", ValueSelector = row => row.Expansion.Value.Name.ToImGuiString()});
     }
 
     public override List<ICompendiumGrouping>? GetGroupings()
@@ -90,7 +90,7 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
             new CompendiumGrouping<BeastTribe>()
             {
                 Key = "expansion",
-                Name = "Expansion",
+                Name = "资料片",
                 GroupFunc = row => row.Expansion.RowId,
                 GroupMapping = o =>
                 {
@@ -115,26 +115,26 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
         viewBuilder.AddLevelMapLinkSection(new LevelViewSectionOptions()
         {
             SectionKey = "location",
-            SectionName = "Location",
+            SectionName = "地点",
             Level = row.Level
         });
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             SectionKey = "currency_item",
-            SectionName = "Currency Item",
+            SectionName = "货币道具",
             RelatedRef = (RowRef)row.CurrencyItem,
         });
         viewBuilder.AddCollectionRowRefSection(new CollectionRowRefSectionOptions()
         {
             SectionKey = "main_quests",
-            SectionName = "Main Quests",
+            SectionName = "主线任务",
             RelatedRefs = mainQuests,
             HideWhenEmpty = true
         });
         viewBuilder.AddCollectionRowRefSection(new CollectionRowRefSectionOptions()
         {
             SectionKey = "repeatable_quests",
-            SectionName = "Repeatable Quests",
+            SectionName = "可重复任务",
             RelatedRefs = repeatableQuests,
             HideWhenEmpty = true
         });
@@ -152,9 +152,9 @@ public class BeastTribeCompendiumType : CompendiumType<BeastTribe>
 
     public override bool HasLocation => true;
 
-    public override string Singular => "Allied Society";
-    public override string Plural => "Allied Societies";
-    public override string Description => "Allied Societies the player can gain reputation with.";
+    public override string Singular => "蛮族";
+    public override string Plural => "蛮族";
+    public override string Description => "玩家可以提升声望的蛮族。";
     public override string Key => "beast_tribes";
     public override (string?, uint?) Icon => (null, Icons.BeastTribeIcon);
 }

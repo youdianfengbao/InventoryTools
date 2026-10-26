@@ -19,8 +19,8 @@ public class ItemExteriorFurnitureSourceRenderer : ItemInfoRenderer<ItemExterior
 
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.ExteriorFurnitureItem;
-    public override string SingularName => "Exterior Furniture";
-    public override string HelpText => "Can the item be placed outside houses?";
+    public override string SingularName => "室外家具";
+    public override string HelpText => "该物品是否可放置在房屋外部？";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory>? Categories => [ItemInfoRenderCategory.House];
 
@@ -37,6 +37,6 @@ public class ItemExteriorFurnitureSourceRenderer : ItemInfoRenderer<ItemExterior
     public override Func<ItemSource, string> GetDescription => source =>
     {
         var asSource = AsSource(source);
-        return "Can be placed outside a house.";
+        return "可放置在房屋外部。";
     };
 }

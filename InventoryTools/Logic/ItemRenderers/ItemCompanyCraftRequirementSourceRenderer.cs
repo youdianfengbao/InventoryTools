@@ -23,9 +23,9 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     private readonly ITextureProvider _textureProvider;
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.FreeCompanyCraftRecipe;
-    public override string SingularName => "Company Craft Ingredient";
+    public override string SingularName => "部队制作材料";
     public override bool ShouldGroup => true;
-    public override string HelpText => "Is the item a material in a company craft recipe?";
+    public override string HelpText => "该物品是否为部队制作配方中的材料？";
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Crafting];
 
     public ItemCompanyCraftRequirementSourceRenderer(ItemSheet itemSheet, MapSheet mapSheet,
@@ -37,7 +37,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.TextUnformatted($"Ingredient of Craft Recipe:");
+        ImGui.TextUnformatted($"制作配方的材料：");
         using (ImRaii.PushIndent())
         {
             ImGui.Image(_textureProvider.GetFromGameIcon(new GameIconLookup(asSource.Item.Icon)).GetWrapOrEmpty().Handle, new Vector2(16,16));
@@ -50,7 +50,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     {
         var asSource = AsSource(source);
         asSource = asSource.DistinctBy(c => c.Item.RowId).ToList();
-        ImGui.TextUnformatted($"Ingredient of Craft Recipe:");
+        ImGui.TextUnformatted($"制作配方的材料：");
         using (ImRaii.PushIndent())
         {
             foreach (var row in asSource)
@@ -66,7 +66,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = AsSource(source);
-        return asSource.Item.NameString + " (" + (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "Unknown") + ")";
+        return asSource.Item.NameString + " (" + (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "未知") + ")";
     };
 
     public override Func<ItemSource, int> GetIcon => _ => Icons.CraftIcon;
@@ -75,7 +75,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     {
         var asSource = AsSource(source);
         return asSource.Item.NameString + " (" +
-               (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "Unknown") +
+               (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "未知") +
                ")";
     };
 }

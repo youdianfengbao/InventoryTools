@@ -18,15 +18,15 @@ public class ItemGcExpertDeliverySourceRenderer : ItemInfoRenderer<ItemGCExpertD
 
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.GCExpertDelivery;
-    public override string SingularName => "Grand Company Expert Delivery";
-    public override string HelpText => "Can the item be handed in for 'Expert Delivery' at your grand company?";
+    public override string SingularName => "军团专家上缴";
+    public override string HelpText => "该物品是否可在军团“专家上缴”处上缴？";
     public override bool ShouldGroup => false;
 
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
         var sealsRewarded = asSource.SealsRewarded;
-        ImGui.Text("Seals rewarded: " + sealsRewarded);
+        ImGui.Text("军票奖励：" + sealsRewarded);
     };
 
     public override Func<ItemSource, string> GetName => _ =>

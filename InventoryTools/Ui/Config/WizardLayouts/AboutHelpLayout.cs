@@ -6,12 +6,12 @@ public class AboutHelpLayout : ContentLayout
 {
     public override PageLayout Build()
     {
-        return Page("help/about", "About",
-            Paragraph("This plugin is written in some of the free time that I have. It's a labour of love and I will hopefully be actively releasing updates for a while."),
-            Paragraph("If you run into any issues please submit feedback via the plugin installer feedback button."),
-            Section("Links",
-                Link("Open the wiki", "https://github.com/Critical-Impact/InventoryTools/wiki/1.-Overview"),
-                Link("Report a bug", "https://github.com/Critical-Impact/InventoryTools/issues"))
+        return Page("help/about", "关于",
+            Paragraph("本插件是作者利用业余时间编写的，纯属兴趣驱动，希望能持续活跃更新一段时间。"),
+            Paragraph("如遇到任何问题，请通过插件安装器的反馈按钮提交反馈。"),
+            Section("链接",
+                Link("打开 Wiki", "https://github.com/Critical-Impact/InventoryTools/wiki/1.-Overview"),
+                Link("报告 Bug", "https://github.com/Critical-Impact/InventoryTools/issues"))
         );
     }
 }

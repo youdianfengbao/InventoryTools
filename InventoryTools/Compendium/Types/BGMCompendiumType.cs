@@ -45,7 +45,7 @@ public class BGMCompendiumType : CompendiumType<BGM>
     {
         return Factory.Invoke(new CompendiumTableOptions<BGM>()
         {
-            Name = "BGMs",
+            Name = "背景音乐",
             Columns = BuiltColumns,
             CompendiumType = this,
             Key = "bgms",
@@ -64,7 +64,7 @@ public class BGMCompendiumType : CompendiumType<BGM>
             return value.Orchestrion.Value.Name.ToImGuiString();
         }
 
-        return "Unknown";
+        return "未知";
     }
 
     public override string? GetSubtitle(BGM row)
@@ -94,10 +94,10 @@ public class BGMCompendiumType : CompendiumType<BGM>
 
     public override void BuildColumns(CompendiumColumnBuilder<BGM> builder)
     {
-        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "The icon of the BGM", Version = "14.1.2", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
-        builder.AddStringColumn(new (){Key = "name", Name = "Name", HelpText = "The name of the BGM", Version = "14.1.2", ValueSelector = this.GetName});
-        builder.AddBooleanColumn(new (){Key = "orchestrion", Name = "Orchestrion Roll?", HelpText = "Is this available as a orchestrion roll?.", Version = "14.1.2", ValueSelector = row => _bgmOrchestrions.Value.TryGetValue(row.RowId, out var value) && value.Orchestrion.RowId != 0 });
-        builder.AddBooleanColumn(new (){Key = "unlocked", Name = "Orchestrion Roll Unlocked?", HelpText = "Is the orchestrion roll unlocked?.", Version = "14.1.2", ValueSelector = row => _bgmOrchestrions.Value.TryGetValue(row.RowId, out var value) && _unlockState.IsOrchestrionUnlocked(value.Orchestrion.Value)});
+        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "BGM 图标", Version = "14.1.2", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
+        builder.AddStringColumn(new (){Key = "name", Name = "名称", HelpText = "BGM 名称", Version = "14.1.2", ValueSelector = this.GetName});
+        builder.AddBooleanColumn(new (){Key = "orchestrion", Name = "管弦乐琴乐谱？", HelpText = "是否有对应的管弦乐琴乐谱？", Version = "14.1.2", ValueSelector = row => _bgmOrchestrions.Value.TryGetValue(row.RowId, out var value) && value.Orchestrion.RowId != 0 });
+        builder.AddBooleanColumn(new (){Key = "unlocked", Name = "乐谱已解锁？", HelpText = "该管弦乐琴乐谱是否已解锁？", Version = "14.1.2", ValueSelector = row => _bgmOrchestrions.Value.TryGetValue(row.RowId, out var value) && _unlockState.IsOrchestrionUnlocked(value.Orchestrion.Value)});
     }
 
     public override void BuildViewFields(CompendiumViewBuilder viewBuilder, BGM row)
@@ -109,15 +109,15 @@ public class BGMCompendiumType : CompendiumType<BGM>
             {
                 viewBuilder.Description = bgmOrchestrion.Orchestrion.Value.Description.ToImGuiString();
                 viewBuilder.AddTag(
-                    () => _unlockState.IsOrchestrionUnlocked(bgmOrchestrion.Orchestrion.Value) ? "Unlocked" : "Not Unlocked",
-                    () => "Is the orchestrion roll unlocked?",
+                    () => _unlockState.IsOrchestrionUnlocked(bgmOrchestrion.Orchestrion.Value) ? "已解锁" : "未解锁",
+                    () => "该管弦乐琴乐谱是否已解锁？",
                     () => _unlockState.IsOrchestrionUnlocked(bgmOrchestrion.Orchestrion.Value) ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed);
                 if (_orchestionToItem.Value.TryGetValue(bgmOrchestrion.OrchestrionId, out var orchestrionItemId))
                 {
                     viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
                     {
                         SectionKey = "orchestrion_roll",
-                        SectionName = "Orchestrion Roll",
+                        SectionName = "管弦乐琴乐谱",
                         RelatedRef = _itemSheet.GetRow(orchestrionItemId).AsUntypedRowRef()
                     });
                 }
@@ -137,7 +137,7 @@ public class BGMCompendiumType : CompendiumType<BGM>
 
     public override string Singular => "BGM";
     public override string Plural => "BGM";
-    public override string Description => "Music from the game";
+    public override string Description => "游戏中的音乐";
     public override string Key => "bgm";
     public override (string?, uint?) Icon => (null, Icons.OrchestrionIcon);
 }

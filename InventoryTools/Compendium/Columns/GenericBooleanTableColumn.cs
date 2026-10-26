@@ -43,7 +43,7 @@ public class GenericBooleanTableColumn<TData> : BooleanColumn<WindowState, TData
         {
             return null;
         }
-        return value == true ? "true" : "false";
+        return value == true ? "是" : "否";
     }
 
     public override string HelpText { get; set; }

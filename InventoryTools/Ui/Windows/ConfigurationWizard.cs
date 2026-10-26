@@ -23,7 +23,7 @@ public class ConfigurationWizard : GenericWindow
     private readonly ConfigurationWizardService _configurationWizardService;
     private readonly InventoryToolsConfiguration _configuration;
 
-    public ConfigurationWizard(ILogger<ConfigurationWizard> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ConfigurationWizardService configurationWizardService, IEnumerable<IContentLayout> contentLayouts, IEnumerable<ISetting> settings, ConfigNavigationState navigationState, string name = "Configuration Wizard") : base(logger, mediator, imGuiService, configuration, name)
+    public ConfigurationWizard(ILogger<ConfigurationWizard> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ConfigurationWizardService configurationWizardService, IEnumerable<IContentLayout> contentLayouts, IEnumerable<ISetting> settings, ConfigNavigationState navigationState, string name = "配置向导") : base(logger, mediator, imGuiService, configuration, name)
     {
         _configurationWizardService = configurationWizardService;
         _configuration = configuration;
@@ -64,7 +64,7 @@ public class ConfigurationWizard : GenericWindow
 
     public override void Initialize()
     {
-        WindowName = "Configuration Wizard";
+        WindowName = "配置向导";
         Key = "wizard";
         _availableFeatures = _configurationWizardService.GetNewFeatures()
             .OrderBy(c => FeatureOrder.IndexOf(c.Content.Key) == -1
@@ -90,7 +90,7 @@ public class ConfigurationWizard : GenericWindow
     }
 
     public override string GenericKey => "wizard";
-    public override string GenericName => "Configuration Wizard";
+    public override string GenericName => "配置向导";
     public override bool DestroyOnClose => true;
     public override bool SaveState => false;
     public override Vector2? DefaultSize { get; } = new(800, 650);
@@ -177,7 +177,7 @@ public class ConfigurationWizard : GenericWindow
         ImGui.SameLine();
         using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudGrey))
         {
-            var label = $"step {_currentFeature} of {StepCount}";
+            var label = $"第 {_currentFeature} 步，共 {StepCount} 步";
             ImGui.SetCursorPosX(ImGui.GetContentRegionMax().X - ImGui.CalcTextSize(label).X);
             ImGui.TextUnformatted(label);
         }
@@ -219,19 +219,19 @@ public class ConfigurationWizard : GenericWindow
                 {
                     if (sideBarMenu)
                     {
-                        DrawSideBarItem("Welcome", 0);
+                        DrawSideBarItem("欢迎", 0);
 
                         var step = 0;
                         var intro = ActiveIntroPages;
                         if (intro.Count != 0)
                         {
-                            DrawSideBarGroup("Introduction");
+                            DrawSideBarGroup("介绍");
                             foreach (var introPage in intro) DrawSideBarItem(introPage.Name, ++step);
                         }
 
                         if (_availableFeatures.Count != 0)
                         {
-                            DrawSideBarGroup("Set up");
+                            DrawSideBarGroup("配置");
                             foreach (var feature in _availableFeatures) DrawSideBarItem(feature.Name, ++step);
                         }
                     }
@@ -273,16 +273,16 @@ public class ConfigurationWizard : GenericWindow
     {
         if (_configurationWizardService.ConfiguredOnce)
         {
-            ImGui.TextWrapped("Welcome back to the Allagan Tools configuration wizard.");
+            ImGui.TextWrapped("欢迎回到 Allagan Tools 配置向导。");
             ImGui.Separator();
             ImGui.TextWrapped(
-                "There are new features available to configure and you elected to show this window when that occurs.");
+                "有新功能可供配置，而你选择了在出现这种情况时显示此窗口。");
             ImGui.NewLine();
 
             if (!_showIntro && _introPages.Count != 0)
             {
-                ImGui.TextWrapped("You can also go back through the introduction covering what the plugin does.");
-                if (ImGui.Button("Show me around again"))
+                ImGui.TextWrapped("你也可以重新浏览介绍，了解本插件的功能。");
+                if (ImGui.Button("重新浏览介绍"))
                 {
                     _showIntro = true;
                     NextStep();
@@ -292,14 +292,14 @@ public class ConfigurationWizard : GenericWindow
             return;
         }
 
-        ImGui.TextWrapped("Welcome to the Allagan Tools configuration wizard.");
+        ImGui.TextWrapped("欢迎使用 Allagan Tools 配置向导。");
         ImGui.Separator();
         ImGui.TextWrapped(
-            "This will guide you through what the plugin does and then help you set up the most commonly used features. It takes a couple of minutes, and everything here can be changed later in the settings window.");
+            "它将引导你了解本插件的功能，并帮助你设置最常用的特性。只需几分钟，之后所有内容都可以在设置窗口中修改。");
         ImGui.NewLine();
-        ImGui.TextWrapped("If you are a returning user, feel free to close this window.");
+        ImGui.TextWrapped("如果你是老用户，可以直接关闭此窗口。");
         ImGui.NewLine();
-        if (ImGui.Button("Open Help")) MediatorService.Publish(new ToggleGenericWindowMessage(typeof(HelpWindow)));
+        if (ImGui.Button("打开帮助")) MediatorService.Publish(new ToggleGenericWindowMessage(typeof(HelpWindow)));
     }
 
     private void DrawStep()
@@ -328,7 +328,7 @@ public class ConfigurationWizard : GenericWindow
         if (isWelcome || isLast)
         {
             var showOnNewFeatures = _configuration.ShowWizardNewFeatures;
-            if (ImGui.Checkbox("Show this wizard when new features are released", ref showOnNewFeatures))
+            if (ImGui.Checkbox("有新功能发布时显示此向导", ref showOnNewFeatures))
             {
                 _configuration.ShowWizardNewFeatures = showOnNewFeatures;
             }
@@ -339,26 +339,26 @@ public class ConfigurationWizard : GenericWindow
         var buttons = new List<(string Label, Action OnClick, bool Enabled)>();
         if (isWelcome)
         {
-            buttons.Add(("Close", Close, true));
+            buttons.Add(("关闭", Close, true));
             if (StepCount == 0)
             {
-                buttons.Add(("Finish", Finish, true));
+                buttons.Add(("完成", Finish, true));
             }
             else
             {
-                buttons.Add(("Continue", NextStep, true));
+                buttons.Add(("继续", NextStep, true));
             }
         }
         else
         {
-            buttons.Add(("Previous", PreviousStep, CanGoPrevious));
+            buttons.Add(("上一步", PreviousStep, CanGoPrevious));
             if (CanGoNext)
             {
-                buttons.Add(("Next", NextStep, true));
+                buttons.Add(("下一步", NextStep, true));
             }
             else
             {
-                buttons.Add(("Finish", Finish, true));
+                buttons.Add(("完成", Finish, true));
             }
         }
 

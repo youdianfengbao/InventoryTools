@@ -11,7 +11,7 @@ namespace InventoryTools.Logic.Settings.Abstract
         {
         }
 
-        private readonly string[] Choices = new []{"N/A", "Yes", "No"};
+        private readonly string[] Choices = new []{"默认", "是", "否"};
 
         public override void Draw(InventoryToolsConfiguration configuration, string? customName, bool? disableReset,
             bool? disableColouring)
@@ -39,7 +39,7 @@ namespace InventoryTools.Logic.Settings.Abstract
             if (disableReset != true && HasValueSet(configuration))
             {
                 ImGui.SameLine();
-                if (ImGui.Button("Reset##" + Key + "Reset"))
+                if (ImGui.Button("重置##" + Key + "Reset"))
                 {
                     Reset(configuration);
                 }

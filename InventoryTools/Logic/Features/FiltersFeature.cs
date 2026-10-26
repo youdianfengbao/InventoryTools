@@ -15,11 +15,11 @@ public class FiltersFeature : Feature
 
     public override PageLayout Build()
     {
-        return Page("feature/sample-lists", "Sample Lists",
-            Paragraph("These lists show you what the plugin can do. If you select them, they'll be installed once you complete the wizard."),
-            Setting<SampleFilter100GillOrLess>("Items worth 100 gil or less"),
-            Setting<SampleFilterDuplicateItems>("Duplicate items in your inventory"),
-            Setting<SampleFilterMaterialCleanup>("Crafting materials to move to storage")
+        return Page("feature/sample-lists", "示例清单",
+            Paragraph("这些清单展示了插件的部分功能。勾选后，完成向导时会自动安装。"),
+            Setting<SampleFilter100GillOrLess>("价值不超过 100 金币的物品"),
+            Setting<SampleFilterDuplicateItems>("库存中的重复物品"),
+            Setting<SampleFilterMaterialCleanup>("需移入仓库的制作材料")
         );
     }
 

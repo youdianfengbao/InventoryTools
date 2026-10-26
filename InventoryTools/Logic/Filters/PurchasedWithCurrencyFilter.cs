@@ -24,10 +24,10 @@
          }
 
          public override string Key { get; set; } = "PurchaseWithCurrency";
-         public override string Name { get; set; } = "Purchased with Currency";
+         public override string Name { get; set; } = "可由货币购买";
 
          public override string HelpText { get; set; } =
-             "Filter items based on the currency they can be purchased with.";
+             "按可购买该物品的货币筛选物品。";
 
          public override FilterCategory FilterCategory { get; set; } = FilterCategory.Acquisition;
 
@@ -58,7 +58,7 @@
              currencies.Add(21);
              currencies.Add(22);
 
-             cachedCurrencies ??= currencies.ToDictionary(c => c, c => _itemSheet.GetRowOrDefault(c)?.NameString ?? "Unknown").OrderBy(c => c.Value).ToDictionary(c => c.Key, c => c.Value);
+             cachedCurrencies ??= currencies.ToDictionary(c => c, c => _itemSheet.GetRowOrDefault(c)?.NameString ?? "未知").OrderBy(c => c.Value).ToDictionary(c => c.Key, c => c.Value);
              return cachedCurrencies;
          }
 

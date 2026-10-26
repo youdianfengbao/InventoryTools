@@ -21,10 +21,10 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "MoreInformationHotKey";
-        public override string Name { get; set; } = "More Information Hotkey";
+        public override string Name { get; set; } = "更多信息快捷键";
 
         public override string HelpText { get; set; } =
-            "The hotkey to open the more information window for an item when hovering it.";
+            "悬停在物品上时，按此快捷键打开该物品的更多信息窗口。";
         
         public override string Version => "1.7.0.0";
 

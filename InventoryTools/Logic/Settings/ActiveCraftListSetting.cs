@@ -34,16 +34,16 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "ActiveCraftList";
-        public override string Name { get; set; } = "Active Craft List";
+        public override string Name { get; set; } = "当前制作清单";
 
         public override string HelpText { get; set; } =
-            "This is the craft list that crafts will count towards.";
-        
+            "制作数量将计入该制作清单。";
+
         public override Dictionary<string, string> Choices
         {
             get
             {
-                var filterItems = new Dictionary<string, string> {{"", "None"}};
+                var filterItems = new Dictionary<string, string> {{"", "无"}};
                 foreach (var config in _listService.Lists.Where(c => c.FilterType == FilterType.CraftFilter && !c.CraftListDefault))
                 {
                     filterItems.Add(config.Key, config.Name);

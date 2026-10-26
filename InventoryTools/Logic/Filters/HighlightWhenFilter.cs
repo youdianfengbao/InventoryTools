@@ -31,8 +31,8 @@ namespace InventoryTools.Logic.Filters
 
 
         public override string Key { get; set; } = "HighlightWhen";
-        public override string Name { get; set; } = "Highlight When?";
-        public override string HelpText { get; set; } = "When should the highlighting apply?";
+        public override string Name { get; set; } = "何时高亮？";
+        public override string HelpText { get; set; } = "高亮应在何时生效？";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Display;
 
         public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)
@@ -55,11 +55,11 @@ namespace InventoryTools.Logic.Filters
             switch (choice)
             {
                 case HighlightWhen.UseGlobalConfiguration:
-                    return "Use Global Configuration";
+                    return "使用全局配置";
                 case HighlightWhen.WhenSearching:
-                    return "When Searching";
+                    return "搜索时";
                 case HighlightWhen.Always:
-                    return "Always";
+                    return "总是";
             }
 
             return choice.ToString();

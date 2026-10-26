@@ -29,7 +29,7 @@ public class CompendiumMenuBuilder
 
     public void Header(string headerText)
     {
-        ImGui.Text(headerText + ":");
+        ImGui.Text(headerText + "：");
         ImGui.Separator();
     }
 
@@ -84,7 +84,7 @@ public class CompendiumMenuBuilder
         }
     }
 
-    public void GroupedItems(List<RowRef<Item>> items, string text = "All Items")
+    public void GroupedItems(List<RowRef<Item>> items, string text = "全部物品")
     {
         var actualItems = items.Where(c => c.IsValid && c.RowId != 0).Select(c => _itemSheet.GetRow(c.RowId)).ToList();
         using (var menu = ImRaii.Menu(text))
@@ -97,7 +97,7 @@ public class CompendiumMenuBuilder
         }
     }
 
-    public void TryOn(List<ItemInfo> items, string text = "Try On")
+    public void TryOn(List<ItemInfo> items, string text = "试穿")
     {
         if (ImGui.Selectable(text))
         {
@@ -106,7 +106,7 @@ public class CompendiumMenuBuilder
     }
 
 
-    public void TryOn(List<RowRef<Item>> items, string text = "Try On")
+    public void TryOn(List<RowRef<Item>> items, string text = "试穿")
     {
         if (ImGui.Selectable(text))
         {

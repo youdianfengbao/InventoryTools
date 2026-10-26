@@ -65,13 +65,13 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
 
     public override void BuildColumns(CompendiumColumnBuilder<AirshipExplorationPointRow> builder)
     {
-        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "Icon", HelpText = "The icon of the route", Version = "14.0.3", CompendiumType = this, RowIdSelector = row => row.RowId, ValueSelector = this.GetIcon});
-        builder.AddStringColumn(new (){Key = "name", Name = "Name", HelpText = "The name of the route", Version = "14.0.3", ValueSelector = row => row.Base.Name.ToImGuiString()});
-        builder.AddStringColumn(new (){Key = "unlock", Name = "Unlock Route", HelpText = "The name of the route that unlocks this", Version = "14.0.3", ValueSelector = row => row.Unlock?.Base.Name.ToImGuiString() ?? ""});
-        builder.AddIntegerColumn(new(){Key = "rankrequired", Name = "Rank Required", HelpText = "The rank required for the route", Version = "14.0.3", ValueSelector =row => row.Base.RankReq.ToString()});
-        builder.AddIntegerColumn(new(){Key = "cerelumrequired", Name = "Ceruleum Required", HelpText = "The ceruleum required for the route", Version = "14.0.3", ValueSelector =row => row.Base.CeruleumTankReq.ToString()});
-        builder.AddIntegerColumn(new(){Key = "surveillancerequired", Name = "Surveillance Required", HelpText = "The surveillance required for the route", Version = "14.0.3", ValueSelector =row => row.Base.SurveillanceReq.ToString()});
-        builder.AddItemsColumn(new(){Key = "drops", Name = "Drops", HelpText = "The drops for this airship route", Version = "14.0.3", ValueSelector = row => row.DropItems, ColumnFlags = ImGuiTableColumnFlags.WidthFixed});
+        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "图标", HelpText = "航线图标", Version = "14.0.3", CompendiumType = this, RowIdSelector = row => row.RowId, ValueSelector = this.GetIcon});
+        builder.AddStringColumn(new (){Key = "name", Name = "名称", HelpText = "航线名称", Version = "14.0.3", ValueSelector = row => row.Base.Name.ToImGuiString()});
+        builder.AddStringColumn(new (){Key = "unlock", Name = "解锁航线", HelpText = "解锁此航线的航线名称", Version = "14.0.3", ValueSelector = row => row.Unlock?.Base.Name.ToImGuiString() ?? ""});
+        builder.AddIntegerColumn(new(){Key = "rankrequired", Name = "所需等级", HelpText = "航线所需的飞艇等级", Version = "14.0.3", ValueSelector =row => row.Base.RankReq.ToString()});
+        builder.AddIntegerColumn(new(){Key = "cerelumrequired", Name = "所需青磷", HelpText = "航线所需的青磷", Version = "14.0.3", ValueSelector =row => row.Base.CeruleumTankReq.ToString()});
+        builder.AddIntegerColumn(new(){Key = "surveillancerequired", Name = "所需侦测", HelpText = "航线所需的侦测", Version = "14.0.3", ValueSelector =row => row.Base.SurveillanceReq.ToString()});
+        builder.AddItemsColumn(new(){Key = "drops", Name = "掉落", HelpText = "此飞艇航线的掉落", Version = "14.0.3", ValueSelector = row => row.DropItems, ColumnFlags = ImGuiTableColumnFlags.WidthFixed});
     }
 
     public override void BuildViewFields(CompendiumViewBuilder viewBuilder, AirshipExplorationPointRow row)
@@ -79,14 +79,14 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
         viewBuilder.SetupDefaults(this, row);
         var information = new List<(string Header, string Value, bool IsVisible)>
         {
-            ("Rank Req.", row.Base.RankReq.ToString(), true),
-            ("Ceruleum Req.", row.Base.CeruleumTankReq.ToString(), true),
-            ("Surveillance Req.", row.Base.SurveillanceReq.ToString(), true)
+            ("所需等级", row.Base.RankReq.ToString(), true),
+            ("所需青磷", row.Base.CeruleumTankReq.ToString(), true),
+            ("所需侦测", row.Base.SurveillanceReq.ToString(), true)
         };
         viewBuilder.AddInfoTableSection(new InfoTableSectionOptions()
         {
             SectionKey = "information",
-            SectionName = "Information",
+            SectionName = "信息",
             Items = information.AsReadOnly()
         });
         if (row.Unlock != null)
@@ -94,7 +94,7 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = "unlocked_via",
-                SectionName = "Unlocked Via",
+                SectionName = "解锁条件",
                 RelatedRef = row.Unlock.Base.AsUntypedRowRef()
             });
         }
@@ -102,7 +102,7 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
         {
             RelatedRefs = _airshipExplorationPointSheet.Where(c => c.UnlockId != null && c.UnlockId == row.RowId).Select(c => c.Base.AsUntypedRowRef()).ToList(),
             SectionKey = "unlocks",
-            SectionName = "Unlocks",
+            SectionName = "解锁内容",
             HideWhenEmpty = true
         });
 
@@ -110,7 +110,7 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
         {
             Items = row.DropItems.Select(c => new ItemInfo(c)).ToList(),
             SectionKey = "potential_drops",
-            SectionName = "Potential Drops"
+            SectionName = "可能掉落"
         });
     }
 
@@ -127,9 +127,9 @@ public class AirshipRoutesCompendiumType : CompendiumType<AirshipExplorationPoin
 
     public override List<Type>? RelatedTypes => [typeof(AirshipExplorationPoint)];
 
-    public override string Singular => "Airship Route";
-    public override string Plural => "Airship Routes";
-    public override string Description => "Routes flown by Company Airships";
+    public override string Singular => "飞艇航线";
+    public override string Plural => "飞艇航线";
+    public override string Description => "部队飞艇飞行的航线";
     public override string Key => "airships";
     public override (string?, uint?) Icon => (null, Icons.AirshipIcon);
 }

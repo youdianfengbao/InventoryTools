@@ -32,11 +32,11 @@ public class DefaultFilterFavourites : ISampleFilter
         return allItemsFilter;
     }
 
-    public string Name => "Favourites";
-    public string SampleDefaultName => "Favourites";
+    public string Name => "收藏";
+    public string SampleDefaultName => "收藏";
 
     public string SampleDescription =>
-        "This will show all the items you have favourited.";
+        "显示你收藏的所有物品。";
 
     public SampleFilterType SampleFilterType => SampleFilterType.Default;
 }

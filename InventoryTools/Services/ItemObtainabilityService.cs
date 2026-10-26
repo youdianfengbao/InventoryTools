@@ -62,7 +62,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
             {
                 var craftTypeId = recipe.Base.CraftType.RowId;
                 var playerLevel = _classJobService.GetPlayerLevelByCraftTypeId(craftTypeId);
-                var jobName = recipe.CraftType?.FormattedName ?? "Crafter";
+                var jobName = recipe.CraftType?.FormattedName ?? "能工巧匠";
                 var craftJob = _classJobService.GetClassJobListFromCraftTypeId(craftTypeId);
                 RowRef? classJobRowRef = craftJob.HasValue ? _classJobService.GetClassJobRowRef(craftJob.Value) : null;
                 if (classJobRowRef != null)
@@ -79,7 +79,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
         var bookId = recipe.Base.SecretRecipeBook.RowId;
         if (bookId != 0)
         {
-            var bookName = recipe.Base.SecretRecipeBook.ValueNullable?.Name.ExtractText() ?? $"Recipe Book #{bookId}";
+            var bookName = recipe.Base.SecretRecipeBook.ValueNullable?.Name.ExtractText() ?? $"配方书 #{bookId}";
             var hasBook = _classJobService.IsSecretRecipeBookUnlocked(recipe.Base.SecretRecipeBook);
             requirements.Add(new ObtainabilityRequirement(
                 ObtainabilityRequirementType.SecretRecipeBook,
@@ -124,7 +124,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
                 ? ClassJobService.ClassJobList.Miner
                 : ClassJobService.ClassJobList.Botanist;
             var playerLevel = _classJobService.GetPlayerLevel(job);
-            var jobName = preferenceType == IngredientPreferenceType.Mining ? "Miner" : "Botanist";
+            var jobName = preferenceType == IngredientPreferenceType.Mining ? "矿工" : "园艺工";
             requirements.Add(new ObtainabilityRequirement(
                 ObtainabilityRequirementType.JobLevel,
                 playerLevel >= minLevel,
@@ -143,7 +143,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
             var tomeId = (uint)folkloreEntry.Value.Division;
             var noteBookDivision = new RowRef<NotebookDivision>(folkloreEntry.Value.ExcelPage.Module, folkloreEntry.Value.Division);
             var hasBook = _unlockState.IsItemUnlocked(folkloreEntry.Value.Item.Value);
-            var tomeName = folkloreEntry.Value.Item.ValueNullable?.Name.ExtractText() ?? $"Folklore Tome #{tomeId}";
+            var tomeName = folkloreEntry.Value.Item.ValueNullable?.Name.ExtractText() ?? $"传说录 #{tomeId}";
             RowRef tomeRowRef = noteBookDivision.Value.AsUntypedRowRef();
             requirements.Add(new ObtainabilityRequirement(
                 ObtainabilityRequirementType.FolkloreTome,
@@ -170,7 +170,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
             requirements.Add(new ObtainabilityRequirement(
                 ObtainabilityRequirementType.JobLevel,
                 playerLevel >= minLevel,
-                $"Fisher Lv {minLevel}",
+                $"捕鱼人 Lv {minLevel}",
                 _classJobService.GetClassJobRowRef(ClassJobService.ClassJobList.Fisher)));
         }
 
@@ -183,7 +183,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
         {
             var tomeId = (uint)folkloreEntry.Value.Division;
             var hasBook = _unlockState.IsItemUnlocked(folkloreEntry.Value.Item.Value);
-            var tomeName = folkloreEntry.Value.Item.ValueNullable?.Name.ExtractText() ?? $"Folklore Tome #{tomeId}";
+            var tomeName = folkloreEntry.Value.Item.ValueNullable?.Name.ExtractText() ?? $"传说录 #{tomeId}";
             RowRef? tomeRowRef = folkloreEntry.Value.Item.RowId != 0 ? (RowRef)folkloreEntry.Value.Item : null;
             if (tomeRowRef != null)
             {
@@ -213,7 +213,7 @@ public class ItemObtainabilityService : IItemObtainabilityService
             requirements.Add(new ObtainabilityRequirement(
                 ObtainabilityRequirementType.JobLevel,
                 playerLevel >= minLevel,
-                $"Fisher Lv {minLevel}",
+                $"捕鱼人 Lv {minLevel}",
                 _classJobService.GetClassJobRowRef(ClassJobService.ClassJobList.Fisher)));
         }
     }

@@ -20,29 +20,29 @@ public class TooltipLocationDisplayModeSetting : ChoiceSetting<TooltipLocationDi
     }
 
     public override string Key { get; set; } = "TooltipLocationDisplayMode";
-    public override string Name { get; set; } = "Add Item Locations (Display Mode)";
+    public override string Name { get; set; } = "添加物品位置（显示模式）";
 
-    public override string WizardName { get; } = "Display Mode";
+    public override string WizardName { get; } = "显示模式";
 
     public override string HelpText { get; set; } =
-        "How the locations of items should be presented in the tooltip. This requires 'Add Item Locations?' to be on.";
-    
+        "物品位置在提示中的显示格式。需开启“添加物品位置”。";
+
     public override Dictionary<TooltipLocationDisplayMode, string> Choices
     {
         get
         {
             return new Dictionary<TooltipLocationDisplayMode, string>()
             {
-                { TooltipLocationDisplayMode.CharacterQuantityQuality, "Character/Retainer - Quantity - Quality" },
-                { TooltipLocationDisplayMode.CharacterBagSlotQuality, "Character/Retainer - Bag - Slot - Quality" },
-                { TooltipLocationDisplayMode.CharacterBagSlotQuantity, "Character/Retainer - Bag - Slot - Quantity" },
+                { TooltipLocationDisplayMode.CharacterQuantityQuality, "角色/雇员 - 数量 - 品质" },
+                { TooltipLocationDisplayMode.CharacterBagSlotQuality, "角色/雇员 - 背包 - 格子 - 品质" },
+                { TooltipLocationDisplayMode.CharacterBagSlotQuantity, "角色/雇员 - 背包 - 格子 - 数量" },
                 {
                     TooltipLocationDisplayMode.CharacterCategoryQuantityQuality,
-                    "Character/Retainer - Category - Quantity - Quality"
+                    "角色/雇员 - 分类 - 数量 - 品质"
                 },
                 {
                     TooltipLocationDisplayMode.CharacterWorldCategoryQuantityQuality,
-                    "Character/Retainer - World - Category - Quantity - Quality"
+                    "角色/雇员 - 服务器 - 分类 - 数量 - 品质"
                 },
             };
         }

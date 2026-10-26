@@ -25,8 +25,8 @@ public class ItemWoodlandExplorationVentureSourceRenderer : ItemVentureSourceRen
     {
     }
 
-    public override string SingularName => "Woodland Exploration Venture (Botany)";
-    public override string HelpText => "Can the item be returned by retainers from botany exploration ventures?";
+    public override string SingularName => "林地探索（园艺工）";
+    public override string HelpText => "该物品是否可由雇员通过园艺探索带回？";
 }
 public class ItemWatersideExplorationVentureSourceRenderer : ItemVentureSourceRenderer<ItemWatersideExplorationVentureSource>
 {
@@ -36,8 +36,8 @@ public class ItemWatersideExplorationVentureSourceRenderer : ItemVentureSourceRe
     {
     }
 
-    public override string SingularName => "Waterside Exploration Venture (Fishing)";
-    public override string HelpText => "Can the item be returned by retainers from fishing exploration ventures?";
+    public override string SingularName => "水域探索（捕鱼人）";
+    public override string HelpText => "该物品是否可由雇员通过捕鱼探索带回？";
 }
 public class ItemHighlandExplorationVentureSourceRenderer : ItemVentureSourceRenderer<ItemHighlandExplorationVentureSource>
 {
@@ -47,8 +47,8 @@ public class ItemHighlandExplorationVentureSourceRenderer : ItemVentureSourceRen
     {
     }
 
-    public override string SingularName => "Highland Exploration Venture (Mining)";
-    public override string HelpText => "Can the item be returned by retainers from mining exploration ventures?";
+    public override string SingularName => "高地探索（采矿工）";
+    public override string HelpText => "该物品是否可由雇员通过采矿探索带回？";
 }
 
 public class ItemFieldExplorationVentureSourceRenderer : ItemVentureSourceRenderer<ItemFieldExplorationVentureSource>
@@ -59,8 +59,8 @@ public class ItemFieldExplorationVentureSourceRenderer : ItemVentureSourceRender
     {
     }
 
-    public override string SingularName => "Field Exploration Venture (Combat)";
-    public override string HelpText => "Can the item be returned by retainers from combat exploration ventures?";
+    public override string SingularName => "野外探索（战斗精英）";
+    public override string HelpText => "该物品是否可由雇员通过战斗探索带回？";
 }
 
 public class ItemBotanistVentureSourceRenderer : ItemVentureSourceRenderer<ItemBotanistVentureSource>
@@ -70,8 +70,8 @@ public class ItemBotanistVentureSourceRenderer : ItemVentureSourceRenderer<ItemB
     {
     }
 
-    public override string SingularName => "Venture (Botany)";
-    public override string HelpText => "Can the item be returned by retainers from botany ventures?";
+    public override string SingularName => "园艺探索";
+    public override string HelpText => "该物品是否可由雇员通过园艺探索带回？";
 }
 public class ItemFishingVentureSourceRenderer : ItemVentureSourceRenderer<ItemFishingVentureSource>
 {
@@ -80,8 +80,8 @@ public class ItemFishingVentureSourceRenderer : ItemVentureSourceRenderer<ItemFi
     {
     }
 
-    public override string SingularName => "Venture (Fishing)";
-    public override string HelpText => "Can the item be returned by retainers from fishing ventures?";
+    public override string SingularName => "捕鱼探索";
+    public override string HelpText => "该物品是否可由雇员通过捕鱼探索带回？";
 }
 public class ItemMiningVentureSourceRenderer : ItemVentureSourceRenderer<ItemMiningVentureSource>
 {
@@ -90,8 +90,8 @@ public class ItemMiningVentureSourceRenderer : ItemVentureSourceRenderer<ItemMin
     {
     }
 
-    public override string SingularName => "Venture (Mining)";
-    public override string HelpText => "Can the item be returned by retainers from mining ventures?";
+    public override string SingularName => "采矿探索";
+    public override string HelpText => "该物品是否可由雇员通过采矿探索带回？";
 }
 
 public class ItemHuntingVentureSourceRenderer : ItemVentureSourceRenderer<ItemHuntingVentureSource>
@@ -101,8 +101,8 @@ public class ItemHuntingVentureSourceRenderer : ItemVentureSourceRenderer<ItemHu
     {
     }
 
-    public override string SingularName => "Venture (Combat)";
-    public override string HelpText => "Can the item be returned by retainers from combat ventures?";
+    public override string SingularName => "狩猎探索";
+    public override string HelpText => "该物品是否可由雇员通过狩猎探索带回？";
 }
 
 public abstract class ItemVentureSourceRenderer<T> : ItemInfoRenderer<T> where T : ItemVentureSource
@@ -125,23 +125,23 @@ public abstract class ItemVentureSourceRenderer<T> : ItemInfoRenderer<T> where T
         ImGui.Text($"{asSource.RetainerTaskRow.FormattedName}");
         using (ImRaii.PushIndent())
         {
-            ImGui.Text($"Venture Cost: {asSource.RetainerTaskRow.Base.VentureCost}");
-            ImGui.Text($"Required Level: {asSource.RetainerTaskRow.Base.RetainerLevel}");
+            ImGui.Text($"探索消耗：{asSource.RetainerTaskRow.Base.VentureCost}");
+            ImGui.Text($"所需等级：{asSource.RetainerTaskRow.Base.RetainerLevel}");
             if (asSource.RetainerTaskRow.Base.RequiredGathering != 0)
             {
                 ImGui.Text(
-                    $"Required Gathering: {asSource.RetainerTaskRow.Base.RequiredGathering}");
+                    $"所需采集力：{asSource.RetainerTaskRow.Base.RequiredGathering}");
             }
 
             if (asSource.RetainerTaskRow.Base.RequiredItemLevel != 0)
             {
                 ImGui.Text(
-                    $"Required Item Level: {asSource.RetainerTaskRow.Base.RequiredItemLevel}");
+                    $"所需物品等级：{asSource.RetainerTaskRow.Base.RequiredItemLevel}");
             }
 
-            ImGui.Text($"Experience: {asSource.RetainerTaskRow.Base.Experience}");
+            ImGui.Text($"经验值：{asSource.RetainerTaskRow.Base.Experience}");
             ImGui.Text(
-                $"Time: {asSource.RetainerTaskRow.Base.MaxTimemin.Minutes().ToHumanReadableString()}");
+                $"时长：{asSource.RetainerTaskRow.Base.MaxTimemin.Minutes().ToHumanReadableString()}");
         }
     };
 
@@ -164,6 +164,6 @@ public abstract class ItemVentureSourceRenderer<T> : ItemInfoRenderer<T> where T
     {
         var asSource = AsSource(source);
         return
-            $"{asSource.RetainerTaskRow.FormattedName} ({asSource.RetainerTaskRow.Base.VentureCost} ventures, {asSource.RetainerTaskRow.Base.MaxTimemin.Minutes().ToHumanReadableString()})";
+            $"{asSource.RetainerTaskRow.FormattedName}（消耗 {asSource.RetainerTaskRow.Base.VentureCost} 次探索，{asSource.RetainerTaskRow.Base.MaxTimemin.Minutes().ToHumanReadableString()}）";
     };
 }

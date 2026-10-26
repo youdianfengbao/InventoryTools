@@ -33,10 +33,10 @@ public class ItemCraftResultSourceRenderer : ItemInfoRenderer<ItemCraftResultSou
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.CraftRecipe;
-    public override string SingularName => "Craft Recipe";
+    public override string SingularName => "制作配方";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Crafting];
-    public override string HelpText => "Can the item be crafted via a craft recipe?";
+    public override string HelpText => "该物品是否可通过制作配方制作？";
     public override Func<ItemSource, List<MessageBase>?>? OnClick => source =>
     {
         var asSource = AsSource(source);
@@ -52,12 +52,12 @@ public class ItemCraftResultSourceRenderer : ItemInfoRenderer<ItemCraftResultSou
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.Text($"Craft Type: {asSource.Recipe.Base.CraftType.Value.Name}");
-        ImGui.Text($"Yield: {asSource.Recipe.Base.AmountResult}");
-        ImGui.Text($"Difficulty: {asSource.Recipe.Base.DifficultyFactor}");
-        ImGui.Text($"Required Craftsmanship: {asSource.Recipe.Base.RequiredCraftsmanship}");
+        ImGui.Text($"制作类型：{asSource.Recipe.Base.CraftType.Value.Name}");
+        ImGui.Text($"产出数量：{asSource.Recipe.Base.AmountResult}");
+        ImGui.Text($"制作难度：{asSource.Recipe.Base.DifficultyFactor}");
+        ImGui.Text($"所需作业精度：{asSource.Recipe.Base.RequiredCraftsmanship}");
 
-        ImGui.Text("Ingredients:");
+        ImGui.Text("材料：");
         using (ImRaii.PushIndent())
         {
             foreach (var ingredient in asSource.Recipe.IngredientCounts)
@@ -72,7 +72,7 @@ public class ItemCraftResultSourceRenderer : ItemInfoRenderer<ItemCraftResultSou
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = AsSource(source);
-        return asSource.Item.NameString + " (" + (asSource.Recipe.CraftType?.FormattedName ?? "Unknown") + ")";
+        return asSource.Item.NameString + " (" + (asSource.Recipe.CraftType?.FormattedName ?? "未知") + ")";
     };
 
     public override Func<ItemSource, int> GetIcon => source =>
@@ -89,6 +89,6 @@ public class ItemCraftResultSourceRenderer : ItemInfoRenderer<ItemCraftResultSou
     public override Func<ItemSource, string> GetDescription => source =>
     {
         var asSource = AsSource(source);
-        return $"{asSource.Recipe.Base.CraftType.Value.Name} ({asSource.Recipe.Base.AmountResult} yield) ({string.Join(", ", asSource.Recipe.IngredientCounts.Select(c => _itemSheet.GetRow(c.Key).NameString + " x " + c.Value))})";
+        return $"{asSource.Recipe.Base.CraftType.Value.Name}（产出 {asSource.Recipe.Base.AmountResult} 个）（{string.Join("、", asSource.Recipe.IngredientCounts.Select(c => _itemSheet.GetRow(c.Key).NameString + " x " + c.Value))}）";
     };
 }

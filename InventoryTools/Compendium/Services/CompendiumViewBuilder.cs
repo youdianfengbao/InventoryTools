@@ -109,7 +109,7 @@ public class CompendiumViewBuilder
             this._sections ??= [];
             _linksSectionOptions ??= new LinksSectionOptions()
             {
-                SectionName = "Links",
+                SectionName = "链接",
                 SectionKey = "links"
             };
             _linksSection ??= _linksSectionFactory.Invoke(_linksSectionOptions);
@@ -126,7 +126,7 @@ public class CompendiumViewBuilder
             this._sections ??= [];
             _linksSectionOptions ??= new LinksSectionOptions()
             {
-                SectionName = "Links",
+                SectionName = "链接",
                 SectionKey = "links"
             };
             _linksSection ??= _linksSectionFactory.Invoke(_linksSectionOptions);
@@ -459,7 +459,7 @@ public class CompendiumViewBuilder
                     {
                         _draggedSectionKey = key;
                         ImGui.SetDragDropPayload("##SectionReorder"u8, []);
-                        ImGui.TextUnformatted("Moving: " + section.SectionOptions.SectionName);
+                        ImGui.TextUnformatted("移动：" + section.SectionOptions.SectionName);
                     }
                 }
 
@@ -499,7 +499,7 @@ public class CompendiumViewBuilder
 
     public void SetupDefaults<T>(ICompendiumType<T> compendiumType, T row)
     {
-        this.Title = compendiumType.GetName(row) ?? "Unknown";
+        this.Title = compendiumType.GetName(row) ?? "未知";
         var rowSubtitle = compendiumType.GetSubtitle(row);
         if (rowSubtitle != null)
         {

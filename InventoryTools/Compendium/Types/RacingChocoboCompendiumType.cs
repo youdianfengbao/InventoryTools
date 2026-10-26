@@ -26,9 +26,9 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
         _racingChocoboItemSheet = racingChocoboItemSheet;
     }
 
-    public override string Singular => "Racing Chocobo Item";
-    public override string Plural => "Racing Chocobo Items";
-    public override string Description => "Items for Racing Chocobo training and breeding.";
+    public override string Singular => "赛鸟用品";
+    public override string Plural => "赛鸟用品";
+    public override string Description => "赛鸟训练与繁育所需的物品。";
     public override string Key => "racingChocoboItems";
 
     public override (string?, uint?) Icon => (null, 72);
@@ -89,7 +89,7 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "Item icon",
+            HelpText = "物品图标",
             Version = "1.0",
             ValueSelector = row => row.Item.RowId,
         });
@@ -97,27 +97,27 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
+            Name = "名称",
             Version = "1.0",
-            HelpText = "The name of the item",
+            HelpText = "物品名称",
             ValueSelector = r => r.Item.ValueNullable?.Name.ToImGuiString()
         });
 
         builder.AddStringColumn(new()
         {
             Key = "category",
-            Name = "Category",
+            Name = "类别",
             Version = "1.0",
-            HelpText = "The category of the item",
+            HelpText = "物品的类别",
             ValueSelector = r => GetCategoryName(r.Category)
         });
 
         builder.AddIntegerColumn(new()
         {
             Key = "rank",
-            Name = "Rank",
+            Name = "等级",
             Version = "1.0",
-            HelpText = "The rank of the item",
+            HelpText = "物品的等级",
             ValueSelector = r => r.Unknown1.ToString()
         });
     }
@@ -129,19 +129,19 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
     {
         var item = row.Item.ValueNullable;
 
-        viewBuilder.Title = item?.Name.ToImGuiString() ?? "Unknown";
+        viewBuilder.Title = item?.Name.ToImGuiString() ?? "未知";
         viewBuilder.Subtitle = GetCategoryName(row.Category);
         viewBuilder.Icon = item?.Icon ?? 0;
 
         viewBuilder.AddInfoTableSection(new()
         {
             SectionKey = "info",
-            SectionName = "Info",
+            SectionName = "信息",
             Items =
             [
-                ("Category", GetCategoryName(row.Category), true),
-                ("Rank", row.Unknown1.ToString(), true),
-                ("Item ID", row.Item.RowId.ToString(), true),
+                ("类别", GetCategoryName(row.Category), true),
+                ("等级", row.Unknown1.ToString(), true),
+                ("物品 ID", row.Item.RowId.ToString(), true),
             ]
         });
     }
@@ -158,7 +158,7 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
             new CompendiumGrouping<RacingChocoboItem>()
             {
                 Key = "category",
-                Name = "Category",
+                Name = "类别",
                 GroupFunc = r => r.Category,
                 GroupMapping = r => GetCategoryName((byte)r)
             }
@@ -171,14 +171,14 @@ public class RacingChocoboItemCompendiumType : CompendiumType<RacingChocoboItem>
     {
         return category switch
         {
-            1 => "Proof of Coverings",
-            2 => "Registration Forms",
-            3 => "Retired Registration Forms",
-            4 => "Covering Permission Forms",
-            5 => "Sack of Feeds",
-            6 => "Training Manuals",
-            7 => "Ability Reset Tonics",
-            _ => "Unknown"
+            1 => "覆盖证明",
+            2 => "登记表",
+            3 => "退役登记表",
+            4 => "覆盖许可表",
+            5 => "饲料袋",
+            6 => "训练手册",
+            7 => "能力重置药水",
+            _ => "未知"
         };
     }
 }

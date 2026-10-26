@@ -52,7 +52,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         {
             CompendiumType = this,
             Key = "instance_content",
-            Name = "Instance Content",
+            Name = "副本内容",
             Columns = BuiltColumns
         });
     }
@@ -99,7 +99,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
             new CompendiumGrouping<InstanceContent>()
             {
                 Key = "content_type",
-                Name = "Content Type",
+                Name = "内容类型",
                 GroupFunc = row => row.ContentFinderCondition.Value.ContentType.RowId,
                 GroupMapping = id => _contentTypeLocalizer.Format(_contentTypeSheet.GetRow((uint)id))
             }
@@ -113,8 +113,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddCompendiumOpenViewColumn(new()
         {
             Key = "icon",
-            Name = "Icon",
-            HelpText = "Duty icon",
+            Name = "图标",
+            HelpText = "副本图标",
             Version = "14.0.3",
             CompendiumType = this,
             RowIdSelector = row => row.RowId,
@@ -124,8 +124,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the duty",
+            Name = "名称",
+            HelpText = "副本名称",
             Version = "14.0.3",
             ValueSelector = GetName
         });
@@ -133,8 +133,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddIntegerColumn(new()
         {
             Key = "level",
-            Name = "Level",
-            HelpText = "Required class/job level",
+            Name = "等级",
+            HelpText = "所需职业等级",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.ClassJobLevelRequired.ToString()
@@ -143,8 +143,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddBooleanColumn(new BooleanColumnOptions<InstanceContent>()
         {
             Key = "unlocked",
-            Name = "Unlocked?",
-            HelpText = "Is the instance unlocked?",
+            Name = "已解锁？",
+            HelpText = "该副本是否已解锁？",
             Version = "14.1.3",
             ValueSelector = row => _unlockState.IsInstanceContentUnlocked(row)
         });
@@ -152,8 +152,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddBooleanColumn(new BooleanColumnOptions<InstanceContent>()
         {
             Key = "completed",
-            Name = "Completed?",
-            HelpText = "Is the instance completed?",
+            Name = "已完成？",
+            HelpText = "该副本是否已通关？",
             Version = "14.1.3",
             ValueSelector = row => _uiStateService.IsInstanceContentCompleted(row)
         });
@@ -161,8 +161,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddIntegerColumn(new()
         {
             Key = "sync_level",
-            Name = "Sync Level",
-            HelpText = "Level sync applied in the duty",
+            Name = "同步等级",
+            HelpText = "副本内的等级同步上限",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.ClassJobLevelSync.ToString()
@@ -171,8 +171,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddIntegerColumn(new()
         {
             Key = "item_level",
-            Name = "Item Level",
-            HelpText = "Minimum item level required",
+            Name = "物品等级",
+            HelpText = "所需的最低物品等级",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.ItemLevelRequired.ToString()
@@ -181,8 +181,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddIntegerColumn(new()
         {
             Key = "item_level_sync",
-            Name = "Item Level Sync",
-            HelpText = "Maximum synced item level",
+            Name = "物品等级同步",
+            HelpText = "同步后的最高物品等级",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.ItemLevelSync.ToString()
@@ -191,8 +191,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddBooleanColumn(new()
         {
             Key = "allows_undersized",
-            Name = "Allows Undersized",
-            HelpText = "Whether the duty allows undersized party mode",
+            Name = "允许少人挑战",
+            HelpText = "该副本是否允许少人小队模式",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.AllowUndersized
@@ -201,8 +201,8 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddBooleanColumn(new()
         {
             Key = "allows_explorer_mode",
-            Name = "Allows Explorer Mode",
-            HelpText = "Whether the duty supports explorer mode",
+            Name = "允许探险模式",
+            HelpText = "该副本是否支持探险模式",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.AllowExplorerMode
@@ -212,7 +212,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         {
             Key = "pvp",
             Name = "PVP",
-            HelpText = "Whether this duty is PvP",
+            HelpText = "该副本是否为 PvP 内容",
             Version = "14.0.3",
             ValueSelector = row =>
                 row.ContentFinderCondition.Value.PvP
@@ -221,11 +221,11 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         builder.AddStringColumn(new()
         {
             Key = "accepted_classes",
-            Name = "Accepted Classes",
-            HelpText = "Class/job categories allowed to enter",
+            Name = "允许的职业",
+            HelpText = "允许进入的职业类别",
             Version = "14.0.3",
             ValueSelector = row =>
-                row.ContentFinderCondition.Value.AcceptClassJobCategory.ValueNullable?.Name.ToImGuiString() ?? "Unknown"
+                row.ContentFinderCondition.Value.AcceptClassJobCategory.ValueNullable?.Name.ToImGuiString() ?? "未知"
         });
     }
 
@@ -234,12 +234,12 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         viewBuilder.SetupDefaults(this, row);
 
         viewBuilder.AddTag(
-            () => _unlockState.IsInstanceContentUnlocked(row) ? "Unlocked" : "Not Unlocked",
-            () => "Is the instance unlocked?",
+            () => _unlockState.IsInstanceContentUnlocked(row) ? "已解锁" : "未解锁",
+            () => "该副本是否已解锁？",
             () => _unlockState.IsInstanceContentUnlocked(row) ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed);
         viewBuilder.AddTag(
-            () => _uiStateService.IsInstanceContentCompleted(row) ? "Completed" : "Not Completed",
-            () => "Is the instance completed?",
+            () => _uiStateService.IsInstanceContentCompleted(row) ? "已通关" : "未通关",
+            () => "该副本是否已通关？",
             () => _uiStateService.IsInstanceContentCompleted(row) ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed);
 
         var relatedQuests = _questSheet.Where(c => c.InstanceContent.Any(c => c.RowId == row.RowId) || c.QuestParams.Any(c => c.ScriptArg == row.RowId && c.ScriptInstruction.ToString().StartsWith("INSTANCEDUNGEON")))
@@ -251,13 +251,13 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
             RelatedRefs = relatedQuests,
             HideWhenEmpty = true,
             SectionKey = "related_quests",
-            SectionName = "Related Quests"
+            SectionName = "相关任务"
         });
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             RelatedRef = row.ContentFinderCondition.Value.TerritoryType.Value.AsUntypedRowRef(),
             SectionKey = "related_map",
-            SectionName = "Related Map"
+            SectionName = "相关地图"
         });
 
         var cfcId = row.ContentFinderCondition.RowId;
@@ -279,8 +279,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         foreach (var (boss, bNpcName) in allBossSources)
         {
             var rawName = bNpcName.Base.Singular.ExtractText();
-            var bossName = string.IsNullOrEmpty(rawName) ? $"Boss {boss.FightNo + 1}" : rawName;
-
+            var bossName = string.IsNullOrEmpty(rawName) ? $"首领 {boss.FightNo + 1}" : rawName;
             var drops = bossDropSources
                 .Where(s => s.DungeonBoss.FightNo == boss.FightNo)
                 .Select(s => new ItemInfo(s.Item, s.Quantity))
@@ -290,7 +289,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
                 bossChildSections.Add(viewBuilder.CreateItemListSection(new ItemListSectionOptions
                 {
                     SectionKey = $"boss_{boss.FightNo}_drops",
-                    SectionName = $"{bossName} - Drops",
+                    SectionName = $"{bossName} - 掉落",
                     HideWhenEmpty = true,
                     Items = drops
                 }));
@@ -304,7 +303,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
                 bossChildSections.Add(viewBuilder.CreateItemListSection(new ItemListSectionOptions
                 {
                     SectionKey = $"boss_{boss.FightNo}_coffer_{coffer.Key}",
-                    SectionName = $"{bossName} - Coffer {coffer.Key}",
+                    SectionName = $"{bossName} - 宝箱 {coffer.Key}",
                     HideWhenEmpty = true,
                     Items = coffer.Select(s => new ItemInfo(s.Item, s.Quantity)).ToList()
                 }));
@@ -314,7 +313,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         viewBuilder.AddNestedSection(new NestedSectionOptions
         {
             SectionKey = "boss_loot",
-            SectionName = "Instance Bosses",
+            SectionName = "副本首领",
             HideWhenEmpty = true,
             Sections = bossChildSections
         });
@@ -332,7 +331,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
             chestChildSections.Add(viewBuilder.CreateItemListSection(new ItemListSectionOptions
             {
                 SectionKey = $"chest_{chestGroup.Key}",
-                SectionName = $"Chest {chestGroup.Key}",
+                SectionName = $"宝箱 {chestGroup.Key}",
                 HideWhenEmpty = true,
                 Items = chestGroup.Select(s => new ItemInfo(s.Item)).ToList()
             }));
@@ -341,7 +340,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         viewBuilder.AddNestedSection(new NestedSectionOptions
         {
             SectionKey = "other_chests",
-            SectionName = "Other Chests",
+            SectionName = "其他宝箱",
             HideWhenEmpty = true,
             Sections = chestChildSections
         });
@@ -349,7 +348,7 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         viewBuilder.AddItemListSection(new ItemListSectionOptions
         {
             SectionKey = "rewards",
-            SectionName = "Rewards",
+            SectionName = "奖励",
             HideWhenEmpty = true,
             Items = _itemInfoCache
                 .GetItemSourcesByType<ItemDungeonDropSource>(ItemInfoType.DungeonDrop)
@@ -371,9 +370,9 @@ public class InstanceContentCompendiumType : CompendiumType<InstanceContent>
         return new TerritoryLocation(territoryType.Value.Value);
     }
 
-    public override string Singular => "Instance";
-    public override string Plural => "Instances";
-    public override string Description => "Instances including duties, trials, etc";
+    public override string Singular => "副本";
+    public override string Plural => "副本";
+    public override string Description => "副本、讨伐战等游戏内容";
     public override string Key => "instance";
     public override (string?, uint?) Icon => (null, Icons.DutyIcon);
 }

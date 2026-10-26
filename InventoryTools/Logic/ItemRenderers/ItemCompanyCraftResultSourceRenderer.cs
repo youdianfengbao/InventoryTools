@@ -28,23 +28,23 @@ public class ItemCompanyCraftResultSourceRenderer : ItemInfoRenderer<ItemCompany
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.FreeCompanyCraftRecipe;
-    public override string SingularName => "Company Craft";
+    public override string SingularName => "部队制作";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Crafting];
-    public override string HelpText => "Is the item crafted at the company workshop as a company craft recipe?";
+    public override string HelpText => "该物品是否为在部队工坊中通过部队制作配方制作？";
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.Text($"Craft Type: {asSource.CompanyCraftSequence.Base.CompanyCraftType.Value.Name}");
-        ImGui.Text($"Parts: {asSource.CompanyCraftSequence.CompanyCraftParts.Length}");
-        DrawItems("Ingredients: ", asSource.CostItems);
+        ImGui.Text($"制作类型：{asSource.CompanyCraftSequence.Base.CompanyCraftType.Value.Name}");
+        ImGui.Text($"部件数：{asSource.CompanyCraftSequence.CompanyCraftParts.Length}");
+        DrawItems("材料：", asSource.CostItems);
     };
 
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = AsSource(source);
         return asSource.Item.Base.Name.ExtractText() + "(" +
-               (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "Unknown") +
+               (asSource.CompanyCraftSequence.Base.CompanyCraftType.ValueNullable?.Name.ExtractText() ?? "未知") +
                ")";
     };
 

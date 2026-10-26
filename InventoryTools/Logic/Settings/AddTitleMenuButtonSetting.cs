@@ -22,10 +22,10 @@ public class AddTitleMenuButtonSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "AddTitleMenuButton";
-    public override string Name { get; set; } = "Add Title Menu Button?";
+    public override string Name { get; set; } = "在标题菜单添加按钮？";
 
     public override string HelpText { get; set; } =
-        "Adds a button to the title menu along side the dalamud menu items allowing you to open Allagan Tools while not logged in.";
+        "在游戏标题菜单中（Dalamud 菜单旁）添加一个按钮，让你在未登录角色时也能打开亚拉戈工具。";
     
     public override string Version => "1.7.0.0"; 
 }

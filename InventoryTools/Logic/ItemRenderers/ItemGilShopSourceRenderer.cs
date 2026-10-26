@@ -20,7 +20,7 @@ public class ItemGilShopUseRenderer : ItemGilShopSourceRenderer
 {
     private readonly MapSheet _mapSheet;
     private readonly ItemSheet _itemSheet;
-    public override string HelpText => "Can the item be spent at a gil shop?";
+    public override string HelpText => "该物品是否可在金币商店消费？";
 
     public ItemGilShopUseRenderer(MapSheet mapSheet, ItemSheet itemSheet, ITextureProvider textureProvider,
         IDalamudPluginInterface dalamudPluginInterface) : base(mapSheet, itemSheet, textureProvider, dalamudPluginInterface)
@@ -37,7 +37,7 @@ public class ItemGilShopUseRenderer : ItemGilShopSourceRenderer
             ? new List<string>()
             : shopSource.MapIds.Select(c => _mapSheet.GetRow(c).FormattedName)).Distinct().ToList();
 
-        ImGui.Text($"{allGilShops.Count} items available for purchase with gil in {maps.Count} zones");
+        ImGui.Text($"{maps.Count} 个区域中共有 {allGilShops.Count} 个物品可用金币购买");
     };
 
     public override RendererType RendererType => RendererType.Use;
@@ -59,9 +59,9 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.GilShop;
-    public override string SingularName => "Gil Shop";
-    public override string PluralName => "Gil Shops";
-    public override string HelpText => "Can the item be purchased at a gil shop?";
+    public override string SingularName => "金币商店";
+    public override string PluralName => "金币商店";
+    public override string HelpText => "该物品是否可在金币商店购买？";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Shop];
 
@@ -72,7 +72,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
         var asSources = AsSource(sources);
         var firstItem = asSources[0];
 
-        ImGui.Text("Costs:");
+        ImGui.Text("消耗：");
 
         using (ImRaii.PushIndent())
         {
@@ -86,7 +86,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
             if (firstItem.GilShopItem.Base.AchievementRequired.RowId != 0)
             {
                 ImGui.Text(
-                    $"Achievement Required: {firstItem.GilShopItem.Base.AchievementRequired.Value.Name.ExtractText()}");
+                    $"所需成就：{firstItem.GilShopItem.Base.AchievementRequired.Value.Name.ExtractText()}");
             }
 
             foreach (var quest in firstItem.GilShopItem.Base.QuestRequired)
@@ -94,7 +94,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
                 if (quest.RowId != 0)
                 {
                     ImGui.Text(
-                        $"Quest Required: {quest.Value.Name.ExtractText()}");
+                        $"所需任务：{quest.Value.Name.ExtractText()}");
                 }
             }
         }
@@ -107,7 +107,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
         var asSource = AsSource(source);
         var maps = source.MapIds?.Select(c => _mapSheet.GetRow(c).FormattedName).ToList() ?? new List<string>();
 
-        ImGui.Text("Costs:");
+        ImGui.Text("消耗：");
 
         using (ImRaii.PushIndent())
         {
@@ -121,7 +121,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
             if (asSource.GilShopItem.Base.AchievementRequired.RowId != 0)
             {
                 ImGui.Text(
-                    $"Achievement Required: {asSource.GilShopItem.Base.AchievementRequired.Value.Name.ExtractText()}");
+                    $"所需成就：{asSource.GilShopItem.Base.AchievementRequired.Value.Name.ExtractText()}");
             }
 
             foreach (var quest in asSource.GilShopItem.Base.QuestRequired)
@@ -129,7 +129,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
                 if (quest.RowId != 0 && quest.IsValid)
                 {
                     ImGui.Text(
-                        $"Quest Required: {quest.Value.Name.ExtractText()}");
+                        $"所需任务：{quest.Value.Name.ExtractText()}");
                 }
             }
         }
@@ -160,6 +160,6 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
         var description = $"{asSource.Shop.Name}";
         var rewards = string.Join(", ", asSource.GilShopItem.Rewards.Select(c => c.Item.NameString + " x " + c.Count + ""));
         var costs = string.Join(", ", asSource.GilShopItem.Costs.Select(c => c.Item.NameString + " x " + c.Count + ""));
-        return $"{description} ({rewards}) for ({costs})";
+        return $"{description} 消耗 ({costs}) 获得 ({rewards})";
     };
 }

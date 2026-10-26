@@ -25,11 +25,11 @@ namespace InventoryTools.Logic.Columns
             return null;
         }
 
-        public override string Name { get; set; } = "Shortcuts";
+        public override string Name { get; set; } = "快捷方式";
         public override float Width { get; set; } = 32.0f;
 
         public override string HelpText { get; set; } =
-            "Provides a series of small buttons that allow opening garland tools and trying on items.";
+            "提供一系列小按钮，可打开 Garland Tools 或试穿物品。";
         public override bool HasFilter { get; set; } = false;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
 
@@ -40,15 +40,15 @@ namespace InventoryTools.Logic.Columns
             ImGui.TableNextColumn();
             if (ImGui.TableGetColumnFlags().HasFlag(ImGuiTableColumnFlags.IsEnabled))
             {
-                if (ImGui.SmallButton("GT##GT" + rowIndex))
-                {
-                    $"https://www.garlandtools.org/db/#item/{searchResult.Item.GarlandToolsId}".OpenBrowser();
-                }
+                    if (ImGui.SmallButton("GT##GT" + rowIndex))
+                    {
+                        $"https://www.garlandtools.org/db/#item/{searchResult.Item.GarlandToolsId}".OpenBrowser();
+                    }
 
-                if (searchResult.Item.CanTryOn)
-                {
-                    ImGui.SameLine();
-                    if (ImGui.SmallButton("Try On##TO" + rowIndex))
+                    if (searchResult.Item.CanTryOn)
+                    {
+                        ImGui.SameLine();
+                        if (ImGui.SmallButton("试穿##TO" + rowIndex))
                     {
                         if (_tryOn.CanUseTryOn)
                         {

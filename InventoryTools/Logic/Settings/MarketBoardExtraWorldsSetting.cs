@@ -29,8 +29,8 @@ public class MarketBoardExtraWorldsSetting : MultipleChoiceSetting<uint>
     }
 
     public override string Key { get; set; } = "MarketBoardExtraWorlds";
-    public override string Name { get; set; } = "Price Worlds";
-    public override string HelpText { get; set; } = "A list of extra worlds we should automatically price";
+    public override string Name { get; set; } = "价格服务器";
+    public override string HelpText { get; set; } = "需要自动查询价格的额外服务器列表";
     public override string Version { get; } = "1.7.0.0";
     private Dictionary<uint, string>? _worldNames;
     public override Dictionary<uint, string> GetChoices(InventoryToolsConfiguration configuration)

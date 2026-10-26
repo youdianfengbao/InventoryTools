@@ -20,19 +20,19 @@ public class FiltersWindowLayoutSetting : ChoiceSetting<WindowLayout>
     }
 
     public override string Key { get; set; } = "FilterWindowLayout";
-    public override string Name { get; set; } = "Items Window Layout";
-    public override string WizardName { get; } = "Items Window";
-    public override string HelpText { get; set; } = "Set the layout of the items window";
-    
+    public override string Name { get; set; } = "物品窗口布局";
+    public override string WizardName { get; } = "物品窗口";
+    public override string HelpText { get; set; } = "设置物品窗口的布局";
+
     public override string? Image { get; } = "items_display";
 
     public override Vector2? ImageSize { get; } = new Vector2(878, 393);
 
     public override Dictionary<WindowLayout, string> Choices { get; } = new Dictionary<WindowLayout, string>()
     {
-        { WindowLayout.Sidebar, "Sidebar" },
-        { WindowLayout.Tabs , "Tabs" },
-        { WindowLayout.Single , "Single" }
+        { WindowLayout.Sidebar, "侧边栏" },
+        { WindowLayout.Tabs , "标签页" },
+        { WindowLayout.Single , "单页" }
     };
     public override string Version => "1.7.0.0";
 

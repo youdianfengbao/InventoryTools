@@ -8,12 +8,12 @@ public static class ItemFlagsExtensions
     {
         return flags switch
         {
-            InventoryItem.ItemFlags.None => "Normal Quality",
-            InventoryItem.ItemFlags.HighQuality => "High Quality",
-            InventoryItem.ItemFlags.CompanyCrestApplied => "Company Crest Applied",
-            InventoryItem.ItemFlags.Relic => "Relic",
-            InventoryItem.ItemFlags.Collectable => "Collectable",
-            _ => "None"
+            InventoryItem.ItemFlags.None => "普通品质",
+            InventoryItem.ItemFlags.HighQuality => "高品质",
+            InventoryItem.ItemFlags.CompanyCrestApplied => "已附加部队徽章",
+            InventoryItem.ItemFlags.Relic => "元灵",
+            InventoryItem.ItemFlags.Collectable => "收藏品",
+            _ => "无"
         };
     }
 }

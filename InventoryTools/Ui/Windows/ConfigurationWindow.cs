@@ -81,7 +81,7 @@ namespace InventoryTools.Ui
             mediator,
             imGuiService,
             configuration,
-            "Configuration Window")
+            "配置窗口")
         {
             _pluginLog = pluginLog;
             _configurationWizardService = configurationWizardService;
@@ -105,18 +105,18 @@ namespace InventoryTools.Ui
 
         public override void Initialize()
         {
-            WindowName = "Configuration";
+            WindowName = "配置";
             Key = "configuration";
             #if DEBUG
             _settingCoverageService.Report();
             #endif
             _configPages = new List<IConfigPage>();
-            _configPages.Add(new SeparatorPageItem("Settings"));
+            _configPages.Add(new SeparatorPageItem("设置"));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<GeneralLayout>()));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<WindowsAndListsLayout>()));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<HighlightingLayout>()));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<ItemIconsLayout>()));
-            _configPages.Add(new SeparatorPageItem("Modules", true));
+            _configPages.Add(new SeparatorPageItem("模块", true));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<MarketBoardLayout>()));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<TooltipsLayout>()));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<ContextMenuLayout>()));
@@ -126,17 +126,17 @@ namespace InventoryTools.Ui
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<HistoryLayout>()));
             _configPages.Add(new SeparatorPageItem(null, true));
             _configPages.Add(_layoutPageFactory.Invoke(_context.Resolve<TroubleshootingLayout>()));
-            _configPages.Add(new SeparatorPageItem("Data", true));
+            _configPages.Add(new SeparatorPageItem("数据", true));
             _configPages.Add(_configPageFactory.Invoke(typeof(ListsPage)));
             _configPages.Add(_configPageFactory.Invoke(typeof(CharacterRetainerPage)));
 
             _addFilterMenu = new PopupMenu("addFilter", PopupMenu.PopupMenuButtons.LeftRight,
                 new List<PopupMenu.IPopupMenuItem>()
                 {
-                    new PopupMenu.PopupMenuItemSelectableAskName("Search List", "adf1", "New Search List", AddSearchFilter, "This will create a new list that let's you search for specific items within your characters and retainers inventories."),
-                    new PopupMenu.PopupMenuItemSelectableAskName("Sort List", "af2", "New Sort Filter", AddSortFilter, "This will create a new list that let's you search for specific items within your characters and retainers inventories then determine where they should be moved to."),
-                    new PopupMenu.PopupMenuItemSelectableAskName("Game Item List", "af3", "New Game Item List", AddGameItemFilter, "This will create a list that lets you search for all items in the game."),
-                    new PopupMenu.PopupMenuItemSelectableAskName("History List", "af4", "New History Item List", AddHistoryFilter, "This will create a list that lets you view historical data of how your inventory has changed."),
+                    new PopupMenu.PopupMenuItemSelectableAskName("搜索清单", "adf1", "新搜索清单", AddSearchFilter, "创建一个新清单，用于在角色和雇员库存中搜索特定物品。"),
+                    new PopupMenu.PopupMenuItemSelectableAskName("排序清单", "af2", "新排序筛选器", AddSortFilter, "创建一个新清单，用于在角色和雇员库存中搜索特定物品，并确定它们应被移动到哪里。"),
+                    new PopupMenu.PopupMenuItemSelectableAskName("游戏物品清单", "af3", "新游戏物品清单", AddGameItemFilter, "创建一个清单，用于搜索游戏中的所有物品。"),
+                    new PopupMenu.PopupMenuItemSelectableAskName("历史清单", "af4", "新历史记录清单", AddHistoryFilter, "创建一个清单，用于查看库存变化的历史数据。"),
                 });
 
             _addSampleMenu = new PopupMenu("addSampleFilter", PopupMenu.PopupMenuButtons.LeftRight, []);
@@ -175,24 +175,24 @@ namespace InventoryTools.Ui
             _settingsMenu = new PopupMenu("configMenu", PopupMenu.PopupMenuButtons.All,
                 new List<PopupMenu.IPopupMenuItem>()
                 {
-                    new PopupMenu.PopupMenuItemSelectable("Items Window", "filters", OpenFiltersWindow,"Open the items window."),
-                    new PopupMenu.PopupMenuItemSelectable("Craft Window", "crafts", OpenCraftsWindow,"Open the crafts window."),
+                    new PopupMenu.PopupMenuItemSelectable("物品窗口", "filters", OpenFiltersWindow,"打开物品窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("制作窗口", "crafts", OpenCraftsWindow,"打开制作窗口。"),
                     new PopupMenu.PopupMenuItemSeparator(),
-                    new PopupMenu.PopupMenuItemSelectable("Mob Window", "mobs", OpenMobsWindow,"Open the mobs window."),
-                    new PopupMenu.PopupMenuItemSelectable("Npcs Window", "npcs", OpenNpcsWindow,"Open the npcs window."),
-                    new PopupMenu.PopupMenuItemSelectable("Duties Window", "duties", OpenDutiesWindow,"Open the duties window."),
-                    new PopupMenu.PopupMenuItemSelectable("Airships Window", "airships", OpenAirshipsWindow,"Open the airships window."),
-                    new PopupMenu.PopupMenuItemSelectable("Submarines Window", "submarines", OpenSubmarinesWindow,"Open the submarines window."),
-                    new PopupMenu.PopupMenuItemSelectable("Retainer Ventures Window", "ventures", OpenRetainerVenturesWindow,"Open the retainer ventures window."),
+                    new PopupMenu.PopupMenuItemSelectable("魔物窗口", "mobs", OpenMobsWindow,"打开魔物窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("NPC 窗口", "npcs", OpenNpcsWindow,"打开 NPC 窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("副本窗口", "duties", OpenDutiesWindow,"打开副本窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("飞空艇窗口", "airships", OpenAirshipsWindow,"打开飞空艇窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("潜水艇窗口", "submarines", OpenSubmarinesWindow,"打开潜水艇窗口。"),
+                    new PopupMenu.PopupMenuItemSelectable("雇员探索窗口", "ventures", OpenRetainerVenturesWindow,"打开雇员探索窗口。"),
                     new PopupMenu.PopupMenuItemSeparator(),
-                    new PopupMenu.PopupMenuItemSelectable("Help", "help", OpenHelpWindow,"Open the help window."),
+                    new PopupMenu.PopupMenuItemSelectable("帮助", "help", OpenHelpWindow,"打开帮助窗口。"),
                 });
 
             _wizardMenu = new PopupMenu("wizardMenu", PopupMenu.PopupMenuButtons.All,
                 new List<PopupMenu.IPopupMenuItem>()
                 {
-                    new PopupMenu.PopupMenuItemSelectable("Configure new settings", "configureNew", ConfigureNewSettings,"Configure new settings."),
-                    new PopupMenu.PopupMenuItemSelectable("Configure all settings", "configureAll", ConfigureAllSettings,"Configure all settings."),
+                    new PopupMenu.PopupMenuItemSelectable("配置新设置", "configureNew", ConfigureNewSettings,"配置新设置。"),
+                    new PopupMenu.PopupMenuItemSelectable("配置全部设置", "configureAll", ConfigureAllSettings,"配置全部设置。"),
                 });
             _menuWindows = _context.Resolve<IEnumerable<IMenuWindow>>().OrderBy(c => c.GenericName).Where(c => c.GetType() != this.GetType());
 
@@ -237,7 +237,7 @@ namespace InventoryTools.Ui
             }
             else
             {
-                _chatUtilities.Print("There are no new settings available to configure.");
+                _chatUtilities.Print("没有可配置的新设置。");
             }
         }
 
@@ -298,10 +298,10 @@ namespace InventoryTools.Ui
                 _popupMenus[configuration] = new PopupMenu("fm" + configuration.Key, PopupMenu.PopupMenuButtons.Right,
                     new List<PopupMenu.IPopupMenuItem>()
                     {
-                        new PopupMenu.PopupMenuItemSelectableAskName("Duplicate", "df_" + configuration.Key, configuration.Name, DuplicateFilter, "Duplicate the filter."),
-                        new PopupMenu.PopupMenuItemSelectable("Move Up", "mu_" + configuration.Key, MoveFilterUp, "Move the filter up."),
-                        new PopupMenu.PopupMenuItemSelectable("Move Down", "md_" + configuration.Key, MoveFilterDown, "Move the filter down."),
-                        new PopupMenu.PopupMenuItemSelectableConfirm("Remove", "rf_" + configuration.Key, "Are you sure you want to remove this filter?", RemoveFilter, "Remove the filter."),
+                        new PopupMenu.PopupMenuItemSelectableAskName("创建副本", "df_" + configuration.Key, configuration.Name, DuplicateFilter, "复制该筛选器。"),
+                        new PopupMenu.PopupMenuItemSelectable("上移", "mu_" + configuration.Key, MoveFilterUp, "将该筛选器上移。"),
+                        new PopupMenu.PopupMenuItemSelectable("下移", "md_" + configuration.Key, MoveFilterDown, "将该筛选器下移。"),
+                        new PopupMenu.PopupMenuItemSelectableConfirm("移除", "rf_" + configuration.Key, "确定要移除此筛选器吗？", RemoveFilter, "移除该筛选器。"),
                     }
                 );
             }
@@ -491,7 +491,7 @@ namespace InventoryTools.Ui
         public override Vector2? MaxSize { get; } = new(2000, 2000);
         public override Vector2? MinSize { get; } = new(200, 200);
         public override string GenericKey => "configuration";
-        public override string GenericName => "Configuration";
+        public override string GenericName => "配置";
         public override bool DestroyOnClose => true;
         private List<IConfigPage> _configPages = null!;
         public Dictionary<string, IConfigPage> _filterPages = new Dictionary<string,IConfigPage>();
@@ -508,26 +508,26 @@ namespace InventoryTools.Ui
             {
                 if (menuBar)
                 {
-                    using (var menu = ImRaii.Menu("File"))
+                    using (var menu = ImRaii.Menu("文件"))
                     {
                         if (menu)
                         {
-                            if (ImGui.MenuItem("Report a Issue"))
+                            if (ImGui.MenuItem("报告问题"))
                             {
                                 "https://github.com/Critical-Impact/AllaganMarket".OpenBrowser();
                             }
 
-                            if (ImGui.MenuItem("Changelog"))
+                            if (ImGui.MenuItem("更新日志"))
                             {
                                 MediatorService.Publish(new OpenGenericWindowMessage(typeof(ChangelogWindow)));
                             }
 
-                            if (ImGui.MenuItem("Help"))
+                            if (ImGui.MenuItem("帮助"))
                             {
                                 MediatorService.Publish(new OpenGenericWindowMessage(typeof(HelpWindow)));
                             }
 
-                            if (ImGui.MenuItem("Enable Verbose Logging", "",
+                            if (ImGui.MenuItem("启用详细日志", "",
                                     this._pluginLog.MinimumLogLevel == LogEventLevel.Verbose))
                             {
                                 if (this._pluginLog.MinimumLogLevel == LogEventLevel.Verbose)
@@ -540,7 +540,7 @@ namespace InventoryTools.Ui
                                 }
                             }
 
-                            if (ImGui.MenuItem("Generate Support Dump"))
+                            if (ImGui.MenuItem("生成支持转储"))
                             {
                                 this.MediatorService.Publish(new OpenGenericWindowMessage(typeof(SupportDumpWindow)));
                             }
@@ -550,27 +550,27 @@ namespace InventoryTools.Ui
                                 "https://ko-fi.com/critical_impact".OpenBrowser();
                             }
 
-                            if (ImGui.MenuItem("Close"))
+                            if (ImGui.MenuItem("关闭"))
                             {
                                 this.IsOpen = false;
                             }
                         }
                     }
 
-                    using (var menu = ImRaii.Menu("Wizard"))
+                    using (var menu = ImRaii.Menu("向导"))
                     {
                         if (menu)
                         {
                             var hasNewFeatures = this._configurationWizardService.HasNewFeatures;
                             using var disabled = ImRaii.Disabled(!hasNewFeatures);
-                            if (ImGui.MenuItem("Configure New Features"))
+                            if (ImGui.MenuItem("配置新功能"))
                             {
                                 MediatorService.Publish(new OpenGenericWindowMessage(typeof(ConfigurationWizard)));
                             }
 
                             disabled.Dispose();
 
-                            if (ImGui.MenuItem("Reconfigure All Features"))
+                            if (ImGui.MenuItem("重新配置所有功能"))
                             {
                                 this._configurationWizardService.ClearFeaturesSeen();
                                 MediatorService.Publish(new OpenGenericWindowMessage(typeof(ConfigurationWizard)));
@@ -578,7 +578,7 @@ namespace InventoryTools.Ui
                         }
                     }
 
-                    using (var menu = ImRaii.Menu("Windows"))
+                    using (var menu = ImRaii.Menu("窗口"))
                     {
                         if (menu)
                         {
@@ -608,12 +608,12 @@ namespace InventoryTools.Ui
         private void DrawSearchBar()
         {
             ImGui.SetNextItemWidth(-60 * ImGui.GetIO().FontGlobalScale);
-            ImGui.InputTextWithHint("##configSearch", "Search settings...", ref _searchQuery, 100);
+            ImGui.InputTextWithHint("##configSearch", "搜索设置...", ref _searchQuery, 100);
 
             if (!string.IsNullOrWhiteSpace(_searchQuery))
             {
                 ImGui.SameLine();
-                if (ImGui.Button("Clear##configSearchClear"))
+                if (ImGui.Button("清空##configSearchClear"))
                 {
                     _searchQuery = string.Empty;
                 }
@@ -627,7 +627,7 @@ namespace InventoryTools.Ui
             var results = _configSearchService.Search(_searchQuery);
             if (results.Count == 0)
             {
-                ImGui.TextWrapped($"No settings match '{_searchQuery}'.");
+                ImGui.TextWrapped($"没有匹配“{_searchQuery}”的设置。");
                 return;
             }
 
@@ -733,7 +733,7 @@ namespace InventoryTools.Ui
                     }
 
                     ImGui.NewLine();
-                    ImGui.TextUnformatted("Item Lists");
+                    ImGui.TextUnformatted("物品清单");
                     ImGui.Separator();
 
                     foreach (var item in _filterPages)
@@ -780,7 +780,7 @@ namespace InventoryTools.Ui
                     }
 
                     _addFilterMenu.Draw();
-                    ImGuiUtil.HoverTooltip("Add a new list");
+                    ImGuiUtil.HoverTooltip("添加新清单");
 
                     ImGui.SetCursorPosY(height - 24 * ImGui.GetIO().FontGlobalScale);
                     ImGui.SetCursorPosX(26 * ImGui.GetIO().FontGlobalScale);
@@ -791,7 +791,7 @@ namespace InventoryTools.Ui
                     }
 
                     _addSampleMenu.Draw();
-                    ImGuiUtil.HoverTooltip("Add a sample filter");
+                    ImGuiUtil.HoverTooltip("添加示例筛选器");
 
                     var width = ImGui.GetCursorPosX();
                     width -= 24 * ImGui.GetIO().FontGlobalScale;
@@ -815,7 +815,7 @@ namespace InventoryTools.Ui
                     _wizardMenu.Draw();
 
 
-                    ImGuiUtil.HoverTooltip("Start configuration wizard.");
+                    ImGuiUtil.HoverTooltip("启动配置向导。");
                 }
             }
         }

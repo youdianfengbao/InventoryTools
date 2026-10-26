@@ -9,8 +9,8 @@ public class ContextMenuCopyNameSetting : GenericBooleanSetting
 {
     public ContextMenuCopyNameSetting(ILogger<ContextMenuCopyNameSetting> logger,
         ImGuiService imGuiService) : base("CopyNameContextMenu",
-        "Context Menu - Copy Name",
-        "Copies the item's name to the clipboard.",
+        "右键菜单 - 复制名称",
+        "将物品名称复制到剪贴板。",
         false,
         "15.0.6",
         logger,
@@ -18,5 +18,5 @@ public class ContextMenuCopyNameSetting : GenericBooleanSetting
     {
     }
 
-    public override string WizardName => "Copy Name";
+    public override string WizardName => "复制名称";
 }

@@ -17,12 +17,12 @@ public class ChocoboColourSolver
 
     public readonly IReadOnlyList<ChocoboFruit> Fruits = new ChocoboFruit[]
     {
-        new(8157, "Xelphatol Apple",       +5, -5, -5),
-        new(8158, "Doman Plum",            -5, +5, +5),
-        new(8159, "Mamook Pear",           -5, +5, -5),
-        new(8160, "Valfruit",              +5, -5, +5),
-        new(8161, "O'Ghomoro Berries",     -5, -5, +5),
-        new(8162, "Cieldalaes Pineapple",  +5, +5, -5),
+        new(8157, "仙乡苹果",       +5, -5, -5),
+        new(8158, "多玛梅子",            -5, +5, +5),
+        new(8159, "马姆克梨",           -5, +5, -5),
+        new(8160, "瓦尔果",            +5, -5, +5),
+        new(8161, "奥·哥摩罗浆果",     -5, -5, +5),
+        new(8162, "希尔德莱斯菠萝",  +5, +5, -5),
     };
 
     public const uint DefaultStainId = 36;

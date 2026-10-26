@@ -25,10 +25,10 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "OpenCraftingLogHotKey";
-        public override string Name { get; set; } = "Open Crafting Log Hotkey";
+        public override string Name { get; set; } = "打开制作笔记快捷键";
 
         public override string HelpText { get; set; } =
-            "The hotkey to open the crafting log for an item when hovering it.";
+            "悬停在物品上时，按此快捷键打开该物品的制作笔记。";
         
         public override string Version => "1.11.0.2";
     }

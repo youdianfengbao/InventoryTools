@@ -25,7 +25,7 @@ public class SeparatorPageItem : IConfigPage
 
     public string Key => "separator/" + (_headerName ?? string.Empty);
 
-    public string Name => "Separator";
+    public string Name => "分隔线";
 
     public List<MessageBase>? Draw()
     {

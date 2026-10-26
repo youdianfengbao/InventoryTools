@@ -20,9 +20,9 @@ namespace InventoryTools.Logic.Columns
             return searchResult.Item.EquipRace.FormattedName();
         }
 
-        public override string Name { get; set; } = "Equipped By (Race)";
+        public override string Name { get; set; } = "可装备种族";
         public override float Width { get; set; } = 200;
-        public override string HelpText { get; set; } = "Shows if an item can be equipped by a specific race.";
+        public override string HelpText { get; set; } = "显示该物品可由哪个种族装备。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

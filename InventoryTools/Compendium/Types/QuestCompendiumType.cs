@@ -64,7 +64,7 @@ public class QuestCompendiumType : CompendiumType<Quest>
         {
             CompendiumType = this,
             Key = "quests",
-            Name = "Quests",
+            Name = "任务",
             Columns = BuiltColumns
         });
     }
@@ -133,19 +133,19 @@ public class QuestCompendiumType : CompendiumType<Quest>
 
     public override void BuildColumns(CompendiumColumnBuilder<Quest> builder)
     {
-        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "The icon of the quest", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
-        builder.AddStringColumn(new (){Key = "name", Name = "Name", HelpText = "The name of the quest", Version = "14.0.3", ValueSelector = this.GetName});
-        builder.AddStringColumn(new (){Key = "category", Name = "Category", HelpText = "The category of the quest", Version = "14.0.3", ValueSelector = row => row.JournalGenre.Value.Name.ToImGuiString()});
-        builder.AddStringColumn(new (){Key = "required_class", Name = "Required Class", HelpText = "The required class of the quest", Version = "14.0.3", ValueSelector = row => row.ClassJobRequired.ValueNullable?.Name.ToImGuiString().FirstCharToUpper() ?? ""});
-        builder.AddStringColumn(new (){Key = "level", Name = "Level", HelpText = "The required level of the quest", Version = "14.0.3", ValueSelector = row => row.ClassJobLevel[0].ToString() ?? ""});
-        builder.AddStringColumn(new (){Key = "expansion", Name = "Expansion", HelpText = "The expansion the quest corresponds to.", Version = "14.0.3", ValueSelector = row => row.Expansion.Value.Name.ToImGuiString() ?? ""});
-        builder.AddBooleanColumn(new (){Key = "completed", Name = "Completed", HelpText = "Is the quest completed?.", Version = "14.1.2", ValueSelector = row => _unlockState.IsQuestCompleted(row)});
+        builder.AddCompendiumOpenViewColumn(new(){Key = "icon", Name = "##Icon", HelpText = "任务图标", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId});
+        builder.AddStringColumn(new (){Key = "name", Name = "名称", HelpText = "任务名称", Version = "14.0.3", ValueSelector = this.GetName});
+        builder.AddStringColumn(new (){Key = "category", Name = "类别", HelpText = "任务的类别", Version = "14.0.3", ValueSelector = row => row.JournalGenre.Value.Name.ToImGuiString()});
+        builder.AddStringColumn(new (){Key = "required_class", Name = "所需职业", HelpText = "任务所需的职业", Version = "14.0.3", ValueSelector = row => row.ClassJobRequired.ValueNullable?.Name.ToImGuiString().FirstCharToUpper() ?? ""});
+        builder.AddStringColumn(new (){Key = "level", Name = "等级", HelpText = "任务所需的等级", Version = "14.0.3", ValueSelector = row => row.ClassJobLevel[0].ToString() ?? ""});
+        builder.AddStringColumn(new (){Key = "expansion", Name = "资料片", HelpText = "任务对应的资料片。", Version = "14.0.3", ValueSelector = row => row.Expansion.Value.Name.ToImGuiString() ?? ""});
+        builder.AddBooleanColumn(new (){Key = "completed", Name = "已完成", HelpText = "该任务是否已完成？", Version = "14.1.2", ValueSelector = row => _unlockState.IsQuestCompleted(row)});
     }
 
     public override void BuildViewFields(CompendiumViewBuilder viewBuilder, Quest row)
     {
         viewBuilder.SetupDefaults(this, row);
-        viewBuilder.AddLink($"https://ffxiv.consolegameswiki.com/wiki/{HttpUtility.UrlEncode(row.AsConsoleGamesWikiName())}", "Open in Console Games Wiki", "consolegameswiki");
+        viewBuilder.AddLink($"https://ffxiv.consolegameswiki.com/wiki/{HttpUtility.UrlEncode(row.AsConsoleGamesWikiName())}", "在 Console Games Wiki 中打开", "consolegameswiki");
         var dialogueSheet = _questDialogueFactory.Invoke(row.Id.ToImGuiString());
         var dialogue = dialogueSheet.GetRowOrDefault(0);
         if (dialogue != null)
@@ -153,40 +153,40 @@ public class QuestCompendiumType : CompendiumType<Quest>
             viewBuilder.Description = dialogue.Value.Value.ToImGuiString();
         }
         viewBuilder.AddTag(
-            () => _unlockState.IsQuestCompleted(row) ? "Completed" : "Not Completed",
-            () => "Is the quest completed?",
+            () => _unlockState.IsQuestCompleted(row) ? "已完成" : "未完成",
+            () => "该任务是否已完成？",
             () => _unlockState.IsQuestCompleted(row) ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed);
         viewBuilder.AddCollectionRowRefSection(new CollectionRowRefSectionOptions()
         {
             RelatedRefs = row.PreviousQuest.Select(c => (RowRef)c).ToList(),
             SectionKey = "previous_quests",
-            SectionName = "Previous Quests",
+            SectionName = "前置任务",
             HideWhenEmpty = false
         });
         viewBuilder.AddCollectionRowRefSection(new CollectionRowRefSectionOptions()
         {
             RelatedRefs = _questSheet.Where(c => c.PreviousQuest.Any(c => c.RowId == row.RowId)).Select(c => (RowRef)new RowRef<Quest>(c.ExcelPage.Module, c.RowId)).ToList(),
             SectionKey = "next_quests",
-            SectionName = "Next Quests",
+            SectionName = "后续任务",
             HideWhenEmpty = false
         });
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             RelatedRef = (RowRef)row.ClassJobRequired,
             SectionKey = "required_class",
-            SectionName = "Required Class"
+            SectionName = "所需职业"
         });
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             RelatedRef = (RowRef)row.ClassJobUnlock,
             SectionKey = "class_unlocked",
-            SectionName = "Class Unlocked"
+            SectionName = "解锁的职业"
         });
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             RelatedRef = (RowRef)row.BeastTribe,
             SectionKey = "allied_society_beast_tribe",
-            SectionName = "Allied Society (Beast Tribe)"
+            SectionName = "蛮族（同盟部族）"
         });
         //TODO: Add in some sort of automatic level mapping shit
         if (row.IssuerLocation.RowId != 0)
@@ -203,13 +203,13 @@ public class QuestCompendiumType : CompendiumType<Quest>
             }
             else
             {
-                issuerName = "Issuer";
+                issuerName = "任务发布者";
             }
             viewBuilder.AddMapLinkSectionSection(new MapLinkViewSectionOptions()
             {
                 MapLink = new MapLinkEntry(Icons.FlagIcon, issuerName,  issuerLocation.FormattedName, issuerLocation),
                 SectionKey = "issuer_location",
-                SectionName = "Issuer Location"
+                SectionName = "发布者位置"
             });
         }
         var relatedNpcs = _eNpcBaseSheet.Where(c => c.Base.ENpcDataRaw.Any(c => c == row.RowId)).DistinctBy(c => c.Name).Select(c => c.Base.AsUntypedRowRef()).DistinctBy(c => c.RowId).ToList();
@@ -218,7 +218,7 @@ public class QuestCompendiumType : CompendiumType<Quest>
         {
             RelatedRefs = relatedNpcs,
             SectionKey = "related_npcs",
-            SectionName = "Related NPCs",
+            SectionName = "相关 NPC",
             Filter = typeof(ENpcBase)
         });
 
@@ -245,7 +245,7 @@ public class QuestCompendiumType : CompendiumType<Quest>
         {
             RelatedRefs = relatedInstances,
             SectionKey = "related_instances",
-            SectionName = "Related Instances"
+            SectionName = "相关副本"
         });
 
     }
@@ -256,7 +256,7 @@ public class QuestCompendiumType : CompendiumType<Quest>
         [
             new CompendiumGrouping<Quest>()
             {
-                Name = "Category",
+                Name = "类别",
                 Key = "category",
                 GroupFunc = quest => quest.JournalGenre.RowId,
                 GroupMapping = row =>
@@ -265,23 +265,23 @@ public class QuestCompendiumType : CompendiumType<Quest>
                     var name = _journalGenreSheet.GetRowOrDefault(categoryId)?.Name.ToImGuiString() ?? "";
                     if (name == string.Empty)
                     {
-                        name = "Ungrouped";
+                        name = "未分组";
                     }
                     return name;
                 }
             },
             new CompendiumGrouping<Quest>()
             {
-                Name = "Expansion",
+                Name = "资料片",
                 Key = "expansion",
                 GroupFunc = quest => quest.Expansion.RowId,
                 GroupMapping = row =>
                 {
                     var categoryId = (uint)row;
-                    var name = _expansionSheet.GetRowOrDefault(categoryId)?.Name.ToImGuiString() ?? "None";
+                    var name = _expansionSheet.GetRowOrDefault(categoryId)?.Name.ToImGuiString() ?? "无";
                     if (name == string.Empty)
                     {
-                        name = "Ungrouped";
+                        name = "未分组";
                     }
                     return name;
                 }
@@ -289,9 +289,9 @@ public class QuestCompendiumType : CompendiumType<Quest>
         ];
     }
 
-    public override string Singular => "Quest";
-    public override string Plural => "Quests";
-    public override string Description => "Quests the character can complete.";
+    public override string Singular => "任务";
+    public override string Plural => "任务";
+    public override string Description => "角色可以完成的任务。";
     public override string Key => "quest";
     public override (string?, uint?) Icon => (null, Icons.QuestIcon);
 }

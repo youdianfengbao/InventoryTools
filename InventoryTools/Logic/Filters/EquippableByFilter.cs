@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AllaganLib.GameSheets.Extensions;
 using AllaganLib.GameSheets.Sheets.Rows;
@@ -20,8 +20,8 @@ namespace InventoryTools.Logic.Filters
             _classJobSheet = classJobSheet;
         }
         public override string Key { get; set; } = "EquippableBy";
-        public override string Name { get; set; } = "Equippable By";
-        public override string HelpText { get; set; } = "Which classes can this equipment be equipped by?";
+        public override string Name { get; set; } = "可装备职业";
+        public override string HelpText { get; set; } = "该装备可由哪些职业装备？";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
 
         public override List<uint> DefaultValue { get; set; } = new();

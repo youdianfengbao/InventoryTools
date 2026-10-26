@@ -18,8 +18,8 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "ColourRetainerList";
-        public override string Name { get; set; } = "Color name in retainer list?";
-        public override string HelpText { get; set; } = "Should the name of the retainer in the summoning bell list be coloured if a relevant item is to be sorted or is available in their inventory?";
+        public override string Name { get; set; } = "雇员列表中名称着色？";
+        public override string HelpText { get; set; } = "当呼唤铃列表中的雇员有待整理的相关物品，或其库存中有所需物品时，是否将该雇员名称着色？";
         public override string Version => "1.7.0.0";
 
         public ColourRetainerListSetting(ILogger<ColourRetainerListSetting> logger, ImGuiService imGuiService) : base(logger, imGuiService)

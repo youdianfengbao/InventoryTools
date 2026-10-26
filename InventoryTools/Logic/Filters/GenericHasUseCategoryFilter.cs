@@ -41,7 +41,7 @@ public class GenericHasUseCategoryFilter : BooleanFilter, IGenericFilter
         }
     }
     public override string HelpText {
-        get => "Can the item be used for " +  _infoRenderService.GetCategoryName(_renderCategory).ToLower() + "?\n\nIt includes these uses: " + string.Join(",", _infoRenderService.GetUsesByCategory(_renderCategory).Select(c => c.SingularName));
+        get => "该物品是否可用于 " +  _infoRenderService.GetCategoryName(_renderCategory).ToLower() + "？\n\n包含以下用途: " + string.Join(",", _infoRenderService.GetUsesByCategory(_renderCategory).Select(c => c.SingularName));
         set
         {
 

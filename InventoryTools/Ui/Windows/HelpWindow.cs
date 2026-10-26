@@ -28,7 +28,7 @@ public class HelpWindow : GenericWindow
         IEnumerable<IContentLayout> contentLayouts,
         IEnumerable<ISetting> settings,
         ConfigNavigationState navigationState,
-        string name = "Help Window") : base(logger, mediator, imGuiService, configuration, name)
+        string name = "帮助窗口") : base(logger, mediator, imGuiService, configuration, name)
     {
         _configuration = configuration;
         _navigationState = navigationState;
@@ -50,7 +50,7 @@ public class HelpWindow : GenericWindow
 
     public override void Initialize()
     {
-        WindowName = "Help";
+        WindowName = "帮助";
         Key = "help";
     }
 
@@ -59,7 +59,7 @@ public class HelpWindow : GenericWindow
     public override Vector2? MaxSize { get; } = new Vector2(2000, 2000);
     public override Vector2? MinSize { get; } = new Vector2(200, 200);
     public override string GenericKey { get; } = "help";
-    public override string GenericName { get; } = "Help";
+    public override string GenericName { get; } = "帮助";
     public override bool DestroyOnClose => true;
 
     private PageLayout? SelectedPage()

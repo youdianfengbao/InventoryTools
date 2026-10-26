@@ -26,11 +26,11 @@ public class SourceWorldColumn : TextColumn
         return "";
     }
 
-    public override string Name { get; set; } = "Source World";
+    public override string Name { get; set; } = "来源世界";
     public override float Width { get; set; } = 120;
 
     public override string HelpText { get; set; } =
-        "The world where the item is stored(be it in a character, retainer, free company)";
+        "存放该物品的世界（角色、雇员或部队）";
 
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;

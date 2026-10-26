@@ -54,9 +54,9 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
             LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
-    public override string Singular => "Master Recipe Book";
-    public override string Plural => "Master Recipe Books";
-    public override string Description => "Master recipe books unlock additional crafting recipes.";
+    public override string Singular => "大师配方书";
+    public override string Plural => "大师配方书";
+    public override string Description => "解锁额外制作配方的大师配方书。";
     public override string Key => "secret_recipe_books";
     public override (string?, uint?) Icon => (null, Icons.MasterBookIcon);
 
@@ -105,7 +105,7 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "The icon of the master recipe book",
+            HelpText = "大师配方书图标",
             Version = "15.0.6",
             ValueSelector = GetIcon,
             CompendiumType = this,
@@ -114,24 +114,24 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the master recipe book",
+            Name = "名称",
+            HelpText = "大师配方书名称",
             Version = "15.0.6",
             ValueSelector = GetName,
         });
         builder.AddBooleanColumn(new()
         {
             Key = "unlocked",
-            Name = "Unlocked?",
-            HelpText = "Has the player unlocked this master recipe book?",
+            Name = "已解锁？",
+            HelpText = "玩家是否已解锁此大师配方书？",
             Version = "15.0.6",
             ValueSelector = row => _unlockState.IsItemUnlocked(row.Item.Value),
         });
         builder.AddItemsColumn(new()
         {
             Key = "recipes_unlocked",
-            Name = "Recipes Unlocked",
-            HelpText = "The recipes unlocked by this master recipe book",
+            Name = "解锁的配方",
+            HelpText = "此大师配方书解锁的配方",
             Version = "15.0.6",
             ValueSelector = row => GetBookUse(row)?.Recipes
                 .Select(r => r.ItemResult)
@@ -146,8 +146,8 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
         viewBuilder.SetupDefaults(this, row);
 
         viewBuilder.AddTag(
-            () => _unlockState.IsItemUnlocked(row.Item.Value) ? "Read" : "Not Read",
-            () => "Whether the player has read this master recipe book.",
+            () => _unlockState.IsItemUnlocked(row.Item.Value) ? "已阅读" : "未阅读",
+            () => "玩家是否已阅读此大师配方书。",
             () => _unlockState.IsItemUnlocked(row.Item.Value) ? Dalamud.Interface.Colors.ImGuiColors.HealerGreen : Dalamud.Interface.Colors.ImGuiColors.DalamudRed);
 
         var bookUse = GetBookUse(row);
@@ -155,12 +155,12 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
 
         var info = new List<(string Header, string Value, bool IsVisible)>
         {
-            ("Recipes Unlocked", recipeCount.ToString(), true),
+            ("解锁的配方", recipeCount.ToString(), true),
         };
         viewBuilder.AddInfoTableSection(new InfoTableSectionOptions()
         {
             SectionKey = "info",
-            SectionName = "Info",
+            SectionName = "信息",
             Items = info,
         });
 
@@ -175,7 +175,7 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
                 viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
                 {
                     SectionKey = "class_job",
-                    SectionName = "Class",
+                    SectionName = "职业",
                     RelatedRef = (RowRef)craftSoulCrystalUse.ClassJob.RowRef,
                 });
             }
@@ -186,7 +186,7 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = "book_item",
-                SectionName = "Book Item",
+                SectionName = "配方书物品",
                 RelatedRef = (RowRef)row.Item,
             });
 
@@ -194,7 +194,7 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
             viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
             {
                 SectionKey = "book_item_sources",
-                SectionName = "Book Sources",
+                SectionName = "配方书获取途径",
                 Sources = itemSources ?? [],
                 SourceType = SourceType.Source,
             });
@@ -206,7 +206,7 @@ public class SecretRecipeBookCompendiumType : CompendiumType<SecretRecipeBook>
             viewBuilder.AddItemListSection(new ItemListSectionOptions()
             {
                 SectionKey = "recipes_unlocked",
-                SectionName = "Recipes Unlocked",
+                SectionName = "解锁的配方",
                 Items = recipeItems,
             });
         }

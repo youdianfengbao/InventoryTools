@@ -42,7 +42,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
         TerritoryTypeSheet territoryTypeSheet,
         ItemSheet itemSheet,
         BNpcNameSheet bnpcNameSheet,
-        string name = "Mobs Window") : base(logger,
+        string name = "魔物窗口") : base(logger,
         mediator,
         imGuiService,
         configuration,
@@ -57,14 +57,14 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
     }
     public override void Initialize()
     {
-        WindowName = "Mobs";
+        WindowName = "魔物";
         Key = "mobs";
         var mobSpawns = _mobSpawnPositions;
         var availableTerritories = mobSpawns.Select(c => c.TerritoryTypeId).ToHashSet();
         _mappedMobs = mobSpawns.Select(c => (c.BNpcNameId, c.TerritoryTypeId)).GroupBy(c => c.BNpcNameId).ToDictionary(c => c.Key, c => c.Select(c => c.TerritoryTypeId).ToHashSet());
         _columns = new List<TableColumn<BNpcNameRow>>()
         {
-            new("Icon", 32, ImGuiTableColumnFlags.WidthFixed)
+            new("图标", 32, ImGuiTableColumnFlags.WidthFixed)
             {
                 OnLeftClick = OnLeftClick,
                 Draw = (ex, contentTypeId) =>
@@ -100,7 +100,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
                     ImGui.TextUnformatted(ex.RowId.ToString());
                 }
             },
-            new("Name", 150, ImGuiTableColumnFlags.WidthFixed)
+            new("名称", 150, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -124,7 +124,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
                     ImGui.TextUnformatted(ex.Base.Singular.ExtractText());
                 }
             },
-            new("Type", 70, ImGuiTableColumnFlags.WidthFixed)
+            new("类型", 70, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -148,7 +148,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
                     ImGui.TextUnformatted(String.Join(",", ex.MobTypes.Select(d => d.ToString())));
                 }
             },
-            new("Locations", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
+            new("位置", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
             {
                 Draw = (ex, contentTypeId) =>
                 {
@@ -174,7 +174,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
                             if (ImGui.IsItemHovered())
                             {
                                 using var tt = ImRaii.Tooltip();
-                                ImGui.TextUnformatted((territory.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "Unknown") + " - " +
+                                ImGui.TextUnformatted((territory.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "未知") + " - " +
                                                       position.Position.X +
                                                       " : " + position.Position.Y);
                             }
@@ -185,7 +185,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
 
                 }
             },
-            new("Drops", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
+            new("掉落", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
             {
                 Sort = (specs, exes) =>
                 {
@@ -244,7 +244,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
                 }
             },
         };
-        _tabs = _territoryTypeSheet.Where(c => availableTerritories.Contains(c.RowId)).OrderBy(c => c.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "Unknown").ToDictionary(c => c.RowId, c =>c.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "Unknown");
+        _tabs = _territoryTypeSheet.Where(c => availableTerritories.Contains(c.RowId)).OrderBy(c => c.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "未知").ToDictionary(c => c.RowId, c =>c.Base.PlaceName.ValueNullable?.Name.ExtractText() ?? "未知");
         _items = new Dictionary<uint, List<BNpcNameRow>>();
         _filteredItems = new Dictionary<uint, List<BNpcNameRow>>();
     }
@@ -345,7 +345,7 @@ public class BNpcsWindow : GenericTabbedTable<BNpcNameRow>, IMenuWindow
     public override string TableName => _tableName;
 
     public override string GenericKey => "mobs";
-    public override string GenericName => "Mobs";
+    public override string GenericName => "魔物";
     public override bool DestroyOnClose => false;
     public override bool SaveState => true;
     public override Vector2? MaxSize { get; } = new(2000, 2000);

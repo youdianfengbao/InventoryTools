@@ -22,12 +22,12 @@ public class ContextMenuOpenFishingLogSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "OpenFishingLogContextMenu";
-    public override string Name { get; set; } = "Context Menu - Open Fishing Log";
+    public override string Name { get; set; } = "右键菜单 - 打开钓鱼笔记";
 
-    public override string WizardName { get; } = "Open Fishing Log";
+    public override string WizardName { get; } = "打开钓鱼笔记";
 
     public override string HelpText { get; set; } =
-        "Add a context menu item to open the fishing log for any item that can be fished?";
+        "为可钓鱼获得的物品添加右键菜单项，用于打开钓鱼笔记？";
     
     public override string Version { get; } = "1.11.0.2";
 }

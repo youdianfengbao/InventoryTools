@@ -16,7 +16,7 @@ namespace InventoryTools.Logic.Columns.ColumnSettings;
 
 public class QualitySelectorSetting : MultiChoiceColumnSetting<(FFXIVClientStructs.FFXIV.Client.Game.InventoryItem.ItemFlags,string)>
 {
-    public override string EmptyText => "All";
+    public override string EmptyText => "全部";
 
     public QualitySelectorSetting(ILogger<QualitySelectorSetting> logger, ImGuiService imGuiService) : base(logger, imGuiService)
     {
@@ -46,8 +46,8 @@ public class QualitySelectorSetting : MultiChoiceColumnSetting<(FFXIVClientStruc
 
 
     public override string Key { get; set; } = "QualitySelector";
-    public override string Name { get; set; } = "Qualities";
-    public override string HelpText { get; set; } = "Which quality of items should be counted?";
+    public override string Name { get; set; } = "品质";
+    public override string HelpText { get; set; } = "统计哪些品质的物品？";
     public override List<(InventoryItem.ItemFlags,string)>? DefaultValue { get; set; } = null;
     public override List<(InventoryItem.ItemFlags,string)> GetChoices(ColumnConfiguration configuration)
     {

@@ -26,7 +26,7 @@ namespace InventoryTools.Logic.Columns
                 var toItem = searchResult.InventoryChange.ToItem;
                 var destination = toItem != null
                     ? _characterMonitor.Characters.ContainsKey(toItem.RetainerId) ? _characterMonitor.Characters[toItem.RetainerId].FormattedName : ""
-                    : "Unknown";
+                    : "未知";
                 var destinationBag = toItem != null ? _itemLocalizer.FormattedBagLocation(toItem) : "";
                 return destination + " - " + destinationBag;
             }
@@ -35,7 +35,7 @@ namespace InventoryTools.Logic.Columns
             {
                 if (!searchResult.SortingResult.IsSortable)
                 {
-                    return "No room";
+                    return "没有空间";
                 }
 
                 var destination = searchResult.SortingResult.DestinationRetainerId.HasValue
@@ -43,7 +43,7 @@ namespace InventoryTools.Logic.Columns
                         .Value)
                         ? _characterMonitor.Characters[searchResult.SortingResult.DestinationRetainerId.Value].FormattedName
                         : ""
-                    : "Unknown";
+                    : "未知";
                 var destinationBag = searchResult.SortingResult.DestinationBag?.ToInventoryCategory().FormattedName() ??
                                      "";
                 return destination + " - " + destinationBag;
@@ -52,9 +52,9 @@ namespace InventoryTools.Logic.Columns
             return null;
         }
 
-        public override string Name { get; set; } = "Destination";
+        public override string Name { get; set; } = "目的地";
         public override float Width { get; set; } = 100.0f;
-        public override string HelpText { get; set; } = "Shows where the item should be moved to or where the item was moved to in the case of a history filter.";
+        public override string HelpText { get; set; } = "显示物品应移动到的位置；若为历史筛选器则显示物品被移动到的位置。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
         public override FilterType AvailableIn => Logic.FilterType.SortingFilter | Logic.FilterType.CraftFilter | Logic.FilterType.HistoryFilter;

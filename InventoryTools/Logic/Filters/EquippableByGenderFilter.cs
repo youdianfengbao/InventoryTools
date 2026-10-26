@@ -30,8 +30,8 @@ namespace InventoryTools.Logic.Filters
 
 
         public override string Key { get; set; } = "EquippableByGender";
-        public override string Name { get; set; } = "Equippable By Gender";
-        public override string HelpText { get; set; } = "Which genders can this equipment be equipped by?";
+        public override string Name { get; set; } = "可装备性别";
+        public override string HelpText { get; set; } = "该装备可由哪些性别装备？";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
 
 

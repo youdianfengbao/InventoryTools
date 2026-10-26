@@ -25,7 +25,7 @@ public sealed class SettingBlock : IConfigBlock
         var setting = context.Find(SettingType);
         if (setting == null)
         {
-            ImGui.TextColored(ImGuiColors.DalamudRed, $"Missing setting: {SettingType.Name}");
+            ImGui.TextColored(ImGuiColors.DalamudRed, $"未找到设置项: {SettingType.Name}");
             return;
         }
 
@@ -56,7 +56,7 @@ public sealed class SettingBlock : IConfigBlock
         {
             using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
             {
-                ImGui.TextUnformatted("NEW");
+                ImGui.TextUnformatted("新");
             }
         }
 

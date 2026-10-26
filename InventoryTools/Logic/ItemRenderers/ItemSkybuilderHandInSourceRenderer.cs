@@ -22,8 +22,8 @@ public class ItemSkybuilderHandInSourceRenderer : ItemInfoRenderer<ItemSkybuilde
     }
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.SkybuilderHandIn;
-    public override string SingularName => "Sky Builder Hand In";
-    public override string HelpText => "Can the item be handed in at the firmament for skybuilders' scrip?";
+    public override string SingularName => "天空筑造上缴";
+    public override string HelpText => "该物品是否可在重建天穹上缴以获得天空筑造票券？";
     public override bool ShouldGroup => false;
 
     public override Action<ItemSource> DrawTooltip => source =>
@@ -32,16 +32,16 @@ public class ItemSkybuilderHandInSourceRenderer : ItemInfoRenderer<ItemSkybuilde
         var baseReward = asSource.HWDCrafterSupplyParams.BaseCollectableReward.Value;
         var midReward = asSource.HWDCrafterSupplyParams.MidCollectableReward.Value;
         var highReward = asSource.HWDCrafterSupplyParams.HighCollectableReward.Value;
-        ImGui.Text("Level: " + asSource.Level);
-        ImGui.Text("Max Level: " + asSource.LevelMax);
+        ImGui.Text("等级：" + asSource.Level);
+        ImGui.Text("等级上限：" + asSource.LevelMax);
 
-        ImGui.Text("Rewards:");
+        ImGui.Text("奖励：");
         using (ImRaii.PushIndent())
         {
-            ImGui.Text("Exp: " + baseReward.ExpReward + "/" + midReward.ExpReward + "/" + highReward.ExpReward);
-            ImGui.Text("Script: " + baseReward.ScriptRewardAmount + "/" + midReward.ScriptRewardAmount + "/" +
+            ImGui.Text("经验值：" + baseReward.ExpReward + "/" + midReward.ExpReward + "/" + highReward.ExpReward);
+            ImGui.Text("票券：" + baseReward.ScriptRewardAmount + "/" + midReward.ScriptRewardAmount + "/" +
                        highReward.ScriptRewardAmount);
-            ImGui.Text("Points: " + baseReward.Points + "/" + midReward.Points + "/" + highReward.Points);
+            ImGui.Text("点数：" + baseReward.Points + "/" + midReward.Points + "/" + highReward.Points);
         }
     };
 
@@ -58,6 +58,6 @@ public class ItemSkybuilderHandInSourceRenderer : ItemInfoRenderer<ItemSkybuilde
         var baseReward = asSource.HWDCrafterSupplyParams.BaseCollectableReward.Value;
         var midReward = asSource.HWDCrafterSupplyParams.MidCollectableReward.Value;
         var highReward = asSource.HWDCrafterSupplyParams.HighCollectableReward.Value;
-        return $"Levels {asSource.Level} - {asSource.LevelMax} ({baseReward.ExpReward} xp, {midReward.ExpReward} xp, {highReward.ExpReward} xp), ({baseReward.ScriptRewardAmount} script, {midReward.ScriptRewardAmount} script, {highReward.ScriptRewardAmount} script), ({baseReward.Points} points, {midReward.Points} points, {highReward.Points} points)";
+        return $"等级 {asSource.Level} - {asSource.LevelMax}（{baseReward.ExpReward}/{midReward.ExpReward}/{highReward.ExpReward} 经验值，{baseReward.ScriptRewardAmount}/{midReward.ScriptRewardAmount}/{highReward.ScriptRewardAmount} 票券，{baseReward.Points}/{midReward.Points}/{highReward.Points} 点数）";
     };
 }

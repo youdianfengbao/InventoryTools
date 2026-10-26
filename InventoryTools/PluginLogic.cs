@@ -199,7 +199,7 @@ namespace InventoryTools
             }
         }
 
-        public void AddCraftFilter(string newName = "Craft List")
+        public void AddCraftFilter(string newName = "制作清单")
         {
             var newFilter = _listService.AddNewCraftList(newName);
             newFilter.DisplayInTabs = true;

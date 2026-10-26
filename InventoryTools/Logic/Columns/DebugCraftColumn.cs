@@ -27,19 +27,19 @@ namespace InventoryTools.Logic.Columns
 
             ImGui.TableNextColumn();
             if (!ImGui.TableGetColumnFlags().HasFlag(ImGuiTableColumnFlags.IsEnabled)) return null;
-            ImGui.Text("Required: " +  searchResult.CraftItem.QuantityRequired);
-            ImGui.Text("Needed: " +  searchResult.CraftItem.QuantityNeeded);
-            ImGui.Text("Needed Pre Update: " +  searchResult.CraftItem.QuantityNeededPreUpdate);
-            ImGui.Text("Available: " +  searchResult.CraftItem.QuantityAvailable);
-            ImGui.Text("Ready: " +  searchResult.CraftItem.QuantityReady);
-            ImGui.Text("Can Craft: " +  searchResult.CraftItem.QuantityCanCraft);
-            ImGui.Text("Will Retrieve: " + searchResult.CraftItem.QuantityWillRetrieve);
+            ImGui.Text("所需: " +  searchResult.CraftItem.QuantityRequired);
+            ImGui.Text("需要: " +  searchResult.CraftItem.QuantityNeeded);
+            ImGui.Text("更新前需要: " +  searchResult.CraftItem.QuantityNeededPreUpdate);
+            ImGui.Text("可用: " +  searchResult.CraftItem.QuantityAvailable);
+            ImGui.Text("已就绪: " +  searchResult.CraftItem.QuantityReady);
+            ImGui.Text("可制作: " +  searchResult.CraftItem.QuantityCanCraft);
+            ImGui.Text("将取出: " + searchResult.CraftItem.QuantityWillRetrieve);
             return null;
         }
 
-        public override string Name { get; set; } = "Debug - Craft";
+        public override string Name { get; set; } = "调试 - 制作";
         public override float Width { get; set; } = 200;
-        public override string HelpText { get; set; } = "Shows craft debug information";
+        public override string HelpText { get; set; } = "显示制作调试信息";
         public override bool HasFilter { get; set; } = true;
         public override bool IsDebug { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;

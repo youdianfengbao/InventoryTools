@@ -7,19 +7,19 @@ public class GeneralLayout : ConfigLayout
 {
     public override PageLayout Build()
     {
-        return Page("general", "General",
-            Section("Saving",
-                Paragraph("Allagan Tools keeps its own record of your inventories. These control how often that record is written to disk."),
-                Setting<AutoSaveSetting>("Save automatically"),
+        return Page("general", "常规",
+            Section("保存",
+                Paragraph("亚拉戈工具会自行记录你的库存数据。以下选项控制该记录写入磁盘的频率。"),
+                Setting<AutoSaveSetting>("自动保存"),
                 EnabledBy<AutoSaveSetting>(
-                    Setting<AutoSaveTimeSetting>("How often")),
+                    Setting<AutoSaveTimeSetting>("保存频率")),
                 Setting<PersistDataSetting>()),
-            Section("Integrations",
-                Paragraph("Ways to reach Allagan Tools from outside its own windows."),
-                Setting<AddTitleMenuButtonSetting>("Add a button to the title menu"),
-                Setting<CompendiumWotsitSetting>("List compendium windows in Wotsit")),
-            Section("Integrations",
-                Paragraph("Ways to reach Allagan Tools from outside its own windows."),
+            Section("集成",
+                Paragraph("从插件窗口之外访问亚拉戈工具的途径。"),
+                Setting<AddTitleMenuButtonSetting>("在主菜单添加按钮"),
+                Setting<CompendiumWotsitSetting>("在 Wotsit 中列出插件窗口")),
+            Section("集成",
+                Paragraph("从插件窗口之外访问亚拉戈工具的途径。"),
                 Setting<ActiveCraftListSetting>())
         );
     }

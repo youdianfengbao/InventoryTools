@@ -12,8 +12,8 @@ namespace InventoryTools.Logic.Filters
     public class RequiredLevelFilter : StringFilter
     {
         public override string Key { get; set; } = "ItemLvl";
-        public override string Name { get; set; } = "Required Level";
-        public override string HelpText { get; set; } = "The required level to equip the item.";
+        public override string Name { get; set; } = "所需等级";
+        public override string HelpText { get; set; } = "装备该物品所需的等级。";
 
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Stats;
 

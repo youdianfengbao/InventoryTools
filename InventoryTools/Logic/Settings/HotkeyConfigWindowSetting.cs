@@ -11,8 +11,8 @@ public class HotkeyConfigWindowSetting : HotKeySetting
     public override ModifiableHotkey DefaultValue { get; set; } = new ModifiableHotkey(VirtualKey.NO_KEY);
     public static string AsKey { get; } = "HotkeyConfigWindow";
     public override string Key { get; set; } = AsKey;
-    public override string Name { get; set; } = "Toggle Configuration Window";
-    public override string HelpText { get; set; } = "The hotkey to toggle the configuration window.";
+    public override string Name { get; set; } = "切换配置窗口";
+    public override string HelpText { get; set; } = "切换配置窗口的快捷键。";
     public override string Version => "1.7.0.0";
 
     public HotkeyConfigWindowSetting(ILogger<HotkeyConfigWindowSetting> logger, ImGuiService imGuiService) : base(logger, imGuiService)

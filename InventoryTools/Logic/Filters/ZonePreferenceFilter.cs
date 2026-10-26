@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using AllaganLib.GameSheets.Sheets;
 using AllaganLib.GameSheets.Sheets.Rows;
@@ -34,7 +34,7 @@ public class ZonePreferenceFilter : SortedListFilter<uint, uint>
             }
             else
             {
-                itemName = " (Unknown Item)";
+                itemName = " （未知物品）";
             }
             return (itemName, null);
         }
@@ -55,10 +55,10 @@ public class ZonePreferenceFilter : SortedListFilter<uint, uint>
     }
 
     public override string Key { get; set; } = "CraftZonePreference";
-    public override string Name { get; set; } = "Default Zone Order";
+    public override string Name { get; set; } = "默认区域顺序";
 
     public override string HelpText { get; set; } =
-        "When grouping items by zone, which zones should take preference?";
+        "按区域分组物品时，哪些区域优先排列？";
 
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.ZonePreference;
     public override Dictionary<uint, (string, string?)> DefaultValue { get; set; } = new();
@@ -122,7 +122,7 @@ public class ZonePreferenceFilter : SortedListFilter<uint, uint>
 
         var currentValue = CurrentValue(configuration);
         ImGui.SetNextItemWidth(LabelSize);
-        ImGui.LabelText("##" + Key + "Label", "Add new zone: ");
+        ImGui.LabelText("##" + Key + "Label", "添加新区域: ");
         ImGui.SameLine();
         var currentAddItem = "";
         using (var combo = ImRaii.Combo("##AddZone" + Key, currentAddItem, ImGuiComboFlags.HeightLarge))
@@ -139,7 +139,7 @@ public class ZonePreferenceFilter : SortedListFilter<uint, uint>
                 ImGui.Separator();
                 if (_searchString == "")
                 {
-                    ImGui.TextUnformatted("Start typing to search...");
+                    ImGui.TextUnformatted("输入以进行搜索...");
                 }
                 foreach (var item in SearchTerritories.Where(c => !currentValue.ContainsKey(c.RowId)))
                 {

@@ -18,7 +18,7 @@ public class TeamCraftImportWindow : GenericWindow
     private bool _hasError;
     private List<(uint, uint)>? _parseResult;
 
-    public TeamCraftImportWindow(ILogger<TeamCraftImportWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ListImportExportService importExportService, string name = "Teamcraft Import") : base(logger, mediator, imGuiService, configuration, name)
+    public TeamCraftImportWindow(ILogger<TeamCraftImportWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ListImportExportService importExportService, string name = "Teamcraft 导入") : base(logger, mediator, imGuiService, configuration, name)
     {
         _importExportService = importExportService;
         Flags = ImGuiWindowFlags.NoCollapse;
@@ -28,7 +28,7 @@ public class TeamCraftImportWindow : GenericWindow
 
 
     public override string GenericKey { get; } = "tcimport";
-    public override string GenericName { get; } = "Teamcraft Import";
+    public override string GenericName { get; } = "Teamcraft 导入";
     public override bool DestroyOnClose { get; }
     public override bool SaveState { get; } = false;
     public override Vector2? DefaultSize { get; } = new Vector2(300, 300);
@@ -40,18 +40,18 @@ public class TeamCraftImportWindow : GenericWindow
 
     public override void DrawWindow()
     {
-        ImGui.Text("Import to Craft List: ");
+        ImGui.Text("导入到制作清单: ");
         ImGui.SameLine();
-        ImGuiService.HelpMarker("Guide to importing lists.\r\n\r\n" +
-                                "Step 1. Open a list on Teamcraft with the items you wish to craft.\r\n\r\n" +
-                                "Step 2. Find the 'Items' \"Copy as Text\" button. You only want to copy the output items.\r\n\r\n" +
-                                "Step 3. Paste into the text box below in this window.\r\n\r\n" +
-                                "Step 4. Click import.");
-        ImGui.Text("Paste text here");
+        ImGuiService.HelpMarker("Teamcraft 清单导入指南。\r\n\r\n" +
+                                "步骤 1. 在 Teamcraft 上打开一个包含你想要制作的物品的清单。\r\n\r\n" +
+                                "步骤 2. 找到 Items 一栏的 \"Copy as Text\"（复制为文本）按钮，你只需要复制成品物品。\r\n\r\n" +
+                                "步骤 3. 将其粘贴到本窗口下方的文本框中。\r\n\r\n" +
+                                "步骤 4. 点击导入。");
+        ImGui.Text("在此粘贴文本");
         ImGui.InputTextMultiline("###FinalItems", ref _importListItems, 10000000, new Vector2(ImGui.GetContentRegionAvail().X, 100));
 
 
-        if (ImGui.Button("Import"))
+        if (ImGui.Button("导入"))
         {
             var importedList = _importExportService.FromTCString(_importListItems ?? "");
             if (importedList is not null)
@@ -62,7 +62,7 @@ public class TeamCraftImportWindow : GenericWindow
 
         }
         ImGui.SameLine();
-        if (ImGui.Button("Cancel"))
+        if (ImGui.Button("取消"))
         {
             Close();
         }

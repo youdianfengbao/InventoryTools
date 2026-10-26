@@ -9,10 +9,10 @@ public class ContentTypeLocalizer : ILocalizer<ContentType>
     {
         return instance.RowId switch
         {
-            20 => "Hall of Novice",
-            22 => "Seasonal",
-            23 => "The Diadem",
-            39 => "The Final Verse",
+            20 => "新人馆",
+            22 => "季节活动",
+            23 => "无名岛",
+            39 => "终焉之诗",
             _ => instance.Name.ToImGuiString()
         };
     }

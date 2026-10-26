@@ -20,8 +20,8 @@ namespace InventoryTools.Logic.Filters
             _playerState = playerState;
         }
         public override string Key { get; set; } = "Acquired";
-        public override string Name { get; set; } = "Is Acquired?";
-        public override string HelpText { get; set; } = "Has this item be acquired by your active character?";
+        public override string Name { get; set; } = "已获取？";
+        public override string HelpText { get; set; } = "当前角色是否已获取过该物品？";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Acquisition;
 
         public override bool? FilterItem(FilterConfiguration configuration,InventoryItem item)

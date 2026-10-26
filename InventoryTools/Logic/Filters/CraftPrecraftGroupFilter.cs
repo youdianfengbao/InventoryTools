@@ -41,10 +41,10 @@ public class CraftPrecraftGroupFilter : ChoiceFilter<PrecraftGroupSetting>
     }
 
     public override string Key { get; set; } = "CraftPrecraftGroupFilter";
-    public override string Name { get; set; } = "Group Precrafts By";
+    public override string Name { get; set; } = "半成品分组方式";
 
     public override string HelpText { get; set; } =
-        "How should precrafts be grouped together?";
+        "半成品如何分组？";
 
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Settings;
     public override PrecraftGroupSetting DefaultValue { get; set; } = PrecraftGroupSetting.ByClass;

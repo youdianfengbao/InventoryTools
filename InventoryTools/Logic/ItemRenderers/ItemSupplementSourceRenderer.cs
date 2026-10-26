@@ -21,8 +21,8 @@ public class ItemDesynthSourceRenderer : ItemSupplementSourceRenderer<ItemDesynt
     {
     }
 
-    public override string SingularName => "Desynthesis";
-    public override string HelpText => "Can the item be obtained via desynthesis?";
+    public override string SingularName => "拆解";
+    public override string HelpText => "该物品是否可通过拆解获得？";
 }
 
 public class ItemReductionSourceRenderer : ItemSupplementSourceRenderer<ItemReductionSource>
@@ -31,8 +31,8 @@ public class ItemReductionSourceRenderer : ItemSupplementSourceRenderer<ItemRedu
     {
     }
 
-    public override string SingularName => "Reduction";
-    public override string HelpText => "Can the item be obtained via reduction?";
+    public override string SingularName => "还原";
+    public override string HelpText => "该物品是否可通过还原获得？";
 }
 
 public class ItemLootSourceRenderer : ItemSupplementSourceRenderer<ItemLootSource>
@@ -41,8 +41,8 @@ public class ItemLootSourceRenderer : ItemSupplementSourceRenderer<ItemLootSourc
     {
     }
 
-    public override string SingularName => "Loot";
-    public override string HelpText => "Can the item be obtained from another item(normally a chest/material container/coffer)?";
+    public override string SingularName => "战利品";
+    public override string HelpText => "该物品是否可从其他物品（通常为宝箱/材料容器）中获得？";
 }
 
 public class ItemGardeningSourceRenderer : ItemSupplementSourceRenderer<ItemGardeningSource>
@@ -51,8 +51,8 @@ public class ItemGardeningSourceRenderer : ItemSupplementSourceRenderer<ItemGard
     {
     }
 
-    public override string SingularName => "Gardening";
-    public override string HelpText => "Can the item be grown via gardening?";
+    public override string SingularName => "园艺种植";
+    public override string HelpText => "该物品是否可通过园艺种植收获？";
 }
 
 public class ItemDesynthUseRenderer : ItemSupplementUseRenderer<ItemDesynthSource>
@@ -61,8 +61,8 @@ public class ItemDesynthUseRenderer : ItemSupplementUseRenderer<ItemDesynthSourc
     {
     }
 
-    public override string SingularName => "Desynthesis";
-    public override string HelpText => "Can the item be desynthesized?";
+    public override string SingularName => "拆解";
+    public override string HelpText => "该物品是否可被拆解？";
 }
 
 public class ItemReductionUseRenderer : ItemSupplementUseRenderer<ItemReductionSource>
@@ -71,8 +71,8 @@ public class ItemReductionUseRenderer : ItemSupplementUseRenderer<ItemReductionS
     {
     }
 
-    public override string SingularName => "Reduction";
-    public override string HelpText => "Can the item be reduced?";
+    public override string SingularName => "还原";
+    public override string HelpText => "该物品是否可被还原？";
 }
 
 public class ItemLootUseRenderer : ItemSupplementUseRenderer<ItemLootSource>
@@ -81,8 +81,8 @@ public class ItemLootUseRenderer : ItemSupplementUseRenderer<ItemLootSource>
     {
     }
 
-    public override string SingularName => "Loot";
-    public override string HelpText => "Does this item contain other items?";
+    public override string SingularName => "战利品";
+    public override string HelpText => "该物品是否包含其他物品？";
 }
 
 public class ItemGardeningUseRenderer : ItemSupplementUseRenderer<ItemGardeningSource>
@@ -91,8 +91,8 @@ public class ItemGardeningUseRenderer : ItemSupplementUseRenderer<ItemGardeningS
     {
     }
 
-    public override string SingularName => "Gardening";
-    public override string HelpText => "Can the item be used for gardening?";
+    public override string SingularName => "园艺种植";
+    public override string HelpText => "该物品是否可用于园艺种植？";
 }
 
 public class ItemCardPackSourceRenderer : ItemSupplementSourceRenderer<ItemCardPackSource>
@@ -101,8 +101,8 @@ public class ItemCardPackSourceRenderer : ItemSupplementSourceRenderer<ItemCardP
     {
     }
 
-    public override string SingularName => "Card Pack";
-    public override string HelpText => "Can the item be obtained from a card pack?";
+    public override string SingularName => "卡包";
+    public override string HelpText => "该物品是否可从卡包中获得？";
 }
 
 public class ItemCardPackUseRenderer : ItemSupplementUseRenderer<ItemCardPackSource>
@@ -111,8 +111,8 @@ public class ItemCardPackUseRenderer : ItemSupplementUseRenderer<ItemCardPackSou
     {
     }
 
-    public override string SingularName => "Card Pack";
-    public override string HelpText => "Does this item contain cards?";
+    public override string SingularName => "卡包";
+    public override string HelpText => "该物品是否包含幻卡？";
 }
 
 public class ItemCofferSourceRenderer : ItemSupplementSourceRenderer<ItemCofferSource>
@@ -121,8 +121,8 @@ public class ItemCofferSourceRenderer : ItemSupplementSourceRenderer<ItemCofferS
     {
     }
 
-    public override string SingularName => "Coffer";
-    public override string HelpText => "Can the item be obtained from a coffer?";
+    public override string SingularName => "宝箱";
+    public override string HelpText => "该物品是否可从宝箱中获得？";
 }
 
 public class ItemCofferUseRenderer : ItemSupplementUseRenderer<ItemCofferSource>
@@ -131,8 +131,8 @@ public class ItemCofferUseRenderer : ItemSupplementUseRenderer<ItemCofferSource>
     {
     }
 
-    public override string SingularName => "Coffer";
-    public override string HelpText => "Is this an item coffer that contains other items?";
+    public override string SingularName => "宝箱";
+    public override string HelpText => "该物品是否为包含其他物品的道具宝箱？";
 }
 
 
@@ -144,8 +144,8 @@ public class ItemPalaceOfTheDeadSourceRenderer : ItemSupplementSourceRenderer<It
     {
     }
 
-    public override string SingularName => "Palace of the Dead";
-    public override string HelpText => "Can the item be obtained from a loot item in the Palace of the Dead?";
+    public override string SingularName => "死者宫殿";
+    public override string HelpText => "该物品是否可从死者宫殿的战利品中获得？";
 }
 
 public class ItemPalaceOfTheDeadUseRenderer : ItemSupplementUseRenderer<ItemPalaceOfTheDeadSource>
@@ -156,8 +156,8 @@ public class ItemPalaceOfTheDeadUseRenderer : ItemSupplementUseRenderer<ItemPala
     {
     }
 
-    public override string SingularName => "Palace of the Dead";
-    public override string HelpText => "Is this a loot item obtained in the Palace of the Dead?";
+    public override string SingularName => "死者宫殿";
+    public override string HelpText => "该物品是否为死者宫殿中获得的战利品？";
 }
 public class ItemHeavenOnHighSourceRenderer : ItemSupplementSourceRenderer<ItemHeavenOnHighSource>
 {
@@ -167,8 +167,8 @@ public class ItemHeavenOnHighSourceRenderer : ItemSupplementSourceRenderer<ItemH
     {
     }
 
-    public override string SingularName => "Heaven on High";
-    public override string HelpText => "Can the item be obtained from a loot item in the Heaven on High?";
+    public override string SingularName => "天宫";
+    public override string HelpText => "该物品是否可从天宫的战利品中获得？";
 }
 
 public class ItemHeavenOnHighUseRenderer : ItemSupplementUseRenderer<ItemHeavenOnHighSource>
@@ -179,8 +179,8 @@ public class ItemHeavenOnHighUseRenderer : ItemSupplementUseRenderer<ItemHeavenO
     {
     }
 
-    public override string SingularName => "Heaven on High";
-    public override string HelpText => "Is this a loot item obtained in the Heaven on High?";
+    public override string SingularName => "天宫";
+    public override string HelpText => "该物品是否为天宫中获得的战利品？";
 }
 public class ItemEurekaOrthosSourceRenderer : ItemSupplementSourceRenderer<ItemEurekaOrthosSource>
 {
@@ -190,8 +190,8 @@ public class ItemEurekaOrthosSourceRenderer : ItemSupplementSourceRenderer<ItemE
     {
     }
 
-    public override string SingularName => "Eureka Orthos";
-    public override string HelpText => "Can the item be obtained from a loot item in the Eureka Orthos?";
+    public override string SingularName => "优雷卡 奥托斯";
+    public override string HelpText => "该物品是否可从优雷卡 奥托斯的战利品中获得？";
 }
 
 public class ItemEurekaOrthosUseRenderer : ItemSupplementUseRenderer<ItemEurekaOrthosSource>
@@ -202,8 +202,8 @@ public class ItemEurekaOrthosUseRenderer : ItemSupplementUseRenderer<ItemEurekaO
     {
     }
 
-    public override string SingularName => "Eureka Orthos";
-    public override string HelpText => "Is this a loot item obtained in the Eureka Orthos?";
+    public override string SingularName => "优雷卡 奥托斯";
+    public override string HelpText => "该物品是否为优雷卡 奥托斯中获得的战利品？";
 }
 
 public class ItemAnemosSourceRenderer : ItemSupplementSourceRenderer<ItemAnemosSource>
@@ -214,8 +214,8 @@ public class ItemAnemosSourceRenderer : ItemSupplementSourceRenderer<ItemAnemosS
     {
     }
 
-    public override string SingularName => "Eureka Anemos";
-    public override string HelpText => "Can the item be obtained from a loot item in Eureka Anemos?";
+    public override string SingularName => "优雷卡 常风之地";
+    public override string HelpText => "该物品是否可从优雷卡 常风之地的战利品中获得？";
 }
 
 public class ItemAnemosUseRenderer : ItemSupplementUseRenderer<ItemAnemosSource>
@@ -224,8 +224,8 @@ public class ItemAnemosUseRenderer : ItemSupplementUseRenderer<ItemAnemosSource>
     {
     }
 
-    public override string SingularName => "Eureka Anemos";
-    public override string HelpText => "Is this a loot item obtained in the Eureka Anemos?";
+    public override string SingularName => "优雷卡 常风之地";
+    public override string HelpText => "该物品是否为优雷卡 常风之地中获得的战利品？";
 }
 public class ItemPagosSourceRenderer : ItemSupplementSourceRenderer<ItemPagosSource>
 {
@@ -235,8 +235,8 @@ public class ItemPagosSourceRenderer : ItemSupplementSourceRenderer<ItemPagosSou
     {
     }
 
-    public override string SingularName => "Eureka Pagos";
-    public override string HelpText => "Can the item be obtained from a loot item in Eureka Pagos?";
+    public override string SingularName => "优雷卡 恒冰之地";
+    public override string HelpText => "该物品是否可从优雷卡 恒冰之地的战利品中获得？";
 }
 
 public class ItemPagosUseRenderer : ItemSupplementUseRenderer<ItemPagosSource>
@@ -247,8 +247,8 @@ public class ItemPagosUseRenderer : ItemSupplementUseRenderer<ItemPagosSource>
     {
     }
 
-    public override string SingularName => "Eureka Pagos";
-    public override string HelpText => "Is this a loot item obtained in the Eureka Pagos?";
+    public override string SingularName => "优雷卡 恒冰之地";
+    public override string HelpText => "该物品是否为优雷卡 恒冰之地中获得的战利品？";
 }
 public class ItemPyrosSourceRenderer : ItemSupplementSourceRenderer<ItemPyrosSource>
 {
@@ -258,8 +258,8 @@ public class ItemPyrosSourceRenderer : ItemSupplementSourceRenderer<ItemPyrosSou
     {
     }
 
-    public override string SingularName => "Eureka Pyros";
-    public override string HelpText => "Can the item be obtained from a loot item in Eureka Pyros?";
+    public override string SingularName => "优雷卡 涌火之地";
+    public override string HelpText => "该物品是否可从优雷卡 涌火之地的战利品中获得？";
 }
 
 public class ItemPyrosUseRenderer : ItemSupplementUseRenderer<ItemPyrosSource>
@@ -270,8 +270,8 @@ public class ItemPyrosUseRenderer : ItemSupplementUseRenderer<ItemPyrosSource>
     {
     }
 
-    public override string SingularName => "Eureka Pyros";
-    public override string HelpText => "Is this a loot item obtained in the Eureka Pyros?";
+    public override string SingularName => "优雷卡 涌火之地";
+    public override string HelpText => "该物品是否为优雷卡 涌火之地中获得的战利品？";
 }
 
 public class ItemHydatosSourceRenderer : ItemSupplementSourceRenderer<ItemHydatosSource>
@@ -282,8 +282,8 @@ public class ItemHydatosSourceRenderer : ItemSupplementSourceRenderer<ItemHydato
     {
     }
 
-    public override string SingularName => "Eureka Hydatos";
-    public override string HelpText => "Can the item be obtained from a loot item in Eureka Hydatos?";
+    public override string SingularName => "优雷卡 丰水之地";
+    public override string HelpText => "该物品是否可从优雷卡 丰水之地的战利品中获得？";
 }
 
 public class ItemPilgrimsTraverseSourceRenderer : ItemSupplementSourceRenderer<ItemPilgrimsTraverseSource>
@@ -294,8 +294,8 @@ public class ItemPilgrimsTraverseSourceRenderer : ItemSupplementSourceRenderer<I
     {
     }
 
-    public override string SingularName => "Pilgrim's Traverse";
-    public override string HelpText => "Can the item be obtained from a loot item in Pilgrim's Traverse?";
+    public override string SingularName => "巡礼回廊";
+    public override string HelpText => "该物品是否可从巡礼回廊的战利品中获得？";
 }
 
 public class ItemOizysSourceRenderer : ItemSupplementSourceRenderer<ItemOizysSource>
@@ -306,8 +306,8 @@ public class ItemOizysSourceRenderer : ItemSupplementSourceRenderer<ItemOizysSou
     {
     }
 
-    public override string SingularName => "Oizys";
-    public override string HelpText => "Can the item be obtained from a loot item in Oizys?";
+    public override string SingularName => "俄伊兹斯";
+    public override string HelpText => "该物品是否可从俄伊兹斯的战利品中获得？";
 }
 
 public class ItemAuxesiaSourceRenderer : ItemSupplementSourceRenderer<ItemAuxesiaSource>
@@ -318,8 +318,8 @@ public class ItemAuxesiaSourceRenderer : ItemSupplementSourceRenderer<ItemAuxesi
     {
     }
 
-    public override string SingularName => "Auxesia";
-    public override string HelpText => "Can the item be obtained from a loot item in Auxesia?";
+    public override string SingularName => "奥克塞西亚";
+    public override string HelpText => "该物品是否可从奥克塞西亚的战利品中获得？";
 }
 
 public class ItemHydatosUseRenderer : ItemSupplementUseRenderer<ItemHydatosSource>
@@ -330,8 +330,8 @@ public class ItemHydatosUseRenderer : ItemSupplementUseRenderer<ItemHydatosSourc
     {
     }
 
-    public override string SingularName => "Eureka Hydatos";
-    public override string HelpText => "Is this a loot item obtained in the Eureka Hydatos?";
+    public override string SingularName => "优雷卡 丰水之地";
+    public override string HelpText => "该物品是否为优雷卡 丰水之地中获得的战利品？";
 }
 
 public class ItemBozjaSourceRenderer : ItemSupplementSourceRenderer<ItemBozjaSource>
@@ -340,8 +340,8 @@ public class ItemBozjaSourceRenderer : ItemSupplementSourceRenderer<ItemBozjaSou
     {
     }
 
-    public override string SingularName => "Bozja";
-    public override string HelpText => "Can the item be obtained from a loot item in Bozja?";
+    public override string SingularName => "博兹雅";
+    public override string HelpText => "该物品是否可从博兹雅的战利品中获得？";
 }
 
 public class ItemBozjaUseRenderer : ItemSupplementUseRenderer<ItemBozjaSource>
@@ -350,8 +350,8 @@ public class ItemBozjaUseRenderer : ItemSupplementUseRenderer<ItemBozjaSource>
     {
     }
 
-    public override string SingularName => "Bozja";
-    public override string HelpText => "Is this a loot item obtained in the Bozja?";
+    public override string SingularName => "博兹雅";
+    public override string HelpText => "该物品是否为博兹雅中获得的战利品？";
 }
 public class ItemLogogramSourceRenderer : ItemSupplementSourceRenderer<ItemLogogramSource>
 {
@@ -359,8 +359,8 @@ public class ItemLogogramSourceRenderer : ItemSupplementSourceRenderer<ItemLogog
     {
     }
 
-    public override string SingularName => "Logogram";
-    public override string HelpText => "Can the item be obtained from a logogram?";
+    public override string SingularName => "逻各斯";
+    public override string HelpText => "该物品是否可从逻各斯中获得？";
 }
 
 public class ItemLogogramUseRenderer : ItemSupplementUseRenderer<ItemLogogramSource>
@@ -369,8 +369,8 @@ public class ItemLogogramUseRenderer : ItemSupplementUseRenderer<ItemLogogramSou
     {
     }
 
-    public override string SingularName => "Logogram";
-    public override string HelpText => "Is this item a logogram?";
+    public override string SingularName => "逻各斯";
+    public override string HelpText => "该物品是否为逻各斯？";
 
     public override Func<ItemSource, int> GetIcon => source =>
     {
@@ -400,11 +400,11 @@ public abstract class ItemSupplementUseRenderer<T> : ItemSupplementSourceRendere
                 ImGui.SameLine();
                 if (source.Supplement.Min == source.Supplement.Max)
                 {
-                    ImGui.Text("(Drops 1)");
+                    ImGui.Text("(掉落 1)");
                 }
                 else
                 {
-                    ImGui.Text("(Drops " + source.Supplement.Min.Value + " - " + source.Supplement.Max.Value + ")");
+                    ImGui.Text("(掉落 " + source.Supplement.Min.Value + " - " + source.Supplement.Max.Value + ")");
                 }
             }
 
@@ -427,11 +427,11 @@ public abstract class ItemSupplementUseRenderer<T> : ItemSupplementSourceRendere
             ImGui.SameLine();
             if (asSource.Supplement.Min == asSource.Supplement.Max)
             {
-                ImGui.Text("(Drops 1)");
+                ImGui.Text("(掉落 1)");
             }
             else
             {
-                ImGui.Text("(Drops " + asSource.Supplement.Min.Value + " - " + asSource.Supplement.Max.Value + ")");
+                ImGui.Text("(掉落 " + asSource.Supplement.Min.Value + " - " + asSource.Supplement.Max.Value + ")");
             }
         }
 
@@ -472,8 +472,8 @@ public abstract class ItemSupplementSourceRenderer<T> : ItemInfoRenderer<T> wher
     {
         var asSource = AsSource(source);
 
-        this.DrawItems("Reward Items: ", asSource.RewardItems);
-        this.DrawItems("Required Items: ", asSource.CostItems);
+        this.DrawItems("奖励物品：", asSource.RewardItems);
+        this.DrawItems("所需物品：", asSource.CostItems);
 
         if (asSource.Supplement.Probability != null)
         {

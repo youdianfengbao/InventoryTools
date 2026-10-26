@@ -23,7 +23,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
     private readonly ExcelSheet<ContentType> _contentTypeSheet;
     private readonly ContentFinderConditionSheet _contentFinderConditionSheet;
 
-    public DutiesWindow(ILogger<DutiesWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ExcelSheet<ContentType> contentTypeSheet, ContentFinderConditionSheet contentFinderConditionSheet, string name = "Duties Window") : base(logger, mediator, imGuiService, configuration, name)
+    public DutiesWindow(ILogger<DutiesWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, ExcelSheet<ContentType> contentTypeSheet, ContentFinderConditionSheet contentFinderConditionSheet, string name = "副本窗口") : base(logger, mediator, imGuiService, configuration, name)
     {
         _imGuiService = imGuiService;
         _contentTypeSheet = contentTypeSheet;
@@ -31,12 +31,12 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
     }
     public override void Initialize()
     {
-        WindowName = "Duties";
+        WindowName = "副本";
         Key = "duties";
 
         _columns = new List<TableColumn<ContentFinderConditionRow>>()
         {
-            new("Icon", 32, ImGuiTableColumnFlags.WidthFixed)
+            new("图标", 32, ImGuiTableColumnFlags.WidthFixed)
             {
                 OnLeftClick = OnLeftClick,
                 Draw = (ex, contentTypeId) =>
@@ -48,7 +48,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     }
                 }
             },
-            new("Name", 200, ImGuiTableColumnFlags.WidthFixed)
+            new("名称", 200, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -72,7 +72,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.FormattedName);
                 }
             },
-            new("Roulettes", 200, ImGuiTableColumnFlags.WidthFixed)
+            new("随机任务", 200, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -96,7 +96,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.Roulettes);
                 }
             },
-            new("Level", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("等级", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -120,7 +120,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.Base.ClassJobLevelRequired.ToString());
                 }
             },
-            new("Sync Level", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("同步等级", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -144,7 +144,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.Base.ClassJobLevelSync.ToString());
                 }
             },
-            new("Item Level", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("物品等级", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -168,7 +168,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.Base.ItemLevelRequired.ToString());
                 }
             },
-            new("Item Level Sync", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("物品等级同步", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -192,7 +192,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     ImGui.TextUnformatted(ex.Base.ItemLevelSync.ToString());
                 }
             },
-            new("Allows Undersized", 80, ImGuiTableColumnFlags.WidthFixed)
+            new("允许少量人数", 80, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -217,7 +217,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     _imGuiService.DrawUldIcon(ex.Base.AllowUndersized ? _imGuiService.TickIcon : _imGuiService.CrossIcon, new Vector2(RowSize, RowSize));
                 }
             },
-            new("Allows Explorer Mode", 80, ImGuiTableColumnFlags.WidthFixed)
+            new("允许探索模式", 80, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -267,7 +267,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     _imGuiService.DrawUldIcon(ex.Base.PvP ? _imGuiService.TickIcon : _imGuiService.CrossIcon, new Vector2(RowSize, RowSize));
                 }
             },
-            new("Accepted Classes", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("允许职业", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -276,7 +276,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                         return exes;
                     }
 
-                    return specs == ImGuiSortDirection.Ascending ? exes.OrderBy(c => c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "Unknown") : exes.OrderByDescending(c => c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "Unknown");
+                    return specs == ImGuiSortDirection.Ascending ? exes.OrderBy(c => c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "未知") : exes.OrderByDescending(c => c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "未知");
                 },
                 Filter = (s, exes) =>
                 {
@@ -284,11 +284,11 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
                     {
                         return exes;
                     }
-                    return s == "" ? exes : exes.Where(c => (c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "Unknown").ToLower().PassesFilter(s.ToLower()));
+                    return s == "" ? exes : exes.Where(c => (c.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "未知").ToLower().PassesFilter(s.ToLower()));
                 },
                 Draw = (ex, contentTypeId) =>
                 {
-                    ImGui.TextUnformatted(ex.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "Unknown");
+                    ImGui.TextUnformatted(ex.AcceptClassJobCategory?.Base.Name.ExtractText() ?? "未知");
                 }
             },
         };
@@ -351,7 +351,7 @@ public class DutiesWindow : GenericTabbedTable<ContentFinderConditionRow>, IMenu
 
     public override bool UseClipper => _useClipper;
     public override string GenericKey => "duties";
-    public override string GenericName => "Duties";
+    public override string GenericName => "副本";
     public override bool DestroyOnClose => false;
     public override bool SaveState => true;
     public override Vector2? MaxSize { get; } = new(2000, 2000);

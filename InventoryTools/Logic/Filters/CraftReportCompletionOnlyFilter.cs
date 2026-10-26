@@ -8,8 +8,8 @@ public class CraftReportCompletionOnlyFilter : GenericBooleanFilter
 {
     public CraftReportCompletionOnlyFilter(ILogger<CraftReportCompletionOnlyFilter> logger, ImGuiService imGuiService) :
         base(
-            "CraftReportCompletionOnly", "Only report when an item is complete?",
-            "Instead of reporting every acquisition, only print a message when an item reaches its required quantity.",
+            "CraftReportCompletionOnly", "仅在物品完成时报告？",
+            "不逐次报告获取情况，仅在物品达到所需数量时输出消息。",
             FilterCategory.Notifications, null, null, logger, imGuiService)
     {
         DefaultValue = false;

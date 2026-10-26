@@ -42,11 +42,11 @@ public class CraftCalculatorColumn : IntegerColumn, IDisposable
         return (int?)(_craftable.ContainsKey(searchResult.Item.RowId) ? _craftable[searchResult.Item.RowId] : 0);
     }
 
-    public override string Name { get; set; } = "Craft Calculator";
+    public override string Name { get; set; } = "制作计算器";
     public override float Width { get; set; } = 80;
 
     public override string HelpText { get; set; } =
-        "This will calculate the total amount of an item that could be crafted based on the items within your character and retainers. You can override which inventories are looked in by selecting a custom scope below.";
+        "根据角色与雇员库存中的材料，计算可制作的物品总量。可在下方选择自定义范围来覆盖默认检索的库存。";
 
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
@@ -58,10 +58,10 @@ public class CraftCalculatorColumn : IntegerColumn, IDisposable
         ImGui.NewLine();
         ImGui.Separator();
         ImGui.SetNextItemWidth(220);
-        ImGui.LabelText("##" + configuration.Key + "Search", "Inventories to search in:");
-        ImGui.SetNextItemWidth(250);
+        ImGui.LabelText("##" + configuration.Key + "Search", "要搜索的库存：");
+        ImGui.SetNextItemWidth(220);
         ImGui.SameLine();
-        _scopePickerColumnSetting.Draw(columnConfiguration, "Please make sure you include at least one inventory that contains crystals otherwise the craft calculator will not work. If no scopes are picked, the craft calculator will look in your active characters inventories and their retainers.");
+        _scopePickerColumnSetting.Draw(columnConfiguration, "请确保至少包含一个含有水晶的库存，否则制作计算器将无法工作。若未选择任何范围，制作计算器将检索当前活跃角色的库存及其雇员。");
         base.DrawEditor(columnConfiguration, configuration);
         return null;
     }
@@ -73,7 +73,7 @@ public class CraftCalculatorColumn : IntegerColumn, IDisposable
 
         if (_craftCalculator == null || !_craftCalculator.IsRunning)
         {
-            if (ImGui.Button("Calculate Crafts"))
+            if (ImGui.Button("计算制作"))
             {
                 if (_craftCalculator == null)
                 {
@@ -146,7 +146,7 @@ public class CraftCalculatorColumn : IntegerColumn, IDisposable
         }
         else if (_craftCalculator.IsRunning)
         {
-            if (ImGui.Button("Stop Calculating Crafts"))
+            if (ImGui.Button("停止计算"))
             {
                 _craftCalculator.CancelProcessing();
             }

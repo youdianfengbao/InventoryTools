@@ -45,7 +45,7 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
             Columns = BuiltColumns,
             CompendiumType = this,
             Key = "items",
-            Name = "Items"
+            Name = "物品"
         });
     }
 
@@ -85,26 +85,26 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
 
     public override void BuildColumns(CompendiumColumnBuilder<ItemRow> builder)
     {
-        builder.AddCompendiumOpenViewColumn(new() { Key = "icon", Name = "##Icon", HelpText = "The icon of the leve", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId });
-        builder.AddStringColumn(new() { Key = "name", Name = "Name", HelpText = "The name of the leve", Version = "14.0.3", ValueSelector = row => row.NameString });
+        builder.AddCompendiumOpenViewColumn(new() { Key = "icon", Name = "##Icon", HelpText = "物品图标", Version = "14.0.3", ValueSelector = this.GetIcon, CompendiumType = this, RowIdSelector = row => row.RowId });
+        builder.AddStringColumn(new() { Key = "name", Name = "名称", HelpText = "物品名称", Version = "14.0.3", ValueSelector = row => row.NameString });
     }
 
     public override void BuildViewFields(CompendiumViewBuilder viewBuilder, ItemRow row)
     {
         viewBuilder.SetupDefaults(this, row);
         viewBuilder.Description = row.Base.Description.ToImGuiString();
-        viewBuilder.AddTag(() => "iLvl " + row.Base.LevelItem.RowId, () => "The item level of the item");
-        viewBuilder.AddTag(() => "Patch " + row.Patch, () => "The patch the item was introduced");
+        viewBuilder.AddTag(() => "物品等级 " + row.Base.LevelItem.RowId, () => "物品的等级");
+        viewBuilder.AddTag(() => "版本 " + row.Patch, () => "物品加入游戏的版本");
         if (row.CanBeAcquired)
         {
             viewBuilder.AddTag(
                 () =>
                 {
                     var isUnlocked = _unlockTrackerService.IsUnlocked(row);
-                    if (isUnlocked == null) return "Acquired?";
-                    return isUnlocked.Value ? "Acquired" : "Not Acquired";
+                    if (isUnlocked == null) return "已获得？";
+                    return isUnlocked.Value ? "已获得" : "未获得";
                 },
-                () => "Is the item acquired?",
+                () => "是否已获得该物品？",
                 () =>
                 {
                     var isUnlocked = _unlockTrackerService.IsUnlocked(row);
@@ -115,11 +115,11 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
 
         if (row.CanBeCrafted)
         {
-            viewBuilder.AddTag(() => "Craftable", () => "Is the item craftable?");
+            viewBuilder.AddTag(() => "可制作", () => "该物品是否可制作？");
         }
         if (row.CanBeDesynthed)
         {
-            viewBuilder.AddTag(() => "Desynthable", () => "Can the item be desynthed?");
+            viewBuilder.AddTag(() => "可分解", () => "该物品是否可分解？");
         }
 
         viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
@@ -127,7 +127,7 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
             Sources = row.Sources,
             SourceType = SourceType.Source,
             SectionKey = "sources",
-            SectionName = "Sources",
+            SectionName = "来源",
         });
 
         viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
@@ -135,24 +135,24 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
             Sources = row.Uses,
             SourceType = SourceType.Use,
             SectionKey = "uses",
-            SectionName = "Uses"
+            SectionName = "用途"
         });
 
         viewBuilder.AddMetadataSection(new MetadataSectionOptions()
         {
             SectionKey = "information",
-            SectionName = "Information",
+            SectionName = "信息",
             Rows = new List<MetadataSectionOptions.Row>()
             {
                 new()
                 {
-                    Label = "Buy from Vendor Price",
+                    Label = "商人售价",
                     Value = () => row.BuyFromVendorPrice + SeIconChar.Gil.ToIconString(),
                     ShouldDraw = () => row.BuyFromVendorPrice != 0 && row.HasSourcesByType(ItemInfoType.GilShop)
                 },
                 new()
                 {
-                    Label = "Sell to Vendor Price",
+                    Label = "商人收购价",
                     Value = () => row.SellToVendorPrice + SeIconChar.Gil.ToIconString(),
                     ShouldDraw = () => row.SellToVendorPrice != 0
                 },
@@ -161,7 +161,7 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             SectionKey = "desynthesis_class",
-            SectionName = "Desynthesis Class",
+            SectionName = "分解职业",
             RelatedRef = (RowRef)row.Base.ClassJobRepair,
             HideWhenEmpty = true
         });
@@ -169,7 +169,7 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
         viewBuilder.AddItemListSection(new ItemListSectionOptions()
         {
             SectionKey = "shared_models",
-            SectionName = "Shared Models",
+            SectionName = "共享模型",
             Items = sharedModels.Select(c => new ItemInfo(c)),
             HideWhenEmpty = true
         });
@@ -178,28 +178,28 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
         if (allRequirements.Count > 0)
         {
             viewBuilder.AddTag(
-                () => allRequirements.All(r => r.IsMet) ? "Unlocked" : "Not Unlocked",
-                () => "Are all unlock requirements met for this item?",
+                () => allRequirements.All(r => r.IsMet) ? "已解锁" : "未解锁",
+                () => "该物品的解锁条件是否全部满足？",
                 () => allRequirements.All(r => r.IsMet) ? ImGuiColors.ParsedGreen : ImGuiColors.DalamudRed);
         }
 
         viewBuilder.AddMetadataSection(new MetadataSectionOptions()
         {
             SectionKey = "unlock_requirements",
-            SectionName = "Unlock Requirements",
+            SectionName = "解锁条件",
             Rows = requirementRows,
             HideWhenEmpty = true
         });
 
-        viewBuilder.AddLink($"https://www.garlandtools.org/db/#item/{row.GarlandToolsId}", "Open in Garland Tools", "garlandtools");
-        viewBuilder.AddLink($"https://ffxivteamcraft.com/db/en/item/{row.RowId}", "Open in Teamcraft", "teamcraft");
+        viewBuilder.AddLink($"https://www.garlandtools.org/db/#item/{row.GarlandToolsId}", "在 Garland Tools 中打开", "garlandtools");
+        viewBuilder.AddLink($"https://ffxivteamcraft.com/db/en/item/{row.RowId}", "在 Teamcraft 中打开", "teamcraft");
         if (row.CanBePlacedOnMarket)
         {
-            viewBuilder.AddLink($"https://universalis.app/market/{row.RowId}", "Open in Universalis", "universalis");
+            viewBuilder.AddLink($"https://universalis.app/market/{row.RowId}", "在 Universalis 中打开", "universalis");
         }
 
-        viewBuilder.AddLink($"https://ffxiv.gamerescape.com/wiki/{HttpUtility.UrlEncode(row.GamerEscapeName)}?useskin=Vector", "Open in Gamerescape", "gamerescape");
-        viewBuilder.AddLink($"https://ffxiv.consolegameswiki.com/wiki/{HttpUtility.UrlEncode(row.ConsoleGamesWikiName)}", "Open in Console Games Wiki", "consolegameswiki");
+        viewBuilder.AddLink($"https://ffxiv.gamerescape.com/wiki/{HttpUtility.UrlEncode(row.GamerEscapeName)}?useskin=Vector", "在 Gamerescape 中打开", "gamerescape");
+        viewBuilder.AddLink($"https://ffxiv.consolegameswiki.com/wiki/{HttpUtility.UrlEncode(row.ConsoleGamesWikiName)}", "在 Console Games Wiki 中打开", "consolegameswiki");
     }
 
     private (List<ObtainabilityRequirement> AllRequirements, List<MetadataSectionOptions.Row> Rows) BuildObtainabilityRows(ItemRow row)
@@ -209,11 +209,11 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
 
         var sourcesToCheck = new (IngredientPreferenceType Type, string Label)[]
         {
-            (IngredientPreferenceType.Crafting,    "Crafting"),
-            (IngredientPreferenceType.Mining,      "Mining"),
-            (IngredientPreferenceType.Botany,      "Botany"),
-            (IngredientPreferenceType.Fishing,     "Fishing"),
-            (IngredientPreferenceType.SpearFishing,"Spearfishing"),
+            (IngredientPreferenceType.Crafting,    "制作"),
+            (IngredientPreferenceType.Mining,      "采矿"),
+            (IngredientPreferenceType.Botany,      "园艺"),
+            (IngredientPreferenceType.Fishing,     "捕鱼"),
+            (IngredientPreferenceType.SpearFishing,"刺鱼"),
         };
 
         foreach (var (preferenceType, label) in sourcesToCheck)
@@ -233,7 +233,7 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
                 rows.Add(new MetadataSectionOptions.Row
                 {
                     Label = $"{label}: {captured.Description}",
-                    Value = () => captured.IsMet ? "Met" : "Not Met",
+                    Value = () => captured.IsMet ? "已满足" : "未满足",
                 });
             }
         }
@@ -255,9 +255,9 @@ public class ItemCompendiumType : CompendiumType<ItemRow>
     public override bool ShowInListing => false;
     public override Type ViewRedirection => typeof(ItemWindow);
 
-    public override string Singular => "Item";
-    public override string Plural => "Items";
-    public override string Description => "All the items available in the game";
+    public override string Singular => "物品";
+    public override string Plural => "物品";
+    public override string Description => "游戏中的所有物品";
     public override string Key => "items";
     public override (string?, uint?) Icon => (null, Icons.QuestionMarkBag);
 }

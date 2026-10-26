@@ -34,11 +34,11 @@ public abstract class ItemHouseSourceRenderer<T> : ItemInfoRenderer<T> where T :
         var setName = asSource.HousingPreset.Value.Singular.ExtractText();
         if (setName == string.Empty)
         {
-            ImGui.Text("Not default in any house.");
+            ImGui.Text("不作为任何房屋的默认外观。");
         }
         else
         {
-            ImGui.Text("Default in " + setName);
+            ImGui.Text("以下房屋样式的默认外观：" + setName);
         }
     };
 
@@ -59,11 +59,11 @@ public abstract class ItemHouseSourceRenderer<T> : ItemInfoRenderer<T> where T :
         var setName = asSource.HousingPreset.Value.Singular.ExtractText();
         if (setName == string.Empty)
         {
-           return "Not default in any house.";
+           return "不作为任何房屋的默认外观。";
         }
         else
         {
-            return "Default in " + setName;
+            return "以下房屋样式的默认外观：" + setName;
         }
     };
 }
@@ -75,9 +75,9 @@ public class ItemHouseDoorSourceRenderer : ItemHouseSourceRenderer<ItemHouseDoor
     {
     }
 
-    public override string SingularName => "House Fixture (Door)";
+    public override string SingularName => "房屋部件（门）";
 
-    public override string HelpText => "Can the item be placed in the door fixture slot in houses?";
+    public override string HelpText => "该物品是否可放置在房屋的门部件栏位？";
 }
 
 
@@ -88,8 +88,8 @@ public class ItemHouseFlooringSourceRenderer : ItemHouseSourceRenderer<ItemHouse
     {
     }
 
-    public override string SingularName => "House Fixture (Flooring)";
-    public override string HelpText => "Can the item be placed in the floor fixture slot in houses?";
+    public override string SingularName => "房屋部件（地板）";
+    public override string HelpText => "该物品是否可放置在房屋的地板部件栏位？";
 }
 
 public class ItemHouseLightingSourceRenderer : ItemHouseSourceRenderer<ItemHouseLightingSource>
@@ -99,8 +99,8 @@ public class ItemHouseLightingSourceRenderer : ItemHouseSourceRenderer<ItemHouse
     {
     }
 
-    public override string SingularName => "House Fixture (Lighting)";
-    public override string HelpText => "Can the item be placed in the lighting fixture slot in houses?";
+    public override string SingularName => "房屋部件（照明）";
+    public override string HelpText => "该物品是否可放置在房屋的照明部件栏位？";
 }
 
 public class ItemHouseRoofSourceRenderer : ItemHouseSourceRenderer<ItemHouseRoofSource>
@@ -110,8 +110,8 @@ public class ItemHouseRoofSourceRenderer : ItemHouseSourceRenderer<ItemHouseRoof
     {
     }
 
-    public override string SingularName => "House Fixture (Roof)";
-    public override string HelpText => "Can the item be placed in the roof fixture slot in houses?";
+    public override string SingularName => "房屋部件（屋顶）";
+    public override string HelpText => "该物品是否可放置在房屋的屋顶部件栏位？";
 }
 
 public class ItemHouseWallpaperSourceRenderer : ItemHouseSourceRenderer<ItemHouseWallpaperSource>
@@ -121,8 +121,8 @@ public class ItemHouseWallpaperSourceRenderer : ItemHouseSourceRenderer<ItemHous
     {
     }
 
-    public override string SingularName => "House Fixture (Wallpaper)";
-    public override string HelpText => "Can the item be placed in the interior wall fixture slot in houses?";
+    public override string SingularName => "房屋部件（内墙壁纸）";
+    public override string HelpText => "该物品是否可放置在房屋的内墙部件栏位？";
 }
 
 public class ItemHouseWallSourceRenderer : ItemHouseSourceRenderer<ItemHouseWallSource>
@@ -132,8 +132,8 @@ public class ItemHouseWallSourceRenderer : ItemHouseSourceRenderer<ItemHouseWall
     {
     }
 
-    public override string SingularName => "House Fixture (Wall)";
-    public override string HelpText => "Can the item be placed in the exterior wall fixture slot in houses?";
+    public override string SingularName => "房屋部件（外墙）";
+    public override string HelpText => "该物品是否可放置在房屋的外墙部件栏位？";
 }
 
 public class ItemHouseWindowSourceRenderer : ItemHouseSourceRenderer<ItemHouseWindowSource>
@@ -143,6 +143,6 @@ public class ItemHouseWindowSourceRenderer : ItemHouseSourceRenderer<ItemHouseWi
     {
     }
 
-    public override string SingularName => "House Fixture (Window)";
-    public override string HelpText => "Can the item be placed in the window fixture slot in houses?";
+    public override string SingularName => "房屋部件（窗户）";
+    public override string HelpText => "该物品是否可放置在房屋的窗户部件栏位？";
 }

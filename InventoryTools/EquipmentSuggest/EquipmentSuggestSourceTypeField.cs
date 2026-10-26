@@ -23,8 +23,8 @@ public sealed class EquipmentSuggestSourceTypeField : MultipleChoiceFormField<It
         ItemInfoType.CraftRecipe,
     };
     public override string Key { get; set; } = "SourceType";
-    public override string Name { get; set; } = "Include Sources";
-    public override string HelpText { get; set; } = "When recommending an item, what sources should be used?";
+    public override string Name { get; set; } = "包含来源";
+    public override string HelpText { get; set; } = "推荐装备时应使用哪些获取来源？";
     public override string Version { get; set; } = "1.12.0.10";
     public override Dictionary<ItemInfoType, string> GetChoices(EquipmentSuggestConfig configuration)
     {

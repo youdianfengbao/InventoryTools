@@ -14,10 +14,10 @@ public class CraftWorldPriceUseDefaultsFilter : BooleanFilter
     }
 
     public override string Key { get; set; } = "CraftWorldPriceUseDefaults";
-    public override string Name { get; set; } = "Use Default Worlds?";
+    public override string Name { get; set; } = "使用默认世界？";
 
     public override string HelpText { get; set; } =
-        "Should the worlds selected in 'Price Worlds' in the main settings be automatically used for pricing?";
+        "是否自动使用主设置中“价格世界”所选的世界来定价？";
 
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.WorldPricePreference;
     public override FilterType AvailableIn { get; set; } = FilterType.CraftFilter;

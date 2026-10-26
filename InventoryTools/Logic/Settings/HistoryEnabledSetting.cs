@@ -18,11 +18,11 @@ public class HistoryEnabledSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "HistoryEnabled";
-    public override string Name { get; set; } = "Enable History Tracking?";
-    public override string WizardName { get; } = "Track Item History?";
+    public override string Name { get; set; } = "启用历史记录？";
+    public override string WizardName { get; } = "追踪物品历史？";
 
     public override string HelpText { get; set; } =
-        "Should Allagan Tools attempt to track the movement, addition and removal of items in your inventories?";
+        "是否让亚拉戈工具追踪库存中物品的移动、增删情况？";
     
     public override string Version => "1.7.0.0";
 

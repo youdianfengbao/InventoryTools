@@ -58,20 +58,20 @@ namespace InventoryTools.Logic.Filters.Abstract
                 ImGui.SameLine();
                 ImGuiService.HelpMarker(new List<string>()
                 {
-                    "When searching the following operators can be used to compare: ",
+                    "搜索时可使用以下运算符进行比较: ",
                     "",
-                    ">, >=, <, <=, =, for numerical comparisons" ,
-                    "=, for exact comparisons",
-                    "!, for inequality comparisons",
-                    "||, search multiple expressions using OR",
-                    "&&, search multiple expressions using AND"
+                    ">, >=, <, <=, =，用于数值比较" ,
+                    "=，用于精确比较",
+                    "!，用于不等比较",
+                    "||，用 OR 搜索多个表达式",
+                    "&&，用 AND 搜索多个表达式"
                 });
             }
 
             if (HasValueSet(configuration) && ShowReset)
             {
                 ImGui.SameLine();
-                if (ImGui.Button("Reset##" + Key + "Reset"))
+                if (ImGui.Button("重置##" + Key + "Reset"))
                 {
                     ResetFilter(configuration);
                 }

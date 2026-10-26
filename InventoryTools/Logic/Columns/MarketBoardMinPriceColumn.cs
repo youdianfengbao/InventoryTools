@@ -21,7 +21,7 @@ namespace InventoryTools.Logic.Columns
         public override ColumnCategory ColumnCategory => ColumnCategory.Market;
 
         public override string HelpText { get; set; } =
-            "Shows the minimum price of both the NQ and HQ form of the item. If no world is selected, your home world is used. This data is sourced from universalis.";
+            "显示该物品 NQ 与 HQ 形态的最低价格。若未选择世界，则使用主世界。数据来自 Universalis。";
 
         public override (int, int)? CurrentValue(ColumnConfiguration columnConfiguration, SearchResult searchResult)
         {
@@ -68,8 +68,8 @@ namespace InventoryTools.Logic.Columns
 
             return (Loading, Loading);
         }
-        public override string Name { get; set; } = "Market Board Minimum Price NQ/HQ";
-        public override string RenderName => "MB Min. Price NQ/HQ";
+        public override string Name { get; set; } = "市场板最低价 NQ/HQ";
+        public override string RenderName => "市场板最低价 NQ/HQ";
 
         public override FilterType DefaultIn => Logic.FilterType.CraftFilter;
     }

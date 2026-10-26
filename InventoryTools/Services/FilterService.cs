@@ -87,7 +87,7 @@ public class FilterService : IFilterService
             var name = baseParam.Name.ExtractText();
             if (helpText == string.Empty)
             {
-                helpText = $"The {name} of the item.";
+                helpText = $"物品的{name}。";
             }
             var genericFilter = _integerFilterFactory.Invoke("BaseParam" + baseParam.RowId, name, helpText, FilterCategory.Stats, null,
                 row =>

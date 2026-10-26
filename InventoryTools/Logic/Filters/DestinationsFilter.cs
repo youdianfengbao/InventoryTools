@@ -29,10 +29,10 @@ namespace InventoryTools.Logic.Filters
         }
         public override int Order { get; set; } = 2;
         public override string Key { get; set; } = "Destinations";
-        public override string Name { get; set; } = "Destinations";
+        public override string Name { get; set; } = "目标";
 
         public override string HelpText { get; set; } =
-            "This lists all the destinations that are applicable given the destinations picked above.";
+            "此列表显示根据上方所选目标而适用的所有目标。";
 
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Inventories;
 
@@ -46,7 +46,7 @@ namespace InventoryTools.Logic.Filters
         public override void Draw(FilterConfiguration configuration)
         {
             ImGui.NewLine();
-            ImGui.Text("Destination Information: ");
+            ImGui.Text("目标信息: ");
             ImGui.SameLine();
             ImGuiService.HelpMarker(GetHelpText(configuration));
             var allCharacters = _characterMonitor.Characters;
@@ -86,7 +86,7 @@ namespace InventoryTools.Logic.Filters
             {
                 ImGui.PushStyleColor(ImGuiCol.Text,ImGuiColors.HealerGreen);
             }
-            ImGui.LabelText("##" + Key + "RetainerLabel", "Retainer Destinations" + ":");
+            ImGui.LabelText("##" + Key + "RetainerLabel", "雇员目标" + ":");
             if (destinations.Count != 0)
             {
                 ImGui.PopStyleColor();
@@ -122,7 +122,7 @@ namespace InventoryTools.Logic.Filters
             {
                 ImGui.PushStyleColor(ImGuiCol.Text,ImGuiColors.HealerGreen);
             }
-            ImGui.LabelText("##" + Key + "CharacterLabel", "Character Destinations" + ":");
+            ImGui.LabelText("##" + Key + "CharacterLabel", "角色目标" + ":");
             if (destinations.Count != 0)
             {
                 ImGui.PopStyleColor();
@@ -158,7 +158,7 @@ namespace InventoryTools.Logic.Filters
             {
                 ImGui.PushStyleColor(ImGuiCol.Text,ImGuiColors.HealerGreen);
             }
-            ImGui.LabelText("##" + Key + "CharacterLabel", "Free Company Destinations" + ":");
+            ImGui.LabelText("##" + Key + "CharacterLabel", "部队目标" + ":");
             if (destinations.Count != 0)
             {
                 ImGui.PopStyleColor();
@@ -194,7 +194,7 @@ namespace InventoryTools.Logic.Filters
             {
                 ImGui.PushStyleColor(ImGuiCol.Text,ImGuiColors.HealerGreen);
             }
-            ImGui.LabelText("##" + Key + "CharacterLabel", "Free Company Destinations" + ":");
+            ImGui.LabelText("##" + Key + "CharacterLabel", "部队目标" + ":");
             if (destinations.Count != 0)
             {
                 ImGui.PopStyleColor();

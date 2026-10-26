@@ -19,9 +19,9 @@ namespace InventoryTools.Logic.Filters
         }
         public override int LabelSize { get; set; } = 240;
         public override string Key { get; set; } = "SourceInventories";
-        public override string Name { get; set; } = "Source - Inventories";
+        public override string Name { get; set; } = "来源 - 库存";
         public override string HelpText { get; set; } =
-            "This is a list of source inventories to sort items from based on the filter configuration";
+            "根据筛选配置，从中整理物品的来源库存列表";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Inventories;
 
         public override List<InventorySearchScope>? DefaultValue { get; set; } = null;
@@ -33,9 +33,9 @@ namespace InventoryTools.Logic.Filters
             {
                 case FilterType.SearchFilter:
                 case FilterType.HistoryFilter:
-                    return "Search Inventories";
+                    return "搜索库存";
                 case FilterType.SortingFilter:
-                    return "Source Inventories";
+                    return "来源库存";
             }
 
             return Name;
@@ -47,13 +47,13 @@ namespace InventoryTools.Logic.Filters
             {
                 case FilterType.SearchFilter:
                     return
-                        "Define which inventories you want to be searched, these will show up in the list. You can see which inventories have been found based on the scope configuration below.";
+                        "定义要搜索的库存，它们会显示在列表中。可在下方范围配置中查看已找到的库存。";
                 case FilterType.HistoryFilter:
                     return
-                        "Define the scope of inventories you want to see in the historical list of inventory changes.";
+                        "定义库存变更历史列表中要查看的库存范围。";
                 case FilterType.SortingFilter:
                     return
-                        "Define which inventories you want to be searched, the plugin will then attempt to show you where to put them in the destinations you have selected. You can see which inventories have been found based on the scope configuration below.";
+                        "定义要搜索的库存，插件会尝试显示将它们放入所选目标的位置。可在下方范围配置中查看已找到的库存。";
             }
 
             return HelpText;

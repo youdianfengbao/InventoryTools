@@ -17,8 +17,8 @@ public class DesynthesisClassFilter : StringFilter
     }
 
     public override string Key { get; set; } = "DesynthesisClass";
-    public override string Name { get; set; } = "Desynth Class";
-    public override string HelpText { get; set; } = "What class is related to de-synthesising this item?";
+    public override string Name { get; set; } = "分解职业";
+    public override string HelpText { get; set; } = "该物品由哪个职业进行分解？";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
 
     public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)
@@ -36,7 +36,7 @@ public class DesynthesisClassFilter : StringFilter
                 return false;
             }
 
-            var valueName = item.Base.ClassJobRepair.ValueNullable?.Name.ExtractText() ?? "Unknown";
+            var valueName = item.Base.ClassJobRepair.ValueNullable?.Name.ExtractText() ?? "未知";
             if (!valueName.PassesFilter(currentValue.ToLower()))
             {
                 return false;

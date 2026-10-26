@@ -14,11 +14,11 @@ public class MarketboardIntegrationFeature : Feature
 
     public override PageLayout Build()
     {
-        return Page("feature/marketboard", "Market Board",
-            Paragraph("Prices come from Universalis, not from the game. The plugin downloads the prices and keeps a local copy. When this is on, prices are automatically downloaded. If not on, you must hit 'Refresh Market Prices' each time you want to get updated pricing on items."),
-            Setting<AutomaticallyDownloadPricesSetting>("Download prices automatically"),
-            Setting<MarketRefreshTimeHoursSetting>("Keep prices for this many hours"),
-            Setting<MarketBoardSaleCountLimitSetting>("Days of sale history to include")
+        return Page("feature/marketboard", "市场板",
+            Paragraph("价格来自 Universalis 而非游戏本体。插件会下载价格并保存在本地。开启后自动下载价格；若关闭，则需要手动点击“刷新市场价格”才能更新物品价格。"),
+            Setting<AutomaticallyDownloadPricesSetting>("自动下载价格"),
+            Setting<MarketRefreshTimeHoursSetting>("价格保留时长（小时）"),
+            Setting<MarketBoardSaleCountLimitSetting>("纳入统计的出售历史天数")
         );
     }
 }

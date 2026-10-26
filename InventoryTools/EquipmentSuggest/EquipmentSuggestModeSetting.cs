@@ -16,8 +16,8 @@ public class EquipmentSuggestModeSetting : GenericEnumChoiceSetting<EquipmentSug
 {
     private readonly EquipmentSuggestConfig _config;
 
-    public EquipmentSuggestModeSetting(ILogger<EquipmentSuggestModeSetting> logger, EquipmentSuggestConfig config, ImGuiService imGuiService) : base("EquipmentSuggestMode", "Mode", "What mode should the equipment recommendation screen show? Class lets you pick a class and get recommendations for it. Tool lets you pick out the tools for a set of classes.", EquipmentSuggestMode.Class, new (){
-        { EquipmentSuggestMode.Class , "Class"}, { EquipmentSuggestMode.Tool , "Tool"}}, "1.12.0.10", logger, imGuiService)
+    public EquipmentSuggestModeSetting(ILogger<EquipmentSuggestModeSetting> logger, EquipmentSuggestConfig config, ImGuiService imGuiService) : base("EquipmentSuggestMode", "模式", "装备推荐界面应显示哪种模式？职业模式可选择职业并获取其装备推荐；工具模式可为一系列职业挑选工具。", EquipmentSuggestMode.Class, new (){
+        { EquipmentSuggestMode.Class , "职业"}, { EquipmentSuggestMode.Tool , "工具"}}, "1.12.0.10", logger, imGuiService)
     {
         _config = config;
     }

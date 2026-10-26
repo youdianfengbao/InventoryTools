@@ -26,8 +26,8 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.Spearfishing;
-    public override string SingularName => "Spearfishing";
-    public override string HelpText => "Can the item be gathered via spearfishing?";
+    public override string SingularName => "叉鱼";
+    public override string HelpText => "该物品是否可通过叉鱼采集？";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Gathering, ItemInfoRenderCategory.Fishing];
 
@@ -36,7 +36,7 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
         var asSources = AsSource(sources);
 
         var level = asSources.First().SpearfishingItemRow.Base.GatheringItemLevel.Value.GatheringItemLevel;
-        ImGui.Text("Level:" + (level == 0 ? "N/A" : level));
+        ImGui.Text("等级：" + (level == 0 ? "不适用" : level));
 
         DrawMaps(sources);
     };
@@ -46,7 +46,7 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
         var asSource = AsSource(source);
 
         var level = asSource.SpearfishingItemRow.Base.GatheringItemLevel.Value.GatheringItemLevel;
-        ImGui.Text("Level:" + (level == 0 ? "N/A" : level));
+        ImGui.Text("等级：" + (level == 0 ? "不适用" : level));
 
         DrawMaps(source);
     };
@@ -64,6 +64,6 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
         var asSource = AsSource(source);
         var level = asSource.SpearfishingItemRow.Base.GatheringItemLevel.Value.GatheringItemLevel;
 
-        return $"Level {(level == 0 ? "N/A" : level)} spot";
+        return $"钓场（等级 {(level == 0 ? "不适用" : level)}）";
     };
 }

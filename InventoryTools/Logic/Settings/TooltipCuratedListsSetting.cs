@@ -11,8 +11,8 @@ public class TooltipDisplayCuratedListsSetting : GenericBooleanSetting
     public TooltipDisplayCuratedListsSetting(ILogger<TooltipDisplayCuratedListsSetting> logger,
         ImGuiService imGuiService) : base(
         "TooltipDisplayCuratedLists",
-        "Curated List Info",
-        "When hovering an item, show which of your curated lists already contain it.",
+        "精选清单信息",
+        "悬停物品时，显示它已包含在你的哪些精选清单中。",
         false,
         "15.0.12",
         logger,
@@ -31,10 +31,10 @@ public class TooltipCuratedListsSetting : MultipleListChoiceSetting
     public override FilterType? ListFilterType => FilterType.CuratedList;
 
     public override string Key { get; set; } = "TooltipCuratedLists";
-    public override string Name { get; set; } = "Curated Lists to Check";
+    public override string Name { get; set; } = "要检查的精选清单";
 
     public override string HelpText { get; set; } =
-        "Which curated lists should be checked? If no lists are picked, every curated list is checked.";
+        "应检查哪些精选清单？若未选择任何清单，则检查全部精选清单。";
 
     public override string Version => "15.0.12";
 }
@@ -44,8 +44,8 @@ public class TooltipCuratedListsMatchQualitySetting : GenericBooleanSetting
     public TooltipCuratedListsMatchQualitySetting(ILogger<TooltipCuratedListsMatchQualitySetting> logger,
         ImGuiService imGuiService) : base(
         "TooltipCuratedListsMatchQuality",
-        "Match Item Quality",
-        "Should the quality of the hovered item match the quality stored in the curated list? When off, a NQ item will match a HQ entry and vice versa.",
+        "匹配物品品质",
+        "悬停物品的品质是否需与精选清单中记录的品质一致？关闭后，NQ 物品可匹配 HQ 条目，反之亦然。",
         false,
         "15.0.12",
         logger,

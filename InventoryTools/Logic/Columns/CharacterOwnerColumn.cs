@@ -24,11 +24,11 @@ public class CharacterOwnerColumn : TextColumn
         _characterOwners = new();
     }
 
-    public override string Name { get; set; } = "Character Owner";
+    public override string Name { get; set; } = "角色归属";
     public override float Width { get; set; } = 100;
 
     public override string HelpText { get; set; } =
-        "Display's the name of the owner of the character this item is on if applicable(retainers, free companies, etc)";
+        "显示该物品所在角色（雇员、部队等）的主人名称（如适用）";
 
     public override ColumnCategory ColumnCategory { get; } = ColumnCategory.Inventory;
     public override bool HasFilter { get; set; } = true;
@@ -51,7 +51,7 @@ public class CharacterOwnerColumn : TextColumn
 
         if (character == null)
         {
-            characterOwners[item.RetainerId] = "Unknown";
+            characterOwners[item.RetainerId] = "未知";
             return null;
         }
 

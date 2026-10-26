@@ -42,12 +42,12 @@ public class CraftNotificationsFeature : Feature
 
     public override PageLayout Build()
     {
-        return Page("feature/craft-notifications", "Craft Notifications",
-            Paragraph("The plugin can tell you about your progress as you collect the items for a craft list. These notifications occur only while a craft list is active."),
-            Setting<CraftNotificationsReportToChatSetting>("Report progress to the chat window"),
-            Setting<CraftNotificationsPlaySoundSetting>("Play a sound when an item is complete"),
-            Setting<CraftNotificationsCompletionOnlySetting>("Report only completed items, not each item that you collect"),
-            Paragraph("When you complete the wizard, the plugin applies these settings to your craft lists and to the default craft list. Each list then keeps its own copy, which you can change in the settings for that list.")
+        return Page("feature/craft-notifications", "制作通知",
+            Paragraph("插件可以在你为制作清单收集物品时报告进度。这些通知仅在制作清单处于启用状态时出现。"),
+            Setting<CraftNotificationsReportToChatSetting>("在聊天窗口报告进度"),
+            Setting<CraftNotificationsPlaySoundSetting>("物品齐备时播放提示音"),
+            Setting<CraftNotificationsCompletionOnlySetting>("仅报告已完成的物品，而非每收集一件就报告"),
+            Paragraph("完成向导后，插件会将这些设置应用到你的各个制作清单和默认制作清单。每份清单会保留自己的副本，可在该清单的设置中修改。")
         );
     }
 

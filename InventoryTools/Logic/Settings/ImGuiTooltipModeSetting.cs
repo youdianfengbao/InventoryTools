@@ -17,14 +17,14 @@ public class ImGuiTooltipModeSetting : GenericEnumChoiceSetting<ImGuiTooltipMode
 {
     public ImGuiTooltipModeSetting(ILogger<ImGuiTooltipModeSetting> logger,
         ImGuiService imGuiService) : base("ImGuiTooltipMode",
-        "Item Tooltip Mode",
-        "Should a tooltip for items be shown, never, when hovering an item's icon or when hovering any row within an item table?",
+        "物品提示模式",
+        "是否显示物品提示：从不显示、悬停物品图标时显示，还是悬停物品表格中任意行时都显示？",
         ImGuiTooltipMode.Icons,
         new Dictionary<ImGuiTooltipMode, string>()
         {
-            {ImGuiTooltipMode.Never, "Never"},
-            {ImGuiTooltipMode.Icons, "Icons"},
-            {ImGuiTooltipMode.Everywhere, "Everywhere"},
+            {ImGuiTooltipMode.Never, "从不"},
+            {ImGuiTooltipMode.Icons, "仅图标"},
+            {ImGuiTooltipMode.Everywhere, "处处显示"},
         },
         "1.11.0.8",
         logger,

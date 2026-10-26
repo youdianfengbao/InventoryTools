@@ -29,9 +29,9 @@ public class SourceIconGroupingSetting : Setting<Dictionary<Type, bool>?>
         _sourceRenderers = itemInfoRenderers.Where(c => c.RendererType == RendererType.Source).ToDictionary(c => c.ItemSourceType, c => c);
         _choices = new Dictionary<SourceIconGrouping, string>()
         {
-            {SourceIconGrouping.Default, "Default"},
-            {SourceIconGrouping.Grouped, "Grouped"},
-            {SourceIconGrouping.Ungrouped, "Ungrouped"}
+            {SourceIconGrouping.Default, "默认"},
+            {SourceIconGrouping.Grouped, "分组"},
+            {SourceIconGrouping.Ungrouped, "不分组"}
         };
     }
 
@@ -114,7 +114,7 @@ public class SourceIconGroupingSetting : Setting<Dictionary<Type, bool>?>
                 if (disableReset != true && hasValueSet)
                 {
                     ImGui.SameLine();
-                    if (ImGui.Button("Reset##Reset"))
+                    if (ImGui.Button("重置##Reset"))
                     {
                         currentSettings.Remove(sourceRenderer.Key);
                         UpdateFilterConfiguration(configuration, currentSettings);
@@ -131,7 +131,7 @@ public class SourceIconGroupingSetting : Setting<Dictionary<Type, bool>?>
     }
 
     public override string Key { get; set; } = "SourceIconGrouping";
-    public override string Name { get; set; } = "Source Acquisition Icon Grouping";
-    public override string HelpText { get; set; } = "When source acquisition icons are displayed, how should they be grouped?";
+    public override string Name { get; set; } = "获取途径图标分组";
+    public override string HelpText { get; set; } = "显示获取途径图标时，应如何分组？";
     public override string Version { get; } = "1.11.0.10";
 }

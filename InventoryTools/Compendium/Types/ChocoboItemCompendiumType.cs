@@ -40,9 +40,9 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         });
     }
 
-    public override string Singular => "Chocobo Item";
-    public override string Plural => "Chocobo Items";
-    public override string Description => "Items consumed or equipped by chocobo companions.";
+    public override string Singular => "陆行鸟物品";
+    public override string Plural => "陆行鸟物品";
+    public override string Description => "陆行鸟伙伴消耗或装备的物品。";
     public override string Key => "chocoboItems";
 
     public override (string?, uint?) Icon => (null, 74);
@@ -69,7 +69,7 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
 
     public override string? GetSubtitle(ChocoboItem row)
     {
-        return row.SourceType.ToString();
+        return _itemSourceTypeLocalizer.Format(row.SourceType);
     }
 
     public override (string?, uint?) GetIcon(ChocoboItem row)
@@ -89,7 +89,7 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "The icon of the chocobo item.",
+            HelpText = "陆行鸟物品的图标。",
             Version = "1",
             ValueSelector = row => row.Item.RowId,
         });
@@ -97,8 +97,8 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the chocobo item.",
+            Name = "名称",
+            HelpText = "陆行鸟物品的名称。",
             Version = "1",
             ValueSelector = r => r.Item.NameString
         });
@@ -106,8 +106,8 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         builder.AddStringColumn(new()
         {
             Key = "source",
-            Name = "Source",
-            HelpText = "The source of the chocobo item.",
+            Name = "来源",
+            HelpText = "陆行鸟物品的来源。",
             Version = "1",
             ValueSelector = r => _itemSourceTypeLocalizer.Format(r.SourceType)
         });
@@ -115,8 +115,8 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         builder.AddBooleanColumn(new()
         {
             Key = "training_item",
-            Name = "Training Item?",
-            HelpText = "Is this item used for training?",
+            Name = "训练物品？",
+            HelpText = "该物品是否用于训练？",
             Version = "1",
             ValueSelector = r => r.BuddyItem?.Value.UseTraining
         });
@@ -124,8 +124,8 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         builder.AddBooleanColumn(new()
         {
             Key = "field_item",
-            Name = "Field Item?",
-            HelpText = "Is this item used in the field?",
+            Name = "野外物品？",
+            HelpText = "该物品是否在野外使用？",
             Version = "1",
             ValueSelector = r => r.BuddyItem?.Value.UseField
         });
@@ -133,8 +133,8 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         builder.AddBooleanColumn(new()
         {
             Key = "recolor_item",
-            Name = "Dye Item?",
-            HelpText = "Is this item used to alter a chocobos colour?",
+            Name = "染色物品？",
+            HelpText = "该物品是否用于改变陆行鸟的毛色？",
             Version = "1",
             ValueSelector = r => r.BuddyItem?.Value.Unknown0
         });
@@ -146,7 +146,7 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
     {
         viewBuilder.Title = row.Item.NameString;
         viewBuilder.Icon = row.Item.Icon;
-        viewBuilder.Subtitle = row.SourceType.ToString();
+        viewBuilder.Subtitle = _itemSourceTypeLocalizer.Format(row.SourceType);
 
         var useTraining = row.BuddyItem?.Value.UseTraining;
         var useField = row.BuddyItem?.Value.UseField;
@@ -154,13 +154,13 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
         viewBuilder.AddInfoTableSection(new()
         {
             SectionKey = "info",
-            SectionName = "Info",
+            SectionName = "信息",
             Items =
             [
-                ("Source", _itemSourceTypeLocalizer.Format(row.SourceType), true),
-                ("Training Item?", TriStateFormatted(useTraining), row.BuddyItem != null),
-                ("Field Item?", TriStateFormatted(useField), row.BuddyItem != null),
-                ("Dye Item?", TriStateFormatted(dyeField), row.BuddyItem != null),
+                ("来源", _itemSourceTypeLocalizer.Format(row.SourceType), true),
+                ("训练物品？", TriStateFormatted(useTraining), row.BuddyItem != null),
+                ("野外物品？", TriStateFormatted(useField), row.BuddyItem != null),
+                ("染色物品？", TriStateFormatted(dyeField), row.BuddyItem != null),
             ]
         });
     }
@@ -177,7 +177,7 @@ public class ChocoboItemCompendiumType : CompendiumType<ChocoboItem>
             new CompendiumGrouping<ChocoboItem>()
             {
                 Key = "source",
-                Name = "Source",
+                Name = "来源",
                 GroupFunc = r => r.SourceType,
                 GroupMapping = o =>
                 {

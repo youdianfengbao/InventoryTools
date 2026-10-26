@@ -15,9 +15,9 @@ namespace InventoryTools.Logic.Columns
         {
             return searchResult.Item.ClassJobCategory?.Base.Name.ExtractText() ?? "";
         }
-        public override string Name { get; set; } = "Equipped By (Class/Job)";
+        public override string Name { get; set; } = "可装备职业";
         public override float Width { get; set; } = 200;
-        public override string HelpText { get; set; } = "Shows what class/job an item can be equipped by";
+        public override string HelpText { get; set; } = "显示该物品可由哪些职业/特职装备";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

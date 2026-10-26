@@ -45,7 +45,7 @@ namespace InventoryTools.Logic.Filters.Abstract
             if (value == null)
             {
                 var isChecked = false;
-                if (ImGui.Checkbox("Override Color##" + Key + "ColorEnable", ref isChecked))
+                if (ImGui.Checkbox("覆盖颜色##" + Key + "ColorEnable", ref isChecked))
                 {
                     if (isChecked)
                     {
@@ -66,7 +66,7 @@ namespace InventoryTools.Logic.Filters.Abstract
             if (HasValueSet(configuration))
             {
                 ImGui.SameLine();
-                if (ImGui.Button("Clear Color"))
+                if (ImGui.Button("清除颜色"))
                 {
                     UpdateFilterConfiguration(configuration, null);
                 }
@@ -74,12 +74,12 @@ namespace InventoryTools.Logic.Filters.Abstract
             if (HasValueSet(configuration) && value?.W == 0)
             {
                 ImGui.SameLine();
-                ImGui.TextColored(ImGuiColors.DalamudRed, "The alpha is currently set to 0, this will be invisible.");
+                ImGui.TextColored(ImGuiColors.DalamudRed, "透明度当前为 0，将不可见。");
             }
             if (HasValueSet(configuration) && ShowReset)
             {
                 ImGui.SameLine();
-                if (ImGui.Button("Reset##" + Key + "Reset"))
+                if (ImGui.Button("重置##" + Key + "Reset"))
                 {
                     ResetFilter(configuration);
                 }

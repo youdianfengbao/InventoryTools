@@ -47,8 +47,8 @@ public class RetainerRetrieveOrderFilter : ChoiceFilter<RetainerRetrieveOrder>
     }
 
     public override string Key { get; set; } = "RetainerRetrieveOrder";
-    public override string Name { get; set; } = "Retainer Retrieve Order";
-    public override string HelpText { get; set; } = "When displaying the items for a craft, if there are items to be retrieved should we display this before or after the shortfall is made up. If first is selected, it will make you retrieve items first, if last is selected, any missing items you'll need will have to be collected/purchased before the remainder will be shown for retrieval.";
+    public override string Name { get; set; } = "雇员取出顺序";
+    public override string HelpText { get; set; } = "显示制作所需物品时，需要取出的物品应显示在补足缺口之前还是之后。若选“优先取出”，会先让你取出物品；若选“最后取出”，需先集齐/购买缺失物品，其余部分才会显示为可取出。";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Settings;
     public override RetainerRetrieveOrder DefaultValue { get; set; } = RetainerRetrieveOrder.RetrieveFirst;
     public override List<RetainerRetrieveOrder> GetChoices(FilterConfiguration configuration)
@@ -65,11 +65,11 @@ public class RetainerRetrieveOrderFilter : ChoiceFilter<RetainerRetrieveOrder>
         switch (choice)
         {
             case RetainerRetrieveOrder.RetrieveFirst:
-                return "Retrieve First";
+                return "优先取出";
             case RetainerRetrieveOrder.RetrieveLast:
-                return "Retrieve Last";
+                return "最后取出";
         }
-        return "Unknown";
+        return "未知";
     }
 
     public RetainerRetrieveOrderFilter(ILogger<RetainerRetrieveOrderFilter> logger, ImGuiService imGuiService) : base(logger, imGuiService)

@@ -96,7 +96,7 @@ public class CuratedListTooltip : BaseTooltip
         seStr.Payloads.Add(GetLinkPayload());
         seStr.Payloads.Add(RawPayload.LinkTerminator);
 
-        var newText = "\nCurated Lists: " + string.Join(", ", matchedLists);
+        var newText = "\n精选清单：" + string.Join(", ", matchedLists);
 
         var lines = new List<Payload>
         {

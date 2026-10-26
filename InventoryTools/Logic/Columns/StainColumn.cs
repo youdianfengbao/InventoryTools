@@ -34,8 +34,8 @@ public class StainColumn : TextColumn
             case StainColumnSettingEnum.SecondStain:
                 return item.Stain2Entry?.Name.ExtractText() ?? "";
             case StainColumnSettingEnum.Both:
-                var firstStain = item.StainEntry?.Name.ExtractText() ?? "No Dye";
-                var secondStain = item.Stain2Entry?.Name.ExtractText() ?? "No Dye";
+                var firstStain = item.StainEntry?.Name.ExtractText() ?? "未染色";
+                var secondStain = item.Stain2Entry?.Name.ExtractText() ?? "未染色";
                 return firstStain + " / " + secondStain;
         }
 
@@ -52,9 +52,9 @@ public class StainColumn : TextColumn
         return null;
     }
 
-    public override string Name { get; set; } = "Dye";
+    public override string Name { get; set; } = "染料";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "The current dye of the item";
+    public override string HelpText { get; set; } = "物品当前的染色";
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
 }

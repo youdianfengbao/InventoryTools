@@ -18,8 +18,8 @@ public class MarketBoardUseActiveWorldSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "MarketBoardUseActiveWorld";
-    public override string Name { get; set; } = "Price Active World?";
-    public override string HelpText { get; set; } = "Should the currently active world be automatically priced?";
+    public override string Name { get; set; } = "查询当前所在服务器价格？";
+    public override string HelpText { get; set; } = "是否自动查询当前所在服务器的价格？";
     public override string Version { get; } = "1.7.0.0";
 
     public MarketBoardUseActiveWorldSetting(ILogger<MarketBoardUseActiveWorldSetting> logger, ImGuiService imGuiService) : base(logger, imGuiService)

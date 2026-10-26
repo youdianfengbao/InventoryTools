@@ -25,7 +25,7 @@ public class ItemAnimaShopUseRenderer : ItemAnimaShopSourceRenderer
 
     public override RendererType RendererType => RendererType.Use;
 
-    public override string HelpText => "Can the item be spent at an anima shop?";
+    public override string HelpText => "该物品是否可在阿尼玛商店消费？";
 
     public override Func<ItemSource, int> GetIcon => source =>
     {
@@ -49,9 +49,9 @@ public class ItemAnimaShopSourceRenderer : ItemInfoRenderer<ItemAnimaShopSource>
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.AnimaShop;
-    public override string SingularName => "Anima Shop";
-    public override string PluralName => "Anima Shops";
-    public override string HelpText => "Can the item be purchased from a anima currency shop?";
+    public override string SingularName => "阿尼玛商店";
+    public override string PluralName => "阿尼玛商店";
+    public override string HelpText => "该物品是否可在阿尼玛货币商店购买？";
     public override bool ShouldGroup => true;
 
     public override byte MaxColumns => 3;
@@ -66,10 +66,10 @@ public class ItemAnimaShopSourceRenderer : ItemInfoRenderer<ItemAnimaShopSource>
     {
         var asSource = AsSource(source);
 
-        ImGui.Text($"Shop: {asSource.Shop.Name}");
+        ImGui.Text($"商店：{asSource.Shop.Name}");
 
-        this.DrawItems("Rewards:", asSource.RewardItems);
-        this.DrawItems("Costs:", asSource.CostItems);
+        this.DrawItems("奖励：", asSource.RewardItems);
+        this.DrawItems("消耗：", asSource.CostItems);
 
         DrawMaps(source);
     };
@@ -92,6 +92,6 @@ public class ItemAnimaShopSourceRenderer : ItemInfoRenderer<ItemAnimaShopSource>
         var description = $"{asSource.Shop.Name}";
         var rewards = string.Join(", ", asSource.ShopListing.Rewards.Select(c => c.Item.NameString + " x " + c.Count + ""));
         var costs = string.Join(", ", asSource.ShopListing.Costs.Select(c => c.Item.NameString + " x " + c.Count + ""));
-        return $"{description} ({rewards}) for ({costs})";
+        return $"{description} 消耗 ({costs}) 获得 ({rewards})";
     };
 }

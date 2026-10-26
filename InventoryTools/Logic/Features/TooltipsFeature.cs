@@ -14,19 +14,19 @@ public class TooltipsFeature : Feature
 
     public override PageLayout Build()
     {
-        return Page("feature/tooltips", "Tooltips",
-            Paragraph("Allagan Tools can add extra lines to the game's item tooltips."),
-            Setting<TooltipDisplayAmountOwnedSetting>("Where you own the item"),
-            Setting<TooltipDisplayRetrieveAmountSetting>("How many the active craft list still needs"),
-            Setting<TooltipMinimumMarketPriceSetting>("The market price"),
-            Setting<TooltipDisplayUnlockSetting>("Whether you have learned/unlocked the item"),
-            Setting<TooltipSourceInformationEnabledSetting>("Where the item comes from"),
-            Setting<TooltipUseInformationEnabledSetting>("What the item is used for"),
-            Setting<TooltipDisplayIngredientPatchSetting>("Which patch an ingredient is from"),
-            Setting<TooltipDisplayCofferLootSetting>("What a coffer can contain"),
-            Setting<TooltipDisplayCuratedListsSetting>("Whether the item is on one of your curated lists"),
-            Setting<TooltipDisplayGlamourReadySetSetting>("Whether the item completes an outfit"),
-            Paragraph("Each line has more options in the settings window, under Tooltips. The options include colours, the locations to search, and the display mode.")
+        return Page("feature/tooltips", "物品提示",
+            Paragraph("Allagan Tools 可以在游戏的物品提示中添加额外信息行。"),
+            Setting<TooltipDisplayAmountOwnedSetting>("你在何处持有该物品"),
+            Setting<TooltipDisplayRetrieveAmountSetting>("当前制作清单还需要多少"),
+            Setting<TooltipMinimumMarketPriceSetting>("市场价格"),
+            Setting<TooltipDisplayUnlockSetting>("是否已学习/解锁该物品"),
+            Setting<TooltipSourceInformationEnabledSetting>("物品获取途径"),
+            Setting<TooltipUseInformationEnabledSetting>("物品用途"),
+            Setting<TooltipDisplayIngredientPatchSetting>("材料来自哪个版本"),
+            Setting<TooltipDisplayCofferLootSetting>("宝箱可能开出的物品"),
+            Setting<TooltipDisplayCuratedListsSetting>("物品是否在精选清单中"),
+            Setting<TooltipDisplayGlamourReadySetSetting>("物品是否可完成一套投影"),
+            Paragraph("每项都有更多选项，位于设置窗口的“物品提示”下，包括颜色、搜索位置和显示模式。")
         );
     }
 }

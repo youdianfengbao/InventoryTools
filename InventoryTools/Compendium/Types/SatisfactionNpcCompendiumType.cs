@@ -58,19 +58,19 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         {
             CompendiumType = this,
             Key = "custom_deliveries",
-            Name = "Custom Deliveries",
+            Name = "私人订制",
             Columns = BuiltColumns
         });
     }
 
     public override string? GetName(SatisfactionNpc row)
     {
-        return row.Npc.ValueNullable?.Singular.ToImGuiString() ?? "Unknown";
+        return row.Npc.ValueNullable?.Singular.ToImGuiString() ?? "未知";
     }
 
     public override string? GetSubtitle(SatisfactionNpc row)
     {
-        return $"Level {row.LevelUnlock} Custom Delivery Client";
+        return $"等级 {row.LevelUnlock} 私人订制委托人";
     }
 
     public override (string?, uint?) GetIcon(SatisfactionNpc row)
@@ -120,7 +120,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "The NPC icon",
+            HelpText = "NPC 图标",
             Version = "1.0.0",
             ValueSelector = GetIcon,
             CompendiumType = this,
@@ -131,7 +131,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         {
             Key = "name",
             Name = "NPC",
-            HelpText = "The NPC name",
+            HelpText = "NPC 名称",
             Version = "1.0.0",
             ValueSelector = GetName
         });
@@ -139,8 +139,8 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         builder.AddStringColumn(new()
         {
             Key = "level",
-            Name = "Level",
-            HelpText = "Unlock level",
+            Name = "等级",
+            HelpText = "解锁等级",
             Version = "1.0.0",
             ValueSelector = row => row.LevelUnlock.ToString()
         });
@@ -148,8 +148,8 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         builder.AddStringColumn(new()
         {
             Key = "deliveries",
-            Name = "Deliveries / Week",
-            HelpText = "Max weekly deliveries",
+            Name = "每周交付数",
+            HelpText = "每周最大交付次数",
             Version = "1.0.0",
             ValueSelector = row => row.DeliveriesPerWeek.ToString()
         });
@@ -157,8 +157,8 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         builder.AddStringColumn(new()
         {
             Key = "unlock_quest",
-            Name = "Unlock Quest",
-            HelpText = "Required quest",
+            Name = "解锁任务",
+            HelpText = "所需的任务",
             Version = "1.0.0",
             ValueSelector = row => row.QuestRequired.ValueNullable?.Name.ToImGuiString() ?? ""
         });
@@ -167,13 +167,13 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
     public override void BuildViewFields(CompendiumViewBuilder viewBuilder, SatisfactionNpc row)
     {
         viewBuilder.SetupDefaults(this, row);
-        viewBuilder.AddTag(() => $"{row.DeliveriesPerWeek}/week", () => "The number of times you can deliver to the client per week.");
+        viewBuilder.AddTag(() => $"{row.DeliveriesPerWeek}/周", () => "每周可向该委托人交付的次数。");
 
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             RelatedRef = (RowRef)row.QuestRequired,
             SectionKey = "unlock_quest",
-            SectionName = "Unlock Quest"
+            SectionName = "解锁任务"
         });
 
         var rankQuests = _satisfactionArbitrationSheet
@@ -188,7 +188,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         {
             RelatedRefs = rankQuests,
             SectionKey = "rank_quests",
-            SectionName = "Rank Quests",
+            SectionName = "等级任务",
             HideWhenEmpty = false
         });
 
@@ -211,7 +211,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
             {
                 Items = supplyItems,
                 SectionKey = $"requested_items_tier_{tierNumber}",
-                SectionName = $"Requested Items (Tier {tierNumber})",
+                SectionName = $"请求的物品（第 {tierNumber} 阶）",
                 HideWhenEmpty = true
             });
         }
@@ -228,7 +228,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
                     location
                 ),
                 SectionKey = "location",
-                SectionName = "Location"
+                SectionName = "地点"
             });
         }
 
@@ -236,7 +236,7 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         {
             RelatedRef = (RowRef)row.Npc,
             SectionKey = "related_npc",
-            SectionName = "Related NPC"
+            SectionName = "相关 NPC"
         });
 
     }
@@ -247,28 +247,28 @@ public class SatisfactionNpcCompendiumType : CompendiumType<SatisfactionNpc>
         [
             new CompendiumGrouping<SatisfactionNpc>()
             {
-                Name = "Expansion",
+                Name = "资料片",
                 Key = "expansion",
                 GroupFunc = row => row.QuestRequired.ValueNullable?.Expansion.RowId ?? 0,
                 GroupMapping = row =>
                 {
                     var id = (uint)row;
-                    return _expansionSheet.GetRowOrDefault(id)?.Name.ToImGuiString() ?? "Unknown";
+                    return _expansionSheet.GetRowOrDefault(id)?.Name.ToImGuiString() ?? "未知";
                 }
             },
             new CompendiumGrouping<SatisfactionNpc>()
             {
-                Name = "Level",
+                Name = "等级",
                 Key = "level",
                 GroupFunc = row => row.LevelUnlock,
-                GroupMapping = row => $"Level {(byte)row}"
+                GroupMapping = row => $"等级 {(byte)row}"
             }
         ];
     }
 
-    public override string Singular => "Custom Delivery";
-    public override string Plural => "Custom Deliveries";
-    public override string Description => "NPCs that accept Custom Deliveries.";
+    public override string Singular => "私人订制";
+    public override string Plural => "私人订制";
+    public override string Description => "接受私人订制委托的 NPC。";
     public override string Key => "satisfaction_npc";
     public override (string?, uint?) Icon => (null, Icons.CustomDeliveriesIcon);
 }

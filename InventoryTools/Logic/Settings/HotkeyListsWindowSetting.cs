@@ -12,10 +12,10 @@ namespace InventoryTools.Logic.Settings
 
         public static string AsKey => "HotkeyListsWindow";
         public override string Key { get; set; } = AsKey;
-        public override string Name { get; set; } = "Toggle Lists Window";
+        public override string Name { get; set; } = "切换清单窗口";
 
         public override string HelpText { get; set; } =
-            "The hotkey to toggle the lists window.";
+            "切换清单窗口的快捷键。";
         
         public override string Version => "1.7.0.12";
 

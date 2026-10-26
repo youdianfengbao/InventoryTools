@@ -189,7 +189,7 @@ namespace InventoryTools.Overlays
             {
                 return _characterMonitor.Characters[c.Key].FormattedName + " (" + c.Count() + ")";
             }
-            return "Unknown "  + "(" + c.Count() + ")";
+            return "未知 (" + c.Count() + ")";
         }
 
         private string GenerateNewName(KeyValuePair<ulong, int> c)
@@ -198,7 +198,7 @@ namespace InventoryTools.Overlays
             {
                 return _characterMonitor.Characters[c.Key].FormattedName + " (" + c.Value + ")";
             }
-            return "Unknown "  + "(" + c.Value + ")";
+            return "未知 (" + c.Value + ")";
         }
         
     }

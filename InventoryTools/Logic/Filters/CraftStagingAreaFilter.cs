@@ -14,10 +14,10 @@ public class CraftStagingAreaFilter : InventoryScopeFilter
     }
 
     public override string Key { get; set; } = "CraftStagingArea";
-    public override string Name { get; set; } = "Staging Area";
+    public override string Name { get; set; } = "中转区";
 
     public override string HelpText { get; set; } =
-        "When crafting, what inventories should be considered the staging area? Any items in the staging area are considered in the users inventories. By default the current character's bags, crystals and currency are the staging area but if you wanted to include the saddlebag you could.";
+        "制作时哪些库存视为中转区？中转区中的物品被视为已在用户库存内。默认将当前角色的背包、水晶和货币视为中转区，你也可以加入陆行鸟鞍袋等。";
 
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Inventories;
 

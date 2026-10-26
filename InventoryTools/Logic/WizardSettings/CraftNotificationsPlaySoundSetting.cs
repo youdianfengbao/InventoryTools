@@ -13,8 +13,8 @@ public class CraftNotificationsPlaySoundSetting : GenericBooleanSetting
 
     public CraftNotificationsPlaySoundSetting(ILogger<CraftNotificationsPlaySoundSetting> logger,
         ImGuiService imGuiService) : base("CraftNotificationsPlaySound",
-        "Play sound when an item is complete",
-        "Play a sound effect when an item in a craft list reaches its required quantity. The craft list must be active for notifications to occur.",
+        "物品齐备时播放提示音",
+        "制作清单中的物品达到所需数量时播放音效。通知仅在制作清单处于启用状态时出现。",
         false,
         "15.0.8",
         logger,

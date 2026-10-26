@@ -19,13 +19,13 @@ public class GatheredByColumn : TextColumn
         var currentValue = searchResult.Item.GatheringTypes.Select(c => c.Base.Name.ExtractText()).ToList();
         if (searchResult.Item.ObtainedFishing)
         {
-            currentValue.Add("Fishing");
+            currentValue.Add("钓鱼");
         }
 
         return string.Join(",", currentValue);
     }
 
-    public override string Name { get; set; } = "Gathered By?";
+    public override string Name { get; set; } = "采集方式？";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "How is this item gathered?";
+    public override string HelpText { get; set; } = "该物品通过何种方式采集？";
 }

@@ -9,8 +9,8 @@ public class ContextMenuAddToCuratedListSetting : GenericBooleanSetting
 {
     public ContextMenuAddToCuratedListSetting(ILogger<ContextMenuAddToCuratedListSetting> logger,
         ImGuiService imGuiService) : base("AddToCuratedListContextMenu",
-        "Context Menu - Add to Curated List",
-        "Add a submenu to add the item to a curated list?",
+        "右键菜单 - 添加到精选清单",
+        "添加一个子菜单，用于将物品加入精选清单？",
         false,
         "1.7.0.21",
         logger,
@@ -18,6 +18,6 @@ public class ContextMenuAddToCuratedListSetting : GenericBooleanSetting
     {
     }
 
-    public override string WizardName { get; } = "Add to Curated List";
+    public override string WizardName { get; } = "添加到精选清单";
 
 }

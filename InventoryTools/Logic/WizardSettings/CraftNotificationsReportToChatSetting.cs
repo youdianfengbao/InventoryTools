@@ -13,8 +13,8 @@ public class CraftNotificationsReportToChatSetting : GenericBooleanSetting
 
     public CraftNotificationsReportToChatSetting(ILogger<CraftNotificationsReportToChatSetting> logger,
         ImGuiService imGuiService) : base("CraftNotificationsReportToChat",
-        "Report acquisition to chat",
-        "When acquiring items that are part of a craft list, print progress to chat. The craft list must be active for notifications to occur.",
+        "在聊天中报告获取进度",
+        "获取制作清单所需物品时，在聊天中输出进度。通知仅在制作清单处于启用状态时出现。",
         true,
         "15.0.8",
         logger,

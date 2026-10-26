@@ -69,8 +69,8 @@ namespace InventoryTools.Logic.Filters
         }
 
         public override string Key { get; set; } = "Columns";
-        public override string Name { get; set; } = "Columns";
-        public override string HelpText { get; set; } = "Add a new column. Leave the column name blank if you want to use the default.";
+        public override string Name { get; set; } = "列";
+        public override string HelpText { get; set; } = "添加新列。留空列名则以默认名称添加。";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Columns;
         public override bool ShowReset { get; set; } = false;
         public override Dictionary<ColumnConfiguration, (string, string?)> DefaultValue { get; set; } = new();
@@ -154,7 +154,7 @@ namespace InventoryTools.Logic.Filters
             if (item.Key.Name != null)
             {
                 ImGui.SameLine();
-                ImGuiService.HelpMarker("Original Column Name: " + item.Key.Column.Name);
+                ImGuiService.HelpMarker("原始列名: " + item.Key.Column.Name);
             }
         }
 
@@ -162,7 +162,7 @@ namespace InventoryTools.Logic.Filters
         {
             base.DrawButtons(configuration, item, index);
             ImGui.SameLine();
-            if (ImGui.Button("Edit##Column" + index))
+            if (ImGui.Button("编辑##Column" + index))
             {
                 EditItem(configuration, item.Key);
             }
@@ -191,7 +191,7 @@ namespace InventoryTools.Logic.Filters
                     var groupedItems = GetGroupedItems(configuration);
                     if (_selectedColumnKey == "")
                     {
-                        ImGui.Text("Add Column");
+                        ImGui.Text("添加列");
                         ImGui.Separator();
                         var searchString = SearchString;
                         ImGui.InputText("##ItemSearch", ref searchString, 50);
@@ -203,7 +203,7 @@ namespace InventoryTools.Logic.Filters
                         ImGui.Separator();
                         if (_searchString == "")
                         {
-                            ImGui.TextUnformatted("Start typing to search...");
+                            ImGui.TextUnformatted("输入以进行搜索...");
                         }
 
                         ImGui.Separator();
@@ -259,14 +259,14 @@ namespace InventoryTools.Logic.Filters
                                     {
                                         ImGui.SameLine();
                                         ImGui.Image(ImGuiService.GetIconTexture(Icons.SproutIcon).Handle, new Vector2(16,16));
-                                        ImGuiUtil.HoverTooltip("Default Column");
+                                        ImGuiUtil.HoverTooltip("默认列");
                                     }
 
                                     if (column.Value.IsConfigurable)
                                     {
                                         ImGui.SameLine();
                                         ImGui.Image(ImGuiService.GetIconTexture(Icons.WrenchIcon).Handle, new Vector2(16,16));
-                                        ImGuiUtil.HoverTooltip("Configurable");
+                                        ImGuiUtil.HoverTooltip("可配置");
                                     }
 
                                     pushColor?.Pop();
@@ -277,7 +277,7 @@ namespace InventoryTools.Logic.Filters
                                         ImGui.PushTextWrapPos();
                                         ImGui.Text(column.Value.HelpText);
                                         ImGui.PopTextWrapPos();
-                                        if (ImGui.Button("Add"))
+                                        if (ImGui.Button("添加"))
                                         {
                                             _selectedColumnName = column.Value.Name;
                                             _selectedColumnHelp = column.Value.HelpText;
@@ -303,7 +303,7 @@ namespace InventoryTools.Logic.Filters
                         ImGui.PopTextWrapPos();
                         ImGui.Separator();
                         ImGui.SetNextItemWidth(LabelSize);
-                        ImGui.LabelText("##" + Key + "Custom", "Custom Column Name: ");
+                        ImGui.LabelText("##" + Key + "Custom", "自定义列名: ");
                         ImGui.SetNextItemWidth(InputSize);
                         ImGui.SameLine();
                         if (ImGui.InputTextWithHint("##CustomColumnName", _selectedColumnName, ref customName, 100,
@@ -314,7 +314,7 @@ namespace InventoryTools.Logic.Filters
 
                         string exportName = _exportName;
                         ImGui.SetNextItemWidth(LabelSize);
-                        ImGui.LabelText("##" + Key + "Export", "Custom Export Name: ");
+                        ImGui.LabelText("##" + Key + "Export", "自定义导出名: ");
                         ImGui.SetNextItemWidth(InputSize);
                         ImGui.SameLine();
                         if (ImGui.InputTextWithHint("##CustomExportName", _selectedColumnName, ref exportName, 100,
@@ -335,7 +335,7 @@ namespace InventoryTools.Logic.Filters
                         ImGui.NewLine();
                         ImGui.SetCursorPosX(posX - ImGui.GetStyle().ItemSpacing.X - 40);
                         posX = ImGui.GetCursorPosX();
-                        if (ImGui.Button(_editMode ? "Save" : "Add", new Vector2(40, 20)))
+                        if (ImGui.Button(_editMode ? "保存" : "添加", new Vector2(40, 20)))
                         {
                             if (_editMode)
                             {
@@ -367,7 +367,7 @@ namespace InventoryTools.Logic.Filters
                         }
                         ImGui.SameLine();
                         ImGui.SetCursorPosX(posX - ImGui.GetStyle().ItemSpacing.X - 50);
-                        if (ImGui.Button("Cancel", new Vector2(50, 20)))
+                        if (ImGui.Button("取消", new Vector2(50, 20)))
                         {
                             _selectedColumnName = "";
                             _selectedColumnKey = "";
@@ -387,8 +387,8 @@ namespace InventoryTools.Logic.Filters
             {
                 if (table.Success)
                 {
-                    ImGui.Text("Current Columns:");
-                    var text = "Add Missing Default. Columns";
+                    ImGui.Text("当前列: ");
+                    var text = "添加缺失的默认列";
                     var textSize = ImGui.CalcTextSize(text);
                     ImGui.SameLine();
                     ImGui.SetCursorPosX(ImGui.GetCursorPosX() + ImGui.GetContentRegionAvail().X - textSize.X - 5);

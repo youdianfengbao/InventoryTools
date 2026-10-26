@@ -48,14 +48,14 @@ public abstract class MultipleChoiceSetting<T> : Setting<List<T>> where T:notnul
             if (combo.Success)
             {
                 var searchString = SearchString;
-                ImGui.InputText("Start typing to search..##ItemSearch", ref searchString, 50);
+                ImGui.InputText("输入以搜索..##ItemSearch", ref searchString, 50);
                 if (_searchString != searchString)
                 {
                     SearchString = searchString;
                 }
                 var activeChoices = GetActiveChoices(configuration);
                 ImGui.SameLine();
-                if (ImGui.Button("Add All"))
+                if (ImGui.Button("全部添加"))
                 {
                     foreach (var item in activeChoices)
                     {
@@ -103,7 +103,7 @@ public abstract class MultipleChoiceSetting<T> : Setting<List<T>> where T:notnul
         if (disableReset != true && HasValueSet(configuration))
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 Reset(configuration);
             }
@@ -179,7 +179,7 @@ public abstract class MultipleChoiceSetting<T> : Setting<List<T>> where T:notnul
 
     public virtual string GetPreviewValue(List<T> items)
     {
-        return items.Count == 0 ? "No items selected" : $"{items.Count} items selected";
+        return items.Count == 0 ? "未选择任何项" : $"已选 {items.Count} 项";
     }
 
     public virtual int? ResultLimit { get; } = null;

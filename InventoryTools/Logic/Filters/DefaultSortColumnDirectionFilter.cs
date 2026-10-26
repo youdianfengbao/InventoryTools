@@ -30,8 +30,8 @@ public class DefaultSortColumnDirectionFilter : ChoiceFilter<ImGuiSortDirection?
     }
 
     public override string Key { get; set; } = "DefaultSortColumnOrder";
-    public override string Name { get; set; } = "Default Sort Column Order";
-    public override string HelpText { get; set; } = "The direction to sort the list in by default.";
+    public override string Name { get; set; } = "默认排序方向";
+    public override string HelpText { get; set; } = "列表默认的排序方向。";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Columns;
 
     public override ImGuiSortDirection? DefaultValue { get; set; } = null;
@@ -61,7 +61,7 @@ public class DefaultSortColumnDirectionFilter : ChoiceFilter<ImGuiSortDirection?
             return "";
         }
 
-        return choice == ImGuiSortDirection.Ascending ? "Ascending" : "Descending";
+        return choice == ImGuiSortDirection.Ascending ? "升序" : "降序";
     }
 
     public DefaultSortColumnDirectionFilter(ILogger<DefaultSortColumnDirectionFilter> logger, ImGuiService imGuiService) : base(logger, imGuiService)

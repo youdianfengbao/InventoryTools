@@ -121,7 +121,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                 ImGui.TableNextColumn();
                 if (ImGui.TableGetColumnFlags().HasFlag(ImGuiTableColumnFlags.IsEnabled))
                 {
-                    if (ImGui.Button("Teleport##" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
+                    if (ImGui.Button("传送##" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
                                      tuple.location.Map.RowId))
                     {
                         var nearestAetheryte = _teleporterService.GetNearestAetheryte(tuple.location);
@@ -189,16 +189,16 @@ namespace InventoryTools.Logic.Columns.Buttons
                     {
                         using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudRed))
                         {
-                            ImGui.Text(" (Up in " +
+                            ImGui.Text(" (" +
                                        TimeInterval.DurationString(firstUptime.Value.Start, TimeStamp.UtcNow,
-                                           true) + ")");
+                                           true) + " 后出现)");
                         }
                     }
                     else
                     {
                         using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
                         {
-                            ImGui.Text(" (Up for " +
+                            ImGui.Text(" (已出现 " +
                                        TimeInterval.DurationString(firstUptime.Value.End, TimeStamp.UtcNow,
                                            true) + ")");
                         }
@@ -222,16 +222,16 @@ namespace InventoryTools.Logic.Columns.Buttons
                                 {
                                     using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudRed))
                                     {
-                                        ImGui.Text( " (Up in " +
+                                        ImGui.Text( " (" +
                                                     TimeInterval.DurationString(nextUptime.Item2.Start, TimeStamp.UtcNow,
-                                                        true) + ")");
+                                                        true) + " 后出现)");
                                     }
                                 }
                                 else
                                 {
                                     using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
                                     {
-                                        ImGui.Text(" (Up for " +
+                                        ImGui.Text(" (已出现 " +
                                                    TimeInterval.DurationString(nextUptime.Item2.End, TimeStamp.UtcNow,
                                                        true) + ")");
                                     }
@@ -252,7 +252,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                 {
                     ImGui.SameLine();
                 }
-                if (ImGui.Button("Gather##Gather" + rowIndex))
+                if (ImGui.Button("采集##Gather" + rowIndex))
                 {
                     _commandManager.ProcessCommand("/gather " + searchResult.Item.Base.Name.ExtractText());
                 }
@@ -265,7 +265,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                 {
                     ImGui.SameLine();
                 }
-                if (ImGui.Button("Gather##Gather" + rowIndex))
+                if (ImGui.Button("采集##Gather" + rowIndex))
                 {
                     _commandManager.ProcessCommand("/gatherfish " + searchResult.Item.Base.Name.ExtractText());
                 }
@@ -286,7 +286,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                     ImGui.SameLine();
                 }
                 ImGui.PushStyleVar(ImGuiStyleVar.FrameRounding, 0.0f);
-                if (ImGui.Button("Buy##Buy" + rowIndex))
+                if (ImGui.Button("购买##Buy" + rowIndex))
                 {
                     uint? umapId = item.CraftItem?.MapId ?? null;
                     int mapId = umapId == null ? -1 : (int)umapId;
@@ -303,10 +303,10 @@ namespace InventoryTools.Logic.Columns.Buttons
 
                         List<string?> stringParts = new()
                         {
-                            vendor.location + " - Buy ",
+                            vendor.location + " - 购买 ",
                             item.CraftItem?.QuantityMissingOverall.ToString() ?? null,
                             item.Item.NameString,
-                            npcName != null ? $" from {npcName}" : null
+                            npcName != null ? $"（从 {npcName} 处）" : null
                         };
 
                         var mapLinkText = String.Join("", stringParts.Where(c => c != null).Select(c => c!).ToList());
@@ -316,7 +316,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                     else
                     {
                         var shopName = vendor.shop.Name;
-                        _chatUtilities.Print("No location available. Shop is called " + shopName);
+                        _chatUtilities.Print("没有可用位置。商店名称为 " + shopName);
                     }
                 }
 
@@ -338,7 +338,7 @@ namespace InventoryTools.Logic.Columns.Buttons
                                     {
                                         DrawSupplierRow(item.Item, tuple, messages);
                                     }, ImGuiTableFlags.None,
-                                    new[] { "Shop Name", "NPC", "Location", "" });
+                                    new[] { "商店名称", "NPC", "位置", "" });
                             }
                         }
                     }
@@ -351,10 +351,10 @@ namespace InventoryTools.Logic.Columns.Buttons
             return false;
         }
 
-        public override string RenderName { get; } = "Gather/Purchase";
-        public override string Name { get; set; } = "Gather/Purchase/Buy";
+        public override string RenderName { get; } = "采集/购买";
+        public override string Name { get; set; } = "采集/购买";
         public override float Width { get; set; } = 100;
-        public override string HelpText { get; set; } = "Shows a button that links to gatherbuddy's /gather function.";
+        public override string HelpText { get; set; } = "显示关联 GatherBuddy 的 /gather 功能的按钮。";
         public override bool HasFilter { get; set; } = false;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
         public override FilterType DefaultIn => Logic.FilterType.CraftFilter;

@@ -59,7 +59,7 @@ public abstract class ChoiceColumnSetting<T> : ColumnSetting<T?>
                 ImGui.SetNextItemWidth(-1);
                 var tmp   = _filter;
                 var searching = false;
-                if (ImGui.InputTextWithHint("##filter", "Filter...", ref tmp, 255,
+                if (ImGui.InputTextWithHint("##filter", "筛选...", ref tmp, 255,
                         ImGuiInputTextFlags.EnterReturnsTrue))
                 {
                     var selectedText = new FilterComparisonText(tmp.ToLowerInvariant());
@@ -147,7 +147,7 @@ public abstract class ChoiceColumnSetting<T> : ColumnSetting<T?>
         if (HasValueSet(configuration) && ShowReset)
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 ResetFilter(configuration);
                 success = true;
@@ -215,7 +215,7 @@ public abstract class ChoiceColumnSetting<T> : ColumnSetting<T?>
         if (HasValueSet(configuration) && ShowReset)
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 ResetFilter(configuration);
                 success = true;

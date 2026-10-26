@@ -50,7 +50,7 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
         EquipmentSuggestFilterStatsField statsField, EquipmentSuggestModeSetting modeSetting, EquipmentSuggestToolModeCategorySetting toolModeCategorySetting,
         EquipmentSuggestService equipmentSuggestService,
         ICharacterMonitor characterMonitor) : base(logger, mediator, imGuiService, configuration,
-        "Equipment Recommendations")
+        "装备推荐")
     {
         _configuration = configuration;
         _equipmentSuggestGrid = equipmentSuggestGrid;
@@ -77,26 +77,26 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
         {
             if (menuBar)
             {
-                using (var menu = ImRaii.Menu("File"))
+                using (var menu = ImRaii.Menu("文件"))
                 {
                     if (menu)
                     {
-                        if (ImGui.MenuItem("Configuration"))
+                        if (ImGui.MenuItem("配置"))
                         {
                             MediatorService.Publish(new OpenGenericWindowMessage(typeof(ConfigurationWindow)));
                         }
 
-                        if (ImGui.MenuItem("Changelog"))
+                        if (ImGui.MenuItem("更新日志"))
                         {
                             MediatorService.Publish(new OpenGenericWindowMessage(typeof(ChangelogWindow)));
                         }
 
-                        if (ImGui.MenuItem("Help"))
+                        if (ImGui.MenuItem("帮助"))
                         {
                             MediatorService.Publish(new OpenGenericWindowMessage(typeof(HelpWindow)));
                         }
 
-                        if (ImGui.MenuItem("Enable Verbose Logging", "",
+                        if (ImGui.MenuItem("启用详细日志", "",
                                 this._pluginLog.MinimumLogLevel == LogEventLevel.Verbose))
                         {
                             if (this._pluginLog.MinimumLogLevel == LogEventLevel.Verbose)
@@ -109,12 +109,12 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                             }
                         }
 
-                        if (ImGui.MenuItem("Generate Support Dump"))
+                        if (ImGui.MenuItem("生成支持转储"))
                         {
                             MediatorService.Publish(new OpenGenericWindowMessage(typeof(SupportDumpWindow)));
                         }
 
-                        if (ImGui.MenuItem("Report a Issue"))
+                        if (ImGui.MenuItem("报告问题"))
                         {
                             "https://github.com/Critical-Impact/InventoryTools".OpenBrowser();
                         }
@@ -124,24 +124,24 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                             "https://ko-fi.com/critical_impact".OpenBrowser();
                         }
 
-                        if (ImGui.MenuItem("Close"))
+                        if (ImGui.MenuItem("关闭"))
                         {
                             this.IsOpen = false;
                         }
                     }
                 }
 
-                using (var menu = ImRaii.Menu("Mode"))
+                using (var menu = ImRaii.Menu("模式"))
                 {
                     if (menu)
                     {
-                        if (ImGui.MenuItem("Class/Job", "",
+                        if (ImGui.MenuItem("职业", "",
                                 _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Class))
                         {
                             _modeSetting.UpdateFilterConfiguration(_configuration, EquipmentSuggestMode.Class);
                         }
 
-                        if (ImGui.MenuItem("Tool/Weapon", "",
+                        if (ImGui.MenuItem("工具/武器", "",
                                 _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Tool))
                         {
                             _modeSetting.UpdateFilterConfiguration(_configuration, EquipmentSuggestMode.Tool);
@@ -149,24 +149,24 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                     }
                 }
 
-                using (var menu = ImRaii.Menu("View"))
+                using (var menu = ImRaii.Menu("视图"))
                 {
                     if (menu)
                     {
-                        if (ImGui.MenuItem("Normal", "",
+                        if (ImGui.MenuItem("普通", "",
                                 _viewModeSetting.CurrentValue(_configuration) == EquipmentSuggestViewMode.Normal))
                         {
                             _viewModeSetting.UpdateFilterConfiguration(_configuration, EquipmentSuggestViewMode.Normal);
                         }
 
-                        if (ImGui.MenuItem("Expanded", "",
+                        if (ImGui.MenuItem("展开", "",
                                 _viewModeSetting.CurrentValue(_configuration) == EquipmentSuggestViewMode.Expanded))
                         {
                             _viewModeSetting.UpdateFilterConfiguration(_configuration,
                                 EquipmentSuggestViewMode.Expanded);
                         }
 
-                        if (ImGui.MenuItem("Compact", "",
+                        if (ImGui.MenuItem("紧凑", "",
                                 _viewModeSetting.CurrentValue(_configuration) == EquipmentSuggestViewMode.Compact))
                         {
                             _viewModeSetting.UpdateFilterConfiguration(_configuration,
@@ -175,7 +175,7 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                     }
                 }
 
-                using (var menu = ImRaii.Menu("Windows"))
+                using (var menu = ImRaii.Menu("窗口"))
                 {
                     if (menu)
                     {
@@ -306,7 +306,7 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                 }
 
                 ImGui.SameLine();
-                var text = _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Tool ? "Use Current Level" : "Use Current Class/Level";
+                var text = _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Tool ? "使用当前等级" : "使用当前职业/等级";
                 var textSize = ImGui.CalcTextSize(text).X + ImGui.GetStyle().ItemSpacing.X * 2;
                 var childSize = new Vector2(textSize, 50) * ImGui.GetIO().FontGlobalScale;
                 using (var child = ImRaii.Child("5", childSize, false, ImGuiWindowFlags.NoScrollbar))
@@ -328,7 +328,7 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
                 }
 
                 ImGui.SameLine();
-                text = "Auto Select Best Items";
+                text = "自动选择最佳装备";
                 textSize = ImGui.CalcTextSize(text).X + ImGui.GetStyle().ItemSpacing.X * 2;
                 childSize = new Vector2(textSize, 50) * ImGui.GetIO().FontGlobalScale;
                 using (var child = ImRaii.Child("6", childSize, false, ImGuiWindowFlags.NoScrollbar))
@@ -386,7 +386,7 @@ public class EquipmentSuggestWindow : GenericWindow, IMenuWindow
 
     public override FilterConfiguration? SelectedConfiguration { get; } = null;
     public override string GenericKey { get; } = "EquipmentSuggest";
-    public override string GenericName { get; } = "Equipment Recommendations";
+    public override string GenericName { get; } = "装备推荐";
     public override bool DestroyOnClose { get; } = true;
     public override bool SaveState { get; } = true;
     public override Vector2? DefaultSize { get; } = new Vector2(800, 500);

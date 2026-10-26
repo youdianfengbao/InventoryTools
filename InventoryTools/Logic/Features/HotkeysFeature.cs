@@ -14,24 +14,24 @@ public class HotkeysFeature : Feature
 
     public override PageLayout Build()
     {
-        return Page("feature/hotkeys", "Hotkeys",
-            Paragraph("These hotkeys are optional. If you leave a field empty, that action has no hotkey."),
-            Section("Show or hide a window",
-                Setting<HotKeyListsWindowSetting>("Lists"),
-                Setting<HotkeyCraftWindowSetting>("Crafts"),
-                Setting<HotkeyConfigWindowSetting>("Configuration"),
-                Setting<HotkeyMobWindowSetting>("Mobs"),
-                Setting<HotkeyDutiesWindowSetting>("Duties"),
-                Setting<HotkeyAirshipWindowSetting>("Airships"),
-                Setting<HotkeySubmarinesWindowSetting>("Submarines"),
-                Setting<HotkeyRetainerTasksWindowSetting>("Retainer ventures")),
-            Section("While the cursor is over an item",
-                Paragraph("These hotkeys apply to the item under the cursor. If there is no item under the cursor, they do nothing."),
-                Setting<HotkeyMoreInfoSetting>("More information"),
-                Setting<HotkeyOpenItemLogSetting>("The log that applies to the item"),
-                Setting<HotkeyOpenCraftingLogSetting>("Crafting log"),
-                Setting<HotkeyOpenGatheringLogSetting>("Gathering log"),
-                Setting<HotkeyOpenFishingLogSetting>("Fishing log"))
+        return Page("feature/hotkeys", "快捷键",
+            Paragraph("这些快捷键均为可选。留空的字段表示该操作不绑定快捷键。"),
+            Section("显示或隐藏窗口",
+                Setting<HotKeyListsWindowSetting>("清单"),
+                Setting<HotkeyCraftWindowSetting>("制作"),
+                Setting<HotkeyConfigWindowSetting>("配置"),
+                Setting<HotkeyMobWindowSetting>("怪物"),
+                Setting<HotkeyDutiesWindowSetting>("副本"),
+                Setting<HotkeyAirshipWindowSetting>("飞艇"),
+                Setting<HotkeySubmarinesWindowSetting>("潜水艇"),
+                Setting<HotkeyRetainerTasksWindowSetting>("雇员探索")),
+            Section("光标悬停在物品上时",
+                Paragraph("这些快捷键作用于光标下的物品。若光标下没有物品，则不会触发任何操作。"),
+                Setting<HotkeyMoreInfoSetting>("更多信息"),
+                Setting<HotkeyOpenItemLogSetting>("与该物品对应的日志"),
+                Setting<HotkeyOpenCraftingLogSetting>("制作日志"),
+                Setting<HotkeyOpenGatheringLogSetting>("采集日志"),
+                Setting<HotkeyOpenFishingLogSetting>("钓鱼日志"))
         );
     }
 }

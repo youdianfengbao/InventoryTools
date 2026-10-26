@@ -39,11 +39,11 @@ public class DefaultFilterCharacter : ISampleFilter
         return allItemsFilter;
     }
 
-    public string Name => "Character";
-    public string SampleDefaultName => "Character";
+    public string Name => "角色";
+    public string SampleDefaultName => "角色";
 
     public string SampleDescription =>
-        "This will add a list that will be preconfigured to show the items in your character's bags.";
+        "此选项会添加一个预配置清单，显示你角色背包中的物品。";
 
     public SampleFilterType SampleFilterType => SampleFilterType.Default;
 }

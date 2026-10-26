@@ -88,7 +88,7 @@ public class MountCompendiumType : CompendiumType<Mount>
     {
         return Factory.Invoke(new CompendiumTableOptions<Mount>()
         {
-            Name = "Mounts",
+            Name = "坐骑",
             Columns = BuiltColumns,
             CompendiumType = this,
             Key = "mounts",
@@ -103,7 +103,7 @@ public class MountCompendiumType : CompendiumType<Mount>
     public override string? GetSubtitle(Mount row)
     {
         return row.ExtraSeats > 0
-            ? $"Seats: {row.ExtraSeats + 1}"
+            ? $"可乘坐：{row.ExtraSeats + 1} 人"
             : null;
     }
 
@@ -135,7 +135,7 @@ public class MountCompendiumType : CompendiumType<Mount>
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "Mount icon",
+            HelpText = "坐骑图标",
             Version = "14.1.2",
             ValueSelector = GetIcon,
             CompendiumType = this,
@@ -145,8 +145,8 @@ public class MountCompendiumType : CompendiumType<Mount>
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "Mount name",
+            Name = "名称",
+            HelpText = "坐骑名称",
             Version = "14.1.2",
             ValueSelector = GetName
         });
@@ -154,8 +154,8 @@ public class MountCompendiumType : CompendiumType<Mount>
         builder.AddBooleanColumn(new()
         {
             Key = "unlocked",
-            Name = "Unlocked",
-            HelpText = "Is unlocked",
+            Name = "已解锁",
+            HelpText = "该坐骑是否已解锁",
             Version = "14.1.2",
             ValueSelector = r => _unlockState.IsMountUnlocked(r)
         });
@@ -164,8 +164,8 @@ public class MountCompendiumType : CompendiumType<Mount>
         builder.AddIntegerColumn(new()
         {
             Key = "seats",
-            Name = "Seats",
-            HelpText = "How many people does this mount seat?",
+            Name = "乘坐人数",
+            HelpText = "该坐骑可乘坐多少人？",
             Version = "14.1.2",
             ValueSelector = r => (r.ExtraSeats + 1).ToString()
         });
@@ -173,8 +173,8 @@ public class MountCompendiumType : CompendiumType<Mount>
         builder.AddItemSourcesColumn(new()
         {
             Key = "sources",
-            Name = "Sources",
-            HelpText = "Mount sources",
+            Name = "来源",
+            HelpText = "坐骑的获取来源",
             Version = "14.1.2",
             ValueSelector = r =>
             {
@@ -198,11 +198,11 @@ public class MountCompendiumType : CompendiumType<Mount>
             transient.Description.ToImGuiString();
 
         viewBuilder.AddTag(
-            () => _unlockState.IsMountUnlocked(row) ? "Unlocked" : "Not Unlocked",
-            () => "Is unlocked",
+            () => _unlockState.IsMountUnlocked(row) ? "已解锁" : "未解锁",
+            () => "该坐骑是否已解锁",
             () => _unlockState.IsMountUnlocked(row) ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed);
 
-        viewBuilder.AddTag(() => "Seats " + (row.ExtraSeats + 1), () => "How many people does this mount seat?");
+        viewBuilder.AddTag(() => "可乘坐 " + (row.ExtraSeats + 1) + " 人", () => "该坐骑可乘坐多少人？");
 
         var relatedItem = GetRelatedItem(row.RowId);
 
@@ -211,7 +211,7 @@ public class MountCompendiumType : CompendiumType<Mount>
             viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
             {
                 SectionKey = "related_item",
-                SectionName = "Related Item",
+                SectionName = "相关物品",
                 RelatedRef = relatedItem.Value.AsUntypedRowRef()
             });
             var sources =
@@ -221,7 +221,7 @@ public class MountCompendiumType : CompendiumType<Mount>
             viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
                 {
                     SectionKey = "sources",
-                    SectionName = "Sources",
+                    SectionName = "来源",
                     Sources = sources ?? [],
                     SourceType = SourceType.Source
                 });
@@ -251,11 +251,11 @@ public class MountCompendiumType : CompendiumType<Mount>
         return null;
     }
 
-    public override string Singular => "Mount";
-    public override string Plural => "Mounts";
+    public override string Singular => "坐骑";
+    public override string Plural => "坐骑";
 
     public override string Description =>
-        "Unlockable mounts usable by the player.";
+        "玩家可以使用的坐骑。";
 
     public override string Key => "mounts";
 

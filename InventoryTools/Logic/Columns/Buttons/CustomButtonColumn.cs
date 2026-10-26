@@ -19,20 +19,20 @@ public class CustomButtonColumn : ButtonColumn
     public CustomButtonColumn(StringColumnSetting.Factory stringColumnFactory, ICommandManager commandManager)
     {
         _commandManager = commandManager;
-        _actionSetting = stringColumnFactory.Invoke("cb_action", "Command",
-            "The command to run. A slash will automatically be added for you. You can add the ***Name*** to output the name of the item or ***ID*** to output the name of the item in the command.",
+        _actionSetting = stringColumnFactory.Invoke("cb_action", "命令",
+            "要执行的命令。会自动添加斜杠 /。可在命令中加入 ***Name*** 输出物品名称，或加入 ***ID*** 输出物品 ID。",
             "", "gather ***Name***");
-        _buttonText = stringColumnFactory.Invoke("cb_label", "Label", "The label to give the button.","","Button");
+        _buttonText = stringColumnFactory.Invoke("cb_label", "标签", "按钮上显示的文本。","","按钮");
         Settings.Add(_buttonText);
         Settings.Add(_actionSetting);
     }
-    public override string Name { get; set; } = "Custom Button";
+    public override string Name { get; set; } = "自定义按钮";
     public override float Width { get; set; } = 50;
 
     public override bool HasFilter { get; set; } = false;
 
     public override string HelpText { get; set; } =
-        "A custom button letting you specify a custom command you wish to run with the item's name or ID ";
+        "自定义按钮，可指定以物品名称或 ID 执行的自定义命令。";
 
     public override List<MessageBase>? Draw(FilterConfiguration configuration, ColumnConfiguration columnConfiguration, SearchResult searchResult,
         int rowIndex, int columnIndex)

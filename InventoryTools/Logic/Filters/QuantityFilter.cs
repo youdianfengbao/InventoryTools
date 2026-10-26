@@ -20,8 +20,8 @@ namespace InventoryTools.Logic.Filters
             ShowOperatorTooltip = true;
         }
         public override string Key { get; set; } = "Qty";
-        public override string Name { get; set; } = "Quantity";
-        public override string HelpText { get; set; } = "The quantity of the item.";
+        public override string Name { get; set; } = "数量";
+        public override string HelpText { get; set; } = "该物品的数量。";
 
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
 

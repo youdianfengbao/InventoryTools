@@ -54,7 +54,7 @@ public class SingleRowRefSection : ViewSection
         }
     }
 
-    public override string SectionName => _options.SectionName ?? "Related " + (_relatedCompendiumType?.Singular ?? "Object");
+    public override string SectionName => _options.SectionName ?? "关联" + (_relatedCompendiumType?.Singular ?? "对象");
     public override bool IsEmpty(SectionState sectionState)
     {
         if (_relatedCompendiumType == null)
@@ -79,11 +79,11 @@ public class SingleRowRefSection : ViewSection
         {
             if (_refType == null)
             {
-                ImGui.Text("Unknown related row type.");
+                ImGui.Text("未知的关联行类型。");
             }
             else
             {
-                ImGui.Text("No matching compendium type for " + _refType.Name);
+                ImGui.Text("没有匹配的图鉴类型：" + _refType.Name);
             }
         }
         else

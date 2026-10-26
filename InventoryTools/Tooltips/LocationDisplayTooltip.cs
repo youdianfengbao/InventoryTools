@@ -89,11 +89,11 @@ public class LocationDisplayTooltip : BaseTooltip
                                 var willRetrieve = craftItem.QuantityWillRetrieve;
                                 if (missingOverall != 0 || willRetrieve != 0)
                                 {
-                                    var missingText = "Missing: ";
+                                    var missingText = "缺少：";
                                     if (craftItem.IngredientPreference.Type is IngredientPreferenceType.Buy
                                         or IngredientPreferenceType.Item or IngredientPreferenceType.HouseVendor)
                                     {
-                                        missingText = "Buy: ";
+                                        missingText = "购买：";
                                     }
                                     var needText = missingText + missingOverall;
                                     if (filterResult != null)
@@ -105,7 +105,7 @@ public class LocationDisplayTooltip : BaseTooltip
                                             var sortedItem = sortedItems.First();
                                             if (sortedItem.InventoryItem!.Quantity != 0)
                                             {
-                                                needText += " / (" + Math.Min(willRetrieve,sortedItem.InventoryItem!.Quantity) + " should be retrieved)";
+                                                needText += " /（应取出 " + Math.Min(willRetrieve,sortedItem.InventoryItem!.Quantity) + " 个）";
                                             }
                                         }
                                     }

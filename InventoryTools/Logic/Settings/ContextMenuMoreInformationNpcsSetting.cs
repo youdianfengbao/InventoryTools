@@ -7,7 +7,7 @@ namespace InventoryTools.Logic.Settings
 {
     public class ContextMenuMoreInformationNpcsSetting : GenericBooleanSetting
     {
-        public ContextMenuMoreInformationNpcsSetting(ILogger<ContextMenuMoreInformationNpcsSetting> logger, ImGuiService imGuiService) : base("ContextMenuMoreInfoNpcs" , "Context Menu - More Information (Npcs)", "Add the more information menu item to the right click/context menu for npcs?", true, "14.0.2", logger, imGuiService)
+        public ContextMenuMoreInformationNpcsSetting(ILogger<ContextMenuMoreInformationNpcsSetting> logger, ImGuiService imGuiService) : base("ContextMenuMoreInfoNpcs" , "右键菜单 - 更多信息（NPC）", "在 NPC 的右键菜单中添加“更多信息”菜单项？", true, "14.0.2", logger, imGuiService)
         {
         }
     }

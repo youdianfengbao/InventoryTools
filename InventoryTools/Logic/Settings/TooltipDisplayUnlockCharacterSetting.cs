@@ -28,8 +28,8 @@ public class TooltipDisplayUnlockCharacterSetting : MultipleChoiceSetting<ulong>
     }
 
     public override string Key { get; set; } = "TooltipDisplayUnlockCharacter";
-    public override string Name { get; set; } = "Add Item Unlock Status (Characters)";
-    public override string HelpText { get; set; } = "When showing the unlock status on items, these characters will be displayed. Leave empty to display all characters.";
+    public override string Name { get; set; } = "添加物品解锁状态（角色）";
+    public override string HelpText { get; set; } = "显示物品解锁状态时，展示这些角色。留空则显示全部角色。";
     public override string Version { get; } = "1.11.0.4";
     public override Dictionary<ulong, string> GetChoices(InventoryToolsConfiguration configuration)
     {
@@ -40,11 +40,11 @@ public class TooltipDisplayUnlockCharacterSetting : MultipleChoiceSetting<ulong>
     {
         if (items.Count == 0)
         {
-            return "All characters will be shown.";
+            return "将显示全部角色。";
         }
         else
         {
-            return $"{items.Count} characters will be shown..";
+            return $"将显示 {items.Count} 个角色..";
         }
     }
 

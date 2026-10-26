@@ -22,12 +22,12 @@ public class ContextMenuOpenGatheringLogSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "OpenGatheringLogContextMenu";
-    public override string Name { get; set; } = "Context Menu - Open Gathering Log";
+    public override string Name { get; set; } = "右键菜单 - 打开采集笔记";
 
-    public override string WizardName { get; } = "Open Gathering Log";
+    public override string WizardName { get; } = "打开采集笔记";
 
     public override string HelpText { get; set; } =
-        "Add a context menu item to open the gathering log for any item that can be gathered?";
+        "为可采集的物品添加右键菜单项，用于打开采集笔记？";
     
     public override string Version { get; } = "1.11.0.2";
 }

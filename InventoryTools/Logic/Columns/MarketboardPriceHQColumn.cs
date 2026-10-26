@@ -25,8 +25,8 @@ namespace InventoryTools.Logic.Columns
             _marketCache = marketCache;
         }
         public override ColumnCategory ColumnCategory => ColumnCategory.Market;
-        protected readonly string LoadingString = "loading...";
-        protected readonly string UntradableString = "untradable";
+        protected readonly string LoadingString = "加载中...";
+        protected readonly string UntradableString = "不可交易";
         protected readonly int Loading = -1;
         protected readonly int Untradable = -2;
         public override bool IsConfigurable => true;
@@ -98,11 +98,11 @@ namespace InventoryTools.Logic.Columns
             return Loading;
         }
 
-        public override string Name { get; set; } = "Market Board Average Price HQ";
-        public override string RenderName => "MB Avg. Price HQ";
+        public override string Name { get; set; } = "市场板均价 HQ";
+        public override string RenderName => "市场板均价 HQ";
         public override float Width { get; set; } = 250.0f;
         public override string HelpText { get; set; } =
-            "Shows the average price of the HQ form of the item. If no world is selected, your home world is used. This data is sourced from universalis.";
+            "显示该物品 HQ 形态的平均价格。若未选择世界，则使用主世界。数据来自 Universalis。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

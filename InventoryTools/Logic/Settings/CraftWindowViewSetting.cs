@@ -17,9 +17,9 @@ public class CraftWindowViewSetting : GenericEnumChoiceSetting<CraftWindowView>
 {
     public override bool AppearsInConfigWindow => false;
 
-    public CraftWindowViewSetting(ILogger<CraftWindowViewSetting> logger, ImGuiService imGuiService) : base("CraftWindowView", "Craft Window View", "What view is the craft list currently in?",CraftWindowView.Crafts, new Dictionary<CraftWindowView, string>(){
-        { CraftWindowView.Crafts , "Crafts"}, { CraftWindowView.Configuration, "Configuration"},
-        { CraftWindowView.Tree, "Treeview"}}, "12.0.20", logger, imGuiService)
+    public CraftWindowViewSetting(ILogger<CraftWindowViewSetting> logger, ImGuiService imGuiService) : base("CraftWindowView", "制作窗口视图", "制作清单当前处于哪个视图？",CraftWindowView.Crafts, new Dictionary<CraftWindowView, string>(){
+        { CraftWindowView.Crafts , "制作"}, { CraftWindowView.Configuration, "配置"},
+        { CraftWindowView.Tree, "树状图"}}, "12.0.20", logger, imGuiService)
     {
     }
 }

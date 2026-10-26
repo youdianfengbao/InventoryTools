@@ -27,10 +27,10 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "MarketRefreshTime";
-        public override string Name { get; set; } = "Keep market prices for X hours";
+        public override string Name { get; set; } = "市场价格保留时长（小时）";
 
-        public override string WizardName { get; } = "Persist for X hours";
-        public override string HelpText { get; set; } = "How long should we store the market prices for before refreshing from universalis?";
+        public override string WizardName { get; } = "保留时长（小时）";
+        public override string HelpText { get; set; } = "市场价格数据在从 Universalis 刷新前保留多久？";
         public override string Version => "1.7.0.0";
     }
 }

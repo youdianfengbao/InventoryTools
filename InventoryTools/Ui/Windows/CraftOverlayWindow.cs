@@ -84,7 +84,7 @@ public class CraftOverlayWindow : OverlayWindow
         pluginLog,
         mediator,
         imGuiService,
-        "Craft Overlay")
+        "制作悬浮层")
     {
         _listService = listService;
         _mapSheet = mapSheet;
@@ -160,17 +160,17 @@ public class CraftOverlayWindow : OverlayWindow
                     switch (this.WindowState)
                     {
                         case CraftOverlayWindowState.Collapsed:
-                            nextState = "Expand";
+                            nextState = "展开";
                             break;
                         case CraftOverlayWindowState.Single:
-                            nextState = "Show More";
+                            nextState = "显示更多";
                             break;
                         case CraftOverlayWindowState.List:
-                            nextState = "Collapse";
+                            nextState = "折叠";
                             break;
                     }
-                    ImGui.TextUnformatted($"Left Click: {nextState}");
-                    ImGui.TextUnformatted("Right Click: Menu");
+                    ImGui.TextUnformatted($"左键点击: {nextState}");
+                    ImGui.TextUnformatted("右键点击: 菜单");
                 }
             }
 
@@ -184,7 +184,7 @@ public class CraftOverlayWindow : OverlayWindow
         {
             if (popup)
             {
-                if (ImGui.MenuItem("Close"))
+                if (ImGui.MenuItem("关闭"))
                 {
                     this.Close();
                 }
@@ -271,7 +271,7 @@ public class CraftOverlayWindow : OverlayWindow
         }
         else
         {
-            ImGui.Text("Nothing to do.");
+            ImGui.Text("没有待办事项。");
             ImGui.SetCursorPosX(ImGui.GetCursorPosX() + (150 + 70 + 80 * ImGui.GetIO().FontGlobalScale));
         }
 
@@ -283,7 +283,7 @@ public class CraftOverlayWindow : OverlayWindow
                 _font,
                 FontAwesomeIcon.Hammer,
                 ref currentCursorPosX,
-                "Open the Allagan Tools crafts window.",
+                "打开 Allagan Tools 制作窗口。",
                 true))
         {
             this.MediatorService.Publish(new ToggleGenericWindowMessage(typeof(CraftsWindow)));
@@ -295,7 +295,7 @@ public class CraftOverlayWindow : OverlayWindow
                 _font,
                 FontAwesomeIcon.Cog,
                 ref currentCursorPosX,
-                "Open the Allagan Tools configuration window.",
+                "打开 Allagan Tools 配置窗口。",
                 true))
         {
             this.MediatorService.Publish(new ToggleGenericWindowMessage(typeof(ConfigurationWindow)));
@@ -306,7 +306,7 @@ public class CraftOverlayWindow : OverlayWindow
                 _font,
                 FontAwesomeIcon.Lightbulb,
                 ref currentCursorPosX,
-                "Toggle highlighting.",
+                "切换高亮。",
                 true,
                 isHighlighting ? null : ImGuiColors.ParsedGrey))
         {
@@ -321,7 +321,7 @@ public class CraftOverlayWindow : OverlayWindow
                 _font,
                 FontAwesomeIcon.Bars,
                 ref currentCursorPosX,
-                "Select active craft list",
+                "选择活动制作清单",
                 true))
         {
             ImGui.OpenPopup("SelectCraftList");
@@ -346,7 +346,7 @@ public class CraftOverlayWindow : OverlayWindow
 
         if (SelectedConfiguration == null)
         {
-            ImGui.Text("No craft list active.");
+            ImGui.Text("没有激活的制作清单。");
         }
         else if(craftList != null)
         {
@@ -354,17 +354,17 @@ public class CraftOverlayWindow : OverlayWindow
             {
                 using (ImRaii.Table("CraftList", 6, ImGuiTableFlags.SizingFixedFit))
                 {
-                    ImGui.TableSetupColumn("Icon", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("图标", ImGuiTableColumnFlags.WidthFixed,
                         20 * ImGui.GetIO().FontGlobalScale);
-                    ImGui.TableSetupColumn("Name", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("名称", ImGuiTableColumnFlags.WidthFixed,
                         150 * ImGui.GetIO().FontGlobalScale);
-                    ImGui.TableSetupColumn("Step", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("步骤", ImGuiTableColumnFlags.WidthFixed,
                         80 * ImGui.GetIO().FontGlobalScale);
-                    ImGui.TableSetupColumn("Icon", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("图标", ImGuiTableColumnFlags.WidthFixed,
                         10 * ImGui.GetIO().FontGlobalScale);
-                    ImGui.TableSetupColumn("Bell", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("时间", ImGuiTableColumnFlags.WidthFixed,
                         20 * ImGui.GetIO().FontGlobalScale);
-                    ImGui.TableSetupColumn("Action", ImGuiTableColumnFlags.WidthFixed,
+                    ImGui.TableSetupColumn("操作", ImGuiTableColumnFlags.WidthFixed,
                         70 * ImGui.GetIO().FontGlobalScale);
                     var index = 1;
                     foreach (var currentItem in nextItems.Take(WindowState == CraftOverlayWindowState.Single ? 1 : maxItems))
@@ -432,7 +432,7 @@ public class CraftOverlayWindow : OverlayWindow
                                                 .Distinct().ToList();
                                             foreach (var result in sortingResults)
                                             {
-                                                ImGui.Text($"{result.Quantity} available to retrieve from {_characterMonitor.GetCharacterById(result.SourceRetainerId)?.FormattedName ?? "Unknown Retainer"} in {result.SourceBag.FormattedName()} at {result.BagLocation.X + 1}/{result.BagLocation.Y + 1}");
+                                                ImGui.Text($"{result.Quantity} 个可从 {_characterMonitor.GetCharacterById(result.SourceRetainerId)?.FormattedName ?? "未知雇员"} 的 {result.SourceBag.FormattedName()} 中取出，位置 {result.BagLocation.X + 1}/{result.BagLocation.Y + 1}");
                                             }
                                         }
                                     }
@@ -459,9 +459,9 @@ public class CraftOverlayWindow : OverlayWindow
 
                                     var color = active ? ImGuiColors.HealerGreen : ImGuiColors.DalamudRed;
                                     var tooltip = active
-                                        ? " Up for " + TimeInterval.DurationString(currentUptimes.Value.End,
+                                        ? " 剩余 " + TimeInterval.DurationString(currentUptimes.Value.End,
                                             TimeStamp.UtcNow, true)
-                                        : " Up in " + TimeInterval.DurationString(currentUptimes.Value.Start,
+                                        : " 还有 " + TimeInterval.DurationString(currentUptimes.Value.Start,
                                             TimeStamp.UtcNow, true);
 
                                     ImGuiService.DrawIconButton(
@@ -480,7 +480,7 @@ public class CraftOverlayWindow : OverlayWindow
                             {
                                 if (popup.Success)
                                 {
-                                    if (ImGui.MenuItem("More Information"))
+                                    if (ImGui.MenuItem("详细信息"))
                                     {
                                         this.MediatorService.Publish(new OpenUintWindowMessage(typeof(ItemWindow), currentItem.ItemId));
                                     }
@@ -514,7 +514,7 @@ public class CraftOverlayWindow : OverlayWindow
 
     public override FilterConfiguration? SelectedConfiguration => _listService.GetActiveCraftList();
     public override string GenericKey { get; } = "CraftOverlay";
-    public override string GenericName { get; } = "Craft Overlay";
+    public override string GenericName { get; } = "制作悬浮层";
     public override bool DestroyOnClose { get; } = false;
 
     public override bool SaveState => this._rememberStateSetting.CurrentValue(Configuration);

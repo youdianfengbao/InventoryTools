@@ -13,8 +13,8 @@ namespace InventoryTools.Logic.Filters
     public class GearSetFilter : StringFilter
     {
         public override string Key { get; set; } = "GearSet";
-        public override string Name { get; set; } = "Gear Sets";
-        public override string HelpText { get; set; } = "Filter by the gear sets that a item is in.";
+        public override string Name { get; set; } = "装备套装";
+        public override string HelpText { get; set; } = "按物品所在的装备套装筛选。";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
 
         public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)

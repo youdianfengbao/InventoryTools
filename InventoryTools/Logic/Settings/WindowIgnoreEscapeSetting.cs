@@ -20,8 +20,8 @@ public class WindowIgnoreEscapeSetting<T> : BooleanSetting where T : Window
     {
         _mediatorService = mediatorService;
         _key = window.Key + "Escape";
-        _window = window.GenericName + " Window";
-        _helpText = "Should the escape key be ignored for the " + window.GenericName + " window?";
+        _window = window.GenericName + "窗口";
+        _helpText = "对该" + window.GenericName + "窗口，是否忽略 Esc 键？";
     }
     public override bool DefaultValue { get; set; } = false;
     public override bool CurrentValue(InventoryToolsConfiguration configuration)

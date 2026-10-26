@@ -27,8 +27,8 @@ namespace InventoryTools.Logic.Columns
             MarketboardWorldSetting = marketboardWorldSetting;
         }
         public override ColumnCategory ColumnCategory => ColumnCategory.Market;
-        protected readonly string LoadingString = "loading...";
-        protected readonly string UntradableString = "untradable";
+        protected readonly string LoadingString = "加载中...";
+        protected readonly string UntradableString = "不可交易";
         protected readonly int Loading = -1;
         protected readonly int Untradable = -2;
         public override bool IsConfigurable => true;
@@ -100,16 +100,16 @@ namespace InventoryTools.Logic.Columns
         }
         public override string Name
         {
-            get => "Market Board " + _configuration.MarketSaleHistoryLimit + " Day Sale Count";
+            get => "市场板 " + _configuration.MarketSaleHistoryLimit + " 天销量";
             set { }
         }
 
-        public override string RenderName => "MB " + _configuration.MarketSaleHistoryLimit + " Day Sales";
+        public override string RenderName => "市场板 " + _configuration.MarketSaleHistoryLimit + " 天销量";
         public override string HelpText
         {
             get =>
-                "Shows the number of sales over a " + +_configuration.MarketSaleHistoryLimit +
-                " day period for the item. If no world is selected, your home world is used. This data is sourced from universalis.";
+                "显示该物品在 " + +_configuration.MarketSaleHistoryLimit +
+                " 天内的销量。若未选择世界，则使用主世界。数据来自 Universalis。";
             set { }
         }
 

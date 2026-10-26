@@ -18,12 +18,12 @@ public class DesynthesisClassColumn : TextColumn
             return null;
         }
 
-        return searchResult.Item.Base.ClassJobRepair.ValueNullable?.Name.ToString().ToTitleCase() ?? "Unknown";
+        return searchResult.Item.Base.ClassJobRepair.ValueNullable?.Name.ToString().ToTitleCase() ?? "未知";
     }
-    public override string Name { get; set; } = "Desynthesis Class";
-    public override string RenderName  => "Desynth Class";
+    public override string Name { get; set; } = "分解职业";
+    public override string RenderName  => "分解职业";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "What class is related to de-synthesising this item?";
+    public override string HelpText { get; set; } = "分解该物品与哪种职业相关？";
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
 }

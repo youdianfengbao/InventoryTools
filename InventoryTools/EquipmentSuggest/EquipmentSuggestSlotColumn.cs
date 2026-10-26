@@ -26,11 +26,11 @@ public class EquipmentSuggestSlotColumn : AllaganLib.Interface.Grid.StringColumn
 
     public override string Name
     {
-        get { return _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Class ? "Slot" : "Class/Job"; }
+        get { return _modeSetting.CurrentValue(_configuration) == EquipmentSuggestMode.Class ? "部位" : "职业"; }
         set { }
     }
 
-    public override string HelpText { get; set; } = "The slot to fill";
+    public override string HelpText { get; set; } = "要填充装备的部位";
     public override string Version { get; set; } = "1.12.0.10";
     public override string? CurrentValue(EquipmentSuggestItem item)
     {
@@ -39,31 +39,31 @@ public class EquipmentSuggestSlotColumn : AllaganLib.Interface.Grid.StringColumn
             switch (item.EquipmentSlot)
             {
                 case EquipSlot.MainHand:
-                    return "Main Hand";
+                    return "主手";
                 case EquipSlot.OffHand:
-                    return "Off Hand";
+                    return "副手";
                 case EquipSlot.Head:
-                    return "Head";
+                    return "头部";
                 case EquipSlot.Body:
-                    return "Body";
+                    return "身体";
                 case EquipSlot.Gloves:
-                    return "Gloves";
+                    return "手部";
                 case EquipSlot.Legs:
-                    return "Legs";
+                    return "腿部";
                 case EquipSlot.Feet:
-                    return "Feet";
+                    return "脚部";
                 case EquipSlot.Ears:
-                    return "Ears";
+                    return "耳饰";
                 case EquipSlot.Neck:
-                    return "Neck";
+                    return "颈饰";
                 case EquipSlot.Wrists:
-                    return "Wrists";
+                    return "手镯";
                 case EquipSlot.FingerR:
-                    return "Right Finger";
+                    return "戒指（右）";
                 case EquipSlot.FingerL:
-                    return "Left Finger";
+                    return "戒指（左）";
                 case EquipSlot.SoulCrystal:
-                    return "Soul Crystal";
+                    return "灵魂水晶";
             }
 
             return item.EquipmentSlot?.Humanize();
@@ -74,7 +74,7 @@ public class EquipmentSuggestSlotColumn : AllaganLib.Interface.Grid.StringColumn
             return item.ClassJobRow.Base.Name.ToImGuiString().Humanize();
         }
 
-        return "Unknown";
+        return "未知";
     }
 
     public override string? RenderName { get; set; } = null;

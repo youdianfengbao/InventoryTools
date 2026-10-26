@@ -119,7 +119,7 @@ namespace InventoryTools.Lists
                 ValidateAndInjectListColumns(list);
                 if (list.Name == string.Empty)
                 {
-                    list.Name = "Untitled List";
+                    list.Name = "未命名清单";
                 }
             }
             return new ConcurrentDictionary<string, FilterConfiguration>(savedLists.ToDictionary(c => c.Key, c => c));
@@ -363,7 +363,7 @@ namespace InventoryTools.Lists
         public FilterConfiguration AddNewCraftList(string? newName = null, bool? isEphemeral = false)
         {
             var isEphemeralNN = isEphemeral ?? false;
-            var newNameNN = newName ?? (isEphemeralNN ? "New Ephemeral List" : "New Craft List");
+            var newNameNN = newName ?? (isEphemeralNN ? "新建临时清单" : "新建制作清单");
 
             var names = Lists.Where(c =>
                 c.FilterType == FilterType.CraftFilter && !c.CraftListDefault &&
@@ -390,7 +390,7 @@ namespace InventoryTools.Lists
 
         public FilterConfiguration AddNewCuratedList(string? name = null)
         {
-            name ??= "New Curated List";
+            name ??= "新建精选清单";
 
             var names = Lists.Where(c =>
                 c.FilterType == FilterType.CuratedList).Select(c => c.Name).Distinct().ToHashSet();
@@ -974,7 +974,7 @@ namespace InventoryTools.Lists
         public FilterConfiguration GenerateDefaultCraftList()
         {
             var defaultFilter = _filterConfigFactory.Invoke();
-            defaultFilter.Name = "Default Craft List";
+            defaultFilter.Name = "默认制作清单";
             defaultFilter.FilterType = FilterType.CraftFilter;
             AddDefaultColumns(defaultFilter);
             defaultFilter.ApplyDefaultCraftFilterConfiguration();

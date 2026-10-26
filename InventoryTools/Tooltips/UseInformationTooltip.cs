@@ -107,7 +107,7 @@ public class UseInformationTooltip : BaseTooltip
 
                     if (groupedLine.Count() > 20)
                     {
-                        textLines[^1] += " (" + (groupedLine.Count() - 20) + " more)";
+                        textLines[^1] += "（另有 " + (groupedLine.Count() - 20) + " 条）";
                     }
                 }
                 else
@@ -119,7 +119,7 @@ public class UseInformationTooltip : BaseTooltip
             var newText = "";
             if (textLines.Count != 0)
             {
-                newText = "\nUses: " + string.Join(", ", textLines.Distinct());
+                newText = "\n用途：" + string.Join(", ", textLines.Distinct());
             }
 
             newText = newText.TrimEnd('\n');

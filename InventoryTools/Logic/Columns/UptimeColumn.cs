@@ -30,9 +30,9 @@ public class UptimeColumn : TimeIntervalColumn
         _mapSheet = mapSheet;
     }
 
-    public override string Name { get; set; } = "Next Gather Uptime";
+    public override string Name { get; set; } = "下次可采集时间";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "Shows how long an item will be available to gather if it's already spawned, and when the next time an item will be available to gather";
+    public override string HelpText { get; set; } = "显示物品若已刷新还能采集多久，以及下次可采集的时间";
     public override ColumnCategory ColumnCategory { get; } = ColumnCategory.Basic;
     public override bool HasFilter { get; set; } = false;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
@@ -49,16 +49,16 @@ public class UptimeColumn : TimeIntervalColumn
                 {
                     using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudRed))
                     {
-                        ImGui.Text("Up in " +
+                        ImGui.Text("还有 " +
                                    TimeInterval.DurationString(currentValue.Value.Start, TimeStamp.UtcNow,
-                                       true));
+                                       true) + " 出现");
                     }
                 }
                 else
                 {
                     using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
                     {
-                        ImGui.Text("Up for " +
+                        ImGui.Text("已出现 " +
                                    TimeInterval.DurationString(currentValue.Value.End, TimeStamp.UtcNow,
                                        true));
                     }

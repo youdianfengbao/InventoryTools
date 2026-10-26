@@ -10,8 +10,8 @@ namespace InventoryTools.Logic.Filters
     public class IsGearSetFilter : BooleanFilter
     {
         public override string Key { get; set; } = "IsGearSet";
-        public override string Name { get; set; } = "Is Part of Gearset?";
-        public override string HelpText { get; set; } = "Is the item a part of a gearset?";
+        public override string Name { get; set; } = "属于套装？";
+        public override string HelpText { get; set; } = "该物品是否属于某个装备套装？";
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Basic;
         public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)
         {

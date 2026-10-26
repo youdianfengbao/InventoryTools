@@ -38,7 +38,7 @@ namespace InventoryTools.Ui
             ItemInfoCache itemInfoCache,
             BNpcNameSheet bNpcNameSheet,
             ItemSheet itemSheet,
-            string name = "Duty Window") : base(logger,
+            string name = "副本窗口") : base(logger,
             mediator,
             imGuiService,
             configuration,
@@ -85,7 +85,7 @@ namespace InventoryTools.Ui
             }
             else
             {
-                WindowName = "Invalid Duty";
+                WindowName = "无效的副本";
                 Key = "cfcid_unknown";
                 DungeonChestItems = new HashSet<uint>();
             }
@@ -102,20 +102,20 @@ namespace InventoryTools.Ui
 
         private Dictionary<uint, List<DungeonBossChest>> DungeonBossChests { get; set; } = null!;
         public override string GenericKey => "duty";
-        public override string GenericName => "Duty";
+        public override string GenericName => "副本";
         public override bool DestroyOnClose => true;
         public override void DrawWindow()
         {
             if (ContentFinderCondition == null)
             {
-                ImGui.TextUnformatted("Dungeon with the ID " + _contentFinderConditionId + " could not be found.");
+                ImGui.TextUnformatted("找不到 ID 为 " + _contentFinderConditionId + " 的迷宫。");
             }
             else
             {
                 ImGui.TextUnformatted(ContentFinderCondition.Base.Name.ExtractText());
-                ImGui.TextUnformatted(ContentFinderCondition.Base.ContentType.ValueNullable?.Name.ToString() ?? "Unknown Content Type");
-                ImGui.TextUnformatted("Level Required: " + ContentFinderCondition.Base.ClassJobLevelRequired);
-                ImGui.TextUnformatted("Item Level Required: " + ContentFinderCondition.Base.ItemLevelRequired);
+                ImGui.TextUnformatted(ContentFinderCondition.Base.ContentType.ValueNullable?.Name.ToString() ?? "未知内容类型");
+                ImGui.TextUnformatted("所需等级: " + ContentFinderCondition.Base.ClassJobLevelRequired);
+                ImGui.TextUnformatted("所需装等: " + ContentFinderCondition.Base.ItemLevelRequired);
                 ;
                 var itemIcon = ImGuiService.GetIconTexture((int)(ContentFinderCondition.Base.ContentType.ValueNullable?.IconDutyFinder ?? Icons.DutyIcon));
                 ImGui.Image(itemIcon.Handle, new Vector2(100, 100) * ImGui.GetIO().FontGlobalScale);
@@ -128,8 +128,8 @@ namespace InventoryTools.Ui
                 }
                 foreach (var dungeonBoss in DungeonBosses)
                 {
-                    if (ImGui.CollapsingHeader(_bNpcNameSheet.GetRowOrDefault(dungeonBoss.BNpcNameId)?.Base.Singular.ExtractText() + " - Fight " + (dungeonBoss.FightNo + 1) ??
-                            "Unknown Boss",
+                    if (ImGui.CollapsingHeader(_bNpcNameSheet.GetRowOrDefault(dungeonBoss.BNpcNameId)?.Base.Singular.ExtractText() + " - 第 " + (dungeonBoss.FightNo + 1) + " 战" ??
+                            "未知首领",
                             ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                     {
                         if (DungeonBossChests.ContainsKey(dungeonBoss.FightNo))
@@ -137,7 +137,7 @@ namespace InventoryTools.Ui
                             var chests = DungeonBossChests[dungeonBoss.FightNo];
                             foreach (var chest in chests.GroupBy(c => c.CofferNo))
                             {
-                                if (ImGui.CollapsingHeader("Coffer " + (chest.Key + 1),
+                                if (ImGui.CollapsingHeader("宝箱 " + (chest.Key + 1),
                                         ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                                 {
                                     ImGuiStylePtr style = ImGui.GetStyle();
@@ -197,7 +197,7 @@ namespace InventoryTools.Ui
                         if (DungeonBossDrops.ContainsKey(dungeonBoss.FightNo))
                         {
                             var drops = DungeonBossDrops[dungeonBoss.FightNo].Select(c => _itemSheet.GetRowOrDefault(c.ItemId)).Where(c => c != null).Select(c => c!).ToList();
-                            if (ImGui.CollapsingHeader("Drops", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
+                            if (ImGui.CollapsingHeader("掉落", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                             {
                                 ImGuiStylePtr style = ImGui.GetStyle();
                                 float windowVisibleX2 =
@@ -251,7 +251,7 @@ namespace InventoryTools.Ui
                     }
                 }
 
-                if (ImGui.CollapsingHeader("Other Chests (" + DungeonChestItems.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
+                if (ImGui.CollapsingHeader("其他宝箱 (" + DungeonChestItems.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                 {
                     ImGuiStylePtr style = ImGui.GetStyle();
                     float windowVisibleX2 = ImGui.GetWindowPos().X + ImGui.GetWindowContentRegionMax().X;
@@ -294,7 +294,7 @@ namespace InventoryTools.Ui
                     }
                 }
 
-                if (ImGui.CollapsingHeader("Rewards (" + DungeonRewards.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
+                if (ImGui.CollapsingHeader("奖励 (" + DungeonRewards.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                 {
                     ImGuiStylePtr style = ImGui.GetStyle();
                     float windowVisibleX2 = ImGui.GetWindowPos().X + ImGui.GetWindowContentRegionMax().X;
@@ -339,9 +339,9 @@ namespace InventoryTools.Ui
                 }
 
                 #if DEBUG
-                if (ImGui.CollapsingHeader("Debug"))
+                if (ImGui.CollapsingHeader("调试"))
                 {
-                    ImGui.TextUnformatted("Duty ID: " + _contentFinderConditionId);
+                    ImGui.TextUnformatted("副本 ID: " + _contentFinderConditionId);
                     Utils.PrintOutObject(ContentFinderCondition, 0, new List<string>());
                 }
                 #endif

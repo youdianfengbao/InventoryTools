@@ -536,7 +536,7 @@ namespace InventoryTools
             _loadConfigStopwatch = new Stopwatch();
             _loadConfigStopwatch.Start();
 #if DEBUG
-            _chatGui.Print("Starting plugin.", "Allagan Tools");
+            _chatGui.Print("插件启动中。", "Allagan Tools");
 #endif
             _pluginLog.Verbose("Starting Allagan Tools.");
 
@@ -557,8 +557,8 @@ namespace InventoryTools
                 _pluginLog.Verbose("Took " + _loadConfigStopwatch.Elapsed.TotalSeconds.ToString("N2") +
                                    " seconds to start Allagan Tools.");
 #if DEBUG
-                _chatGui.Print("Finished loading plugin. ", "Allagan Tools");
-                _chatGui.Print("Took " + _loadConfigStopwatch.Elapsed.TotalSeconds.ToString("N2") + " seconds to start.", "Allagan Tools");
+                _chatGui.Print("插件加载完成。", "Allagan Tools");
+                _chatGui.Print("启动用时 " + _loadConfigStopwatch.Elapsed.TotalSeconds.ToString("N2") + " 秒。", "Allagan Tools");
 #endif
             }
         }

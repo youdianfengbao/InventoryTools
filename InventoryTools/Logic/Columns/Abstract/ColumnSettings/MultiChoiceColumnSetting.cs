@@ -75,7 +75,7 @@ public abstract class MultiChoiceColumnSetting<T> : ColumnSetting<List<T>?>
                 var tmp = _filter;
                 var searching = false;
 
-                if (ImGui.InputTextWithHint("##filter", "Filter...", ref tmp, 255,
+                if (ImGui.InputTextWithHint("##filter", "筛选...", ref tmp, 255,
                         ImGuiInputTextFlags.EnterReturnsTrue))
                 {
                     var filtered = FilterChoices(choices, configuration, tmp);
@@ -161,7 +161,7 @@ public abstract class MultiChoiceColumnSetting<T> : ColumnSetting<List<T>?>
         if (HasValueSet(configuration) && ShowReset)
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 ResetFilter(configuration);
                 success = true;
@@ -252,7 +252,7 @@ public abstract class MultiChoiceColumnSetting<T> : ColumnSetting<List<T>?>
         if (HasValueSet(configuration) && ShowReset)
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 ResetFilter(configuration);
                 success = true;

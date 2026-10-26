@@ -18,21 +18,21 @@ public class ItemArmoireSourceRenderer : ItemInfoRenderer<ItemArmoireSource>
 
     public override RendererType RendererType => RendererType.Use;
     public override ItemInfoType Type => ItemInfoType.Armoire;
-    public override string SingularName => "Stored in Armoire";
+    public override string SingularName => "存放于武器柜";
     public override bool ShouldGroup => true;
-    public override string HelpText => "Can the item be placed in the armoire?";
+    public override string HelpText => "该物品是否可放入武器柜？";
 
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.Text("Category: " +
-                   (asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text.ExtractText() ?? "Unknown"));
+        ImGui.Text("分类：" +
+                   (asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text.ExtractText() ?? "未知"));
     };
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = AsSource(source);
 
-        return "Category: " + asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text.ExtractText();
+        return "分类：" + asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text.ExtractText();
     };
 
     public override Func<ItemSource, int> GetIcon => _ => Icons.ArmoireIcon;
@@ -40,6 +40,6 @@ public class ItemArmoireSourceRenderer : ItemInfoRenderer<ItemArmoireSource>
     public override Func<ItemSource, string> GetDescription => source =>
     {
         var asSource = AsSource(source);
-        return $"Can be placed in the {asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text}";
+        return $"可放入 {asSource.Cabinet.CabinetCategory?.Base.Category.Value.Text} 分类的武器柜";
     };
 }

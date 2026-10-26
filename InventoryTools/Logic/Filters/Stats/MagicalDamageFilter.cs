@@ -15,8 +15,8 @@ public class MagicalDamageFilter : StringFilter
     }
 
     public override string Key { get; set; } = "MagicalDamageFilter";
-    public override string Name { get; set; } = "Magical Damage";
-    public override string HelpText { get; set; } = "The magical damage of the item";
+    public override string Name { get; set; } = "魔法伤害";
+    public override string HelpText { get; set; } = "该物品的魔法伤害";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Stats;
     public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)
     {

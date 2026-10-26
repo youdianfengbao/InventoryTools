@@ -39,11 +39,11 @@ public class DefaultFilterRetainers : ISampleFilter
         return allItemsFilter;
     }
 
-    public string Name => "Retainers";
-    public string SampleDefaultName => "Retainers";
+    public string Name => "雇员";
+    public string SampleDefaultName => "雇员";
 
     public string SampleDescription =>
-        "This will add a list that will be preconfigured to show items across all retainer inventories.";
+        "此选项会添加一个预配置清单，显示所有雇员库存中的物品。";
 
     public SampleFilterType SampleFilterType => SampleFilterType.Default;
 }

@@ -23,7 +23,7 @@ namespace InventoryTools.Logic.Columns
 
         public BestInSlotColumn(ILogger<BestInSlotColumn> logger, CharacterColumnSetting.Factory characterColumnSettingFactory, ImGuiService imGuiService, ICharacterMonitor characterMonitor, IInventoryMonitor inventoryMonitor, ClassJobCategorySheet classJobCategorySheet) : base(logger, imGuiService)
         {
-            _characterColumnSetting = characterColumnSettingFactory.Invoke("Comparison Character", "Shows the relative item level of either your items or your retainers items compared to the item shown. This will show a drop down in the filter that lets you pick which character you are comparing against. A negative value indicates it's worse, a positive indicates it's better.", [CharacterType.Character, CharacterType.Retainer], true);
+            _characterColumnSetting = characterColumnSettingFactory.Invoke("对比角色", "显示你的物品或雇员物品相对于当前所显示物品的品级差。筛选器中会出现下拉菜单，供你选择用于对比的角色。负值表示较差，正值表示较好。", [CharacterType.Character, CharacterType.Retainer], true);
             _characterMonitor = characterMonitor;
             _inventoryMonitor = inventoryMonitor;
             _classJobCategorySheet = classJobCategorySheet;
@@ -77,11 +77,11 @@ namespace InventoryTools.Logic.Columns
             return null;
         }
 
-        public override string Name { get; set; } = "Relative Item Level";
+        public override string Name { get; set; } = "相对品级";
         public override float Width { get; set; } = 150;
 
         public override string HelpText { get; set; } =
-            "Shows the relative item level of either your items or your retainers items compared to the item shown. This will show a drop down in the filter that lets you pick which character you are comparing against. A negative value indicates it's worse, a positive indicates it's better.";
+            "显示你的物品或雇员物品相对于当前所显示物品的品级差。筛选器中会出现下拉菜单，供你选择用于对比的角色。负值表示较差，正值表示较好。";
 
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;

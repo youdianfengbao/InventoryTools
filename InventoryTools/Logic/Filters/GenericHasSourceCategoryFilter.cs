@@ -43,7 +43,7 @@ public class GenericHasSourceCategoryFilter : BooleanFilter, IGenericFilter
         }
     }
     public override string HelpText {
-        get => "Can the item be sourced via " +  _infoRenderService.GetCategoryName(_renderCategory).ToLower() + "?\n\nIt includes these sources: " + string.Join(",", _infoRenderService.GetSourcesByCategory(_renderCategory).Select(c => c.SingularName));
+        get => "该物品是否来源自 " +  _infoRenderService.GetCategoryName(_renderCategory).ToLower() + "？\n\n包含以下来源: " + string.Join(",", _infoRenderService.GetSourcesByCategory(_renderCategory).Select(c => c.SingularName));
         set
         {
 

@@ -18,8 +18,8 @@ public class MarketBoardUseHomeWorldSetting : BooleanSetting
     }
 
     public override string Key { get; set; } = "MarketBoardUseHomeWorld";
-    public override string Name { get; set; } = "Price Home World?";
-    public override string HelpText { get; set; } = "Should your character's home world be automatically priced?";
+    public override string Name { get; set; } = "查询主世界价格？";
+    public override string HelpText { get; set; } = "是否自动查询角色主世界（家庭世界）的价格？";
     public override string Version { get; } = "1.7.0.0";
 
     public MarketBoardUseHomeWorldSetting(ILogger<MarketBoardUseHomeWorldSetting> logger, ImGuiService imGuiService) : base(logger, imGuiService)

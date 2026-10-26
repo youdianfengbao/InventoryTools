@@ -17,7 +17,7 @@ public class IsMobDropColumn : CheckboxColumn
     {
         return searchResult.Item.HasSourcesByType(ItemInfoType.Monster);
     }
-    public override string Name { get; set; } = "Is Dropped by Mobs?";
+    public override string Name { get; set; } = "怪物掉落？";
     public override float Width { get; set; } = 100;
-    public override string HelpText { get; set; } = "Is this item dropped by mobs?";
+    public override string HelpText { get; set; } = "该物品是否由怪物掉落？";
 }

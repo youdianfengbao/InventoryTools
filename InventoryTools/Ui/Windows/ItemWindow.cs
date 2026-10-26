@@ -96,7 +96,7 @@ namespace InventoryTools.Ui
             ImGuiTooltipService tooltipService, ImGuiTooltipModeSetting tooltipModeSetting, ItemLocalizer itemLocalizer, TeleporterService teleporterService,
             CraftList.Factory craftListFactory,
             IFont font,
-            string name = "Item Window") : base(
+            string name = "物品窗口") : base(
             logger, mediator, imGuiService, configuration, name)
         {
             _marketBoardService = marketBoardService;
@@ -204,7 +204,7 @@ namespace InventoryTools.Ui
                 Sources = [];
                 Uses = [];
                 OwnedItems = new List<CriticalCommonLib.Models.InventoryItem>();
-                WindowName = "Invalid Item";
+                WindowName = "无效物品";
                 Key = "item_unknown";
             }
         }
@@ -269,21 +269,21 @@ namespace InventoryTools.Ui
 
         private List<CriticalCommonLib.Models.InventoryItem> OwnedItems { get; set; }
 
-        public override string GenericName { get; } = "Item";
+        public override string GenericName { get; } = "物品";
         public override bool DestroyOnClose => true;
         public override void DrawWindow()
         {
             if (Item == null)
             {
-                ImGui.TextUnformatted("Item with the ID " + _itemId + " could not be found.");
+                ImGui.TextUnformatted("找不到 ID 为 " + _itemId + " 的物品。");
             }
             else
             {
-                ImGui.TextUnformatted("Item Level " + Item.Base.LevelItem.RowId.ToString());
-                ImGui.TextUnformatted("Patch " + Item.Patch);
+                ImGui.TextUnformatted("物品等级 " + Item.Base.LevelItem.RowId.ToString());
+                ImGui.TextUnformatted("补丁 " + Item.Patch);
                 if (Item.CanBeDesynthed && Item.Base.ClassJobRepair.RowId != 0)
                 {
-                    ImGui.TextUnformatted("Desynth with " + (Item.Base.ClassJobRepair.ValueNullable?.Name.ToString().ToTitleCase() ?? "Unknown"));
+                    ImGui.TextUnformatted("分解职业: " + (Item.Base.ClassJobRepair.ValueNullable?.Name.ToString().ToTitleCase() ?? "未知"));
                 }
 
                 var description = Item.Base.Description.ExtractText();
@@ -297,22 +297,22 @@ namespace InventoryTools.Ui
                 if (Item.CanBeAcquired)
                 {
                     var hasAcquired = _unlockTrackerService.IsUnlocked(Item);
-                    ImGui.TextUnformatted("Acquired:" + (hasAcquired == null ? "Checking" : hasAcquired == true ? "Yes" : "No"));
+                    ImGui.TextUnformatted("已获得:" + (hasAcquired == null ? "查询中" : hasAcquired == true ? "是" : "否"));
                 }
 
                 if (Item.SellToVendorPrice != 0)
                 {
-                    ImGui.TextUnformatted("Sell to Vendor: " + Item.SellToVendorPrice + SeIconChar.Gil.ToIconString());
+                    ImGui.TextUnformatted("卖给商人: " + Item.SellToVendorPrice + SeIconChar.Gil.ToIconString());
                 }
 
                 if (Item.BuyFromVendorPrice != 0 && Item.HasSourcesByType(ItemInfoType.GilShop))
                 {
-                    ImGui.TextUnformatted("Buy from Vendor: " + Item.BuyFromVendorPrice + SeIconChar.Gil.ToIconString());
+                    ImGui.TextUnformatted("向商人购买: " + Item.BuyFromVendorPrice + SeIconChar.Gil.ToIconString());
                 }
 
                 if (Item.BuyFromVendorPrice != 0 && Item.HasSourcesByType(ItemInfoType.CalamitySalvagerShop))
                 {
-                    ImGui.TextUnformatted("Buy from Calamity Salvager: " + Item.BuyFromVendorPrice + SeIconChar.Gil.ToIconString());
+                    ImGui.TextUnformatted("向灾厄再造人购买: " + Item.BuyFromVendorPrice + SeIconChar.Gil.ToIconString());
                 }
                 ImGui.Image(ImGuiService.GetIconTexture(Item.Icon).Handle, new Vector2(100, 100) * ImGui.GetIO().FontGlobalScale);
                 if (_tooltipModeSetting.CurrentValue(Configuration) != ImGuiTooltipMode.Never)
@@ -346,7 +346,7 @@ namespace InventoryTools.Ui
                 {
                     $"https://www.garlandtools.org/db/#item/{Item.GarlandToolsId}".OpenBrowser();
                 }
-                ImGuiUtil.HoverTooltip("Open in Garland Tools");
+                ImGuiUtil.HoverTooltip("在 Garland Tools 中打开");
                 ImGui.SameLine();
 
                 if (ImGui.ImageButton(ImGuiService.GetImageTexture("teamcraft").Handle,
@@ -354,7 +354,7 @@ namespace InventoryTools.Ui
                 {
                     $"https://ffxivteamcraft.com/db/en/item/{_itemId}".OpenBrowser();
                 }
-                ImGuiUtil.HoverTooltip("Open in Teamcraft");
+                ImGuiUtil.HoverTooltip("在 Teamcraft 中打开");
                 ImGui.SameLine();
 
                 if (ImGui.ImageButton(ImGuiService.GetImageTexture("universalis").Handle,
@@ -362,7 +362,7 @@ namespace InventoryTools.Ui
                 {
                     $"https://universalis.app/market/{_itemId}".OpenBrowser();
                 }
-                ImGuiUtil.HoverTooltip("Open in Universalis");
+                ImGuiUtil.HoverTooltip("在 Universalis 中打开");
                 ImGui.SameLine();
 
                 if (ImGui.ImageButton(ImGuiService.GetImageTexture("gamerescape").Handle,
@@ -375,7 +375,7 @@ namespace InventoryTools.Ui
                         name = name.Substring(2);
                     $"https://ffxiv.gamerescape.com/wiki/{HttpUtility.UrlEncode(name)}?useskin=Vector".OpenBrowser();
                 }
-                ImGuiUtil.HoverTooltip("Open in Gamer Escape");
+                ImGuiUtil.HoverTooltip("在 Gamer Escape 中打开");
                 ImGui.SameLine();
 
                 if (ImGui.ImageButton(ImGuiService.GetImageTexture("consolegameswiki").Handle,
@@ -388,7 +388,7 @@ namespace InventoryTools.Ui
                         name = name.Substring(2);
                     $"https://ffxiv.consolegameswiki.com/wiki/{HttpUtility.UrlEncode(name)}".OpenBrowser();
                 }
-                ImGuiUtil.HoverTooltip("Open in Console Games Wiki");
+                ImGuiUtil.HoverTooltip("在 Console Games Wiki 中打开");
 
                 if (Item.CanOpenCraftingLog)
                 {
@@ -399,11 +399,11 @@ namespace InventoryTools.Ui
                         var result = _gameInterface.OpenCraftingLog(_itemId);
                         if (!result)
                         {
-                            _chatUtilities.PrintError("Could not open the crafting log, you are currently crafting.");
+                            _chatUtilities.PrintError("无法打开制作手册，你正在制作中。");
                         }
                     }
 
-                    ImGuiUtil.HoverTooltip("Craftable - Open in Craft Log");
+                    ImGuiUtil.HoverTooltip("可制作 - 在制作手册中打开");
                 }
                 if (Item.CanBeCrafted)
                 {
@@ -425,7 +425,7 @@ namespace InventoryTools.Ui
                             {
                                 using (ImRaii.PushId(filter.Key))
                                 {
-                                    if (ImGui.Selectable("Add item to craft list - " + filter.Name))
+                                    if (ImGui.Selectable("将物品添加到制作清单 - " + filter.Name))
                                     {
                                         _framework.RunOnFrameworkThread(() =>
                                         {
@@ -440,7 +440,7 @@ namespace InventoryTools.Ui
                         }
                     }
 
-                    ImGuiUtil.HoverTooltip("Craftable - Add to Craft List");
+                    ImGuiUtil.HoverTooltip("可制作 - 添加到制作清单");
                 }
                 if (Item.CanBeGathered)
                 {
@@ -451,7 +451,7 @@ namespace InventoryTools.Ui
                         _gameInterface.OpenGatheringLog(_itemId);
                     }
 
-                    ImGuiUtil.HoverTooltip("Gatherable - Open in Gathering Log");
+                    ImGuiUtil.HoverTooltip("可采集 - 在采集手册中打开");
 
                     ImGui.SameLine();
                     if (ImGui.ImageButton(ImGuiService.GetIconTexture(63900).Handle,
@@ -460,7 +460,7 @@ namespace InventoryTools.Ui
                         _commandManager.ProcessCommand("/gather " + Item.NameString);
                     }
 
-                    ImGuiUtil.HoverTooltip("Gatherable - Gather with Gatherbuddy");
+                    ImGuiUtil.HoverTooltip("可采集 - 使用 Gatherbuddy 采集");
                 }
 
                 if (Item.ObtainedFishing)
@@ -472,7 +472,7 @@ namespace InventoryTools.Ui
                         _gameInterface.OpenFishingLog(_itemId, Item.ObtainedSpearFishing);
                     }
 
-                    ImGuiUtil.HoverTooltip("Gatherable - Open in Fishing Log");
+                    ImGuiUtil.HoverTooltip("可采集 - 在钓鱼手册中打开");
 
                     ImGui.SameLine();
                     if (ImGui.ImageButton(ImGuiService.GetIconTexture(63900).Handle,
@@ -481,7 +481,7 @@ namespace InventoryTools.Ui
                         _commandManager.ProcessCommand("/gatherfish " + Item.NameString);
                     }
 
-                    ImGuiUtil.HoverTooltip("Gatherable - Gather with Gatherbuddy");
+                    ImGuiUtil.HoverTooltip("可采集 - 使用 Gatherbuddy 采集");
                 }
 
                 ImGui.Separator();
@@ -512,10 +512,10 @@ namespace InventoryTools.Ui
 
 
 #if DEBUG
-                if (ImGui.CollapsingHeader("Debug"))
+                if (ImGui.CollapsingHeader("调试"))
                 {
-                    ImGui.TextUnformatted("Item ID: " + _itemId);
-                    if (ImGui.Button("Copy"))
+                    ImGui.TextUnformatted("物品 ID: " + _itemId);
+                    if (ImGui.Button("复制"))
                     {
                         _clipboardService.CopyToClipboard(_itemId.ToString());
                     }
@@ -533,7 +533,7 @@ namespace InventoryTools.Ui
             {
                 return;
             }
-            if (ImGui.CollapsingHeader("Sources (" + Item.Sources.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
+            if (ImGui.CollapsingHeader("获取途径 (" + Item.Sources.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
             {
                 var messages = _itemInfoRenderService.DrawItemSourceIcons("Sources", new Vector2(32, 32) * ImGui.GetIO().FontGlobalScale, Item.Sources.ToList());
                 MediatorService.Publish(messages);
@@ -570,7 +570,7 @@ namespace InventoryTools.Ui
                     {
                         foreach (var recipe in recipes)
                         {
-                            craftTypes[recipe.RowId] = recipe.CraftType?.FormattedName ?? "Unknown Craft Type";
+                            craftTypes[recipe.RowId] = recipe.CraftType?.FormattedName ?? "未知制作类型";
                         }
                     }
 
@@ -586,12 +586,12 @@ namespace InventoryTools.Ui
                     _craftTypeId = 0;
                 }
 
-                string headerName = "Recipes - for crafting this item";
+                string headerName = "制作配方 - 用于制作此物品";
                 if (ImGui.CollapsingHeader(headerName))
                 {
                     if (_craftTypes.Count > 1)
                     {
-                        using (var combo = ImRaii.Combo("Craft Types",
+                        using (var combo = ImRaii.Combo("制作类型",
                                    _craftTypes.GetValueOrDefault(_craftTypeId.Value, "")))
                         {
                             if (combo)
@@ -696,7 +696,7 @@ namespace InventoryTools.Ui
             if (SharedModels.Count != 0)
             {
                 hasInformation = true;
-                if (ImGui.CollapsingHeader("Shared Models (" + SharedModels.Count + ")"))
+                if (ImGui.CollapsingHeader("共享模型 (" + SharedModels.Count + ")"))
                 {
                     ImGuiStylePtr style = ImGui.GetStyle();
                     float windowVisibleX2 = ImGui.GetWindowPos().X + ImGui.GetWindowContentRegionMax().X;
@@ -752,7 +752,7 @@ namespace InventoryTools.Ui
             if (RecipesAsRequirement.Length != 0)
             {
                 hasInformation = true;
-                if (ImGui.CollapsingHeader("Recipes - Item is a requirement (" + RecipesAsRequirement.Length + ")"))
+                if (ImGui.CollapsingHeader("配方 - 该物品为材料 (" + RecipesAsRequirement.Length + ")"))
                 {
                     ImGuiStylePtr style = ImGui.GetStyle();
                     float windowVisibleX2 = ImGui.GetWindowPos().X + ImGui.GetWindowContentRegionMax().X;
@@ -796,7 +796,7 @@ namespace InventoryTools.Ui
                                 float lastButtonX2 = ImGui.GetItemRectMax().X;
                                 float nextButtonX2 = lastButtonX2 + style.ItemSpacing.X + 32;
                                 ImGuiUtil.HoverTooltip(recipe.ItemResult!.NameString + " - " +
-                                                       (recipe.CraftType?.FormattedName ?? "Unknown"));
+                                                       (recipe.CraftType?.FormattedName ?? "未知"));
                                 if (index + 1 < RecipesAsRequirement.Length && nextButtonX2 < windowVisibleX2)
                                 {
                                     ImGui.SameLine();
@@ -816,10 +816,10 @@ namespace InventoryTools.Ui
             if (GatheringSources.Count != 0)
             {
                 hasInformation = true;
-                if (ImGui.CollapsingHeader("Gathering (" + GatheringSources.Count + ")"))
+                if (ImGui.CollapsingHeader("采集 (" + GatheringSources.Count + ")"))
                 {
-                    ImGuiTable.DrawTable("Gathering", GatheringSources, DrawGatheringRow,
-                        ImGuiTableFlags.None, new[] { "", "Level", "Location", "" });
+                    ImGuiTable.DrawTable("采集", GatheringSources, DrawGatheringRow,
+                        ImGuiTableFlags.None, new[] { "", "等级", "位置", "" });
                 }
             }
 
@@ -832,10 +832,10 @@ namespace InventoryTools.Ui
             if (RetainerTasks.Length != 0)
             {
                 hasInformation = true;
-                if (ImGui.CollapsingHeader("Ventures (" + RetainerTasks.Count() + ")"))
+                if (ImGui.CollapsingHeader("探索 (" + RetainerTasks.Count() + ")"))
                 {
-                    ImGuiTable.DrawTable("Ventures", RetainerTasks, DrawRetainerRow, ImGuiTableFlags.SizingStretchProp,
-                        new[] { "Name", "Time", "Quantities" });
+                    ImGuiTable.DrawTable("探索", RetainerTasks, DrawRetainerRow, ImGuiTableFlags.SizingStretchProp,
+                        new[] { "名称", "时长", "数量" });
                 }
             }
 
@@ -848,11 +848,11 @@ namespace InventoryTools.Ui
             if (Vendors.Count != 0)
             {
                 hasInformation = true;
-                if (ImGui.CollapsingHeader("Shops (" + Vendors.Count + ")"))
+                if (ImGui.CollapsingHeader("商店 (" + Vendors.Count + ")"))
                 {
-                    ImGui.TextUnformatted("Shops: ");
+                    ImGui.TextUnformatted("商店: ");
                     ImGuiTable.DrawTable("VendorsText", Vendors, DrawSupplierRow, ImGuiTableFlags.None,
-                        new[] { "Shop Name","NPC", "Location", "" });
+                        new[] { "商店名称","NPC", "位置", "" });
                 }
             }
 
@@ -861,10 +861,10 @@ namespace InventoryTools.Ui
 
         private void DrawOwned()
         {
-            if (ImGui.CollapsingHeader("Owned (" + OwnedItems.Count + ")"))
+            if (ImGui.CollapsingHeader("持有 (" + OwnedItems.Count + ")"))
             {
                 ImGuiTable.DrawTable("OwnedItems", OwnedItems, DrawOwnedItem, ImGuiTableFlags.None,
-                    new[] { "Character","Location", "Qty", "Is HQ?" });
+                    new[] { "角色","位置", "数量", "是否 HQ？" });
             }
         }
 
@@ -882,14 +882,14 @@ namespace InventoryTools.Ui
                 {
                     using (ImRaii.Tooltip())
                     {
-                        ImGui.TextUnformatted("This item has been combined into a single outfit glamour item.");
+                        ImGui.TextUnformatted("此物品已被合并为一个套装投影物品。");
                     }
                 }
             }
             ImGui.TableNextColumn();
             ImGui.TextWrapped(obj.Quantity.ToString());
             ImGui.TableNextColumn();
-            ImGui.TextWrapped(obj.IsHQ ? "Yes" : "No");
+            ImGui.TextWrapped(obj.IsHQ ? "是" : "否");
         }
 
 
@@ -908,7 +908,7 @@ namespace InventoryTools.Ui
                 ImGui.TextWrapped(tuple.location + " ( " + Math.Round(tuple.location.MapX, 2) + "/" +
                                   Math.Round(tuple.location.MapY, 2) + ")");
                 ImGui.TableNextColumn();
-                if (ImGui.Button("Teleport##t" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
+                if (ImGui.Button("传送##t" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
                                  tuple.location.Map.RowId))
                 {
                     var nearestAetheryte = _teleporterService.GetNearestAetheryte(tuple.location);
@@ -918,7 +918,7 @@ namespace InventoryTools.Ui
                     }
                     _chatUtilities.PrintFullMapLink(tuple.location, Item?.NameString ?? "");
                 }
-                if (ImGui.Button("Map Link##ml" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
+                if (ImGui.Button("地图链接##ml" + tuple.shop.RowId + "_" + tuple.npc.RowId + "_" +
                                  tuple.location.Map.RowId))
                 {
                     _chatUtilities.PrintFullMapLink(tuple.location, Item?.NameString ?? "");
@@ -927,8 +927,8 @@ namespace InventoryTools.Ui
             else if (tuple.npc is { ENpcBase.IsHouseVendor: true })
             {
                 ImGui.TableNextColumn();
-                ImGui.TextWrapped("Housing Vendor");
-                ImGuiService.HelpMarker("This is a vendor that can be placed inside your house/apartment.");
+                ImGui.TextWrapped("房屋商人");
+                ImGuiService.HelpMarker("这是可以放置在你房屋/公寓中的商人。");
                 ImGui.TableNextColumn();
             }
             else
@@ -944,7 +944,7 @@ namespace InventoryTools.Ui
             if (Item is { CanBePlacedOnMarket: true })
             {
                 var prePosition = ImGui.GetCursorPos();
-                if (ImGui.CollapsingHeader("Market Pricing",
+                if (ImGui.CollapsingHeader("市场价格",
                         ImGuiTreeNodeFlags.CollapsingHeader | ImGuiTreeNodeFlags.DefaultOpen))
                 {
                     if(_marketRefreshing.Count != 0)
@@ -1020,18 +1020,18 @@ namespace InventoryTools.Ui
                     {
                         RequestMarketPrices();
                     }
-                    ImGuiUtil.HoverTooltip("Refresh the current prices.");
+                    ImGuiUtil.HoverTooltip("刷新当前价格。");
                     ImGuiTable.DrawTable("MarketPrices", _marketPrices, DrawMarketRow, ImGuiTableFlags.None,
-                        new[] { "Server","Updated At", "Available", "Min. Price" });
+                        new[] { "服务器","更新时间", "在售数量", "最低价" });
                 }
             }
 
             void DrawMarketRow(MarketPricing obj)
             {
                 ImGui.TableNextColumn();
-                ImGui.TextWrapped(_worldSheet.GetRowOrDefault(obj.WorldId)?.Name.ExtractText() ?? "Unknown");
+                ImGui.TextWrapped(_worldSheet.GetRowOrDefault(obj.WorldId)?.Name.ExtractText() ?? "未知");
                 ImGui.TableNextColumn();
-                ImGui.TextWrapped((obj.LastUpdate - DateTime.Now).Humanize(minUnit: TimeUnit.Minute, maxUnit: TimeUnit.Hour, precision: 1) + " ago");
+                ImGui.TextWrapped((obj.LastUpdate - DateTime.Now).Humanize(minUnit: TimeUnit.Minute, maxUnit: TimeUnit.Hour, precision: 1) + "前");
                 ImGui.TableNextColumn();
                 ImGui.TextWrapped(obj.Available.ToString());
                 ImGui.TableNextColumn();
@@ -1044,7 +1044,7 @@ namespace InventoryTools.Ui
             if (Item?.HasUsesByType(ItemInfoType.SkybuilderHandIn) ?? false)
             {
                 var skybuilderHandIn = Item.GetUsesByType<ItemSkybuilderHandInSource>(ItemInfoType.SkybuilderHandIn).First();
-                if (ImGui.CollapsingHeader("Ishgard Restoration", ImGuiTreeNodeFlags.CollapsingHeader | ImGuiTreeNodeFlags.DefaultOpen))
+                if (ImGui.CollapsingHeader("伊修加德重建", ImGuiTreeNodeFlags.CollapsingHeader | ImGuiTreeNodeFlags.DefaultOpen))
                 {
                     var supplyItem = skybuilderHandIn.HWDCrafterSupplyParams;
                     using (var table = ImRaii.Table("SupplyItems", 4 ,ImGuiTableFlags.None))
@@ -1052,17 +1052,17 @@ namespace InventoryTools.Ui
                         if (table.Success)
                         {
                             ImGui.TableNextColumn();
-                            ImGui.TableHeader("Level");
+                            ImGui.TableHeader("等级");
                             ImGui.TableNextColumn();
-                            ImGui.TableHeader("Collectable Rating");
+                            ImGui.TableHeader("收藏品评分");
                             ImGui.TableNextColumn();
-                            ImGui.TableHeader("XP");
+                            ImGui.TableHeader("经验值");
                             ImGui.TableNextColumn();
-                            ImGui.TableHeader("Scrip");
+                            ImGui.TableHeader("票据");
 
                             ImGui.TableNextRow();
                             ImGui.TableNextColumn();
-                            ImGui.TextWrapped("Base");
+                            ImGui.TextWrapped("基础");
                             ImGui.TableNextColumn();
                             ImGui.TextWrapped(supplyItem.BaseCollectableRating.ToString());
                             ImGui.TableNextColumn();
@@ -1073,7 +1073,7 @@ namespace InventoryTools.Ui
 
                             ImGui.TableNextRow();
                             ImGui.TableNextColumn();
-                            ImGui.TextWrapped("Mid");
+                            ImGui.TextWrapped("中级");
                             ImGui.TableNextColumn();
                             ImGui.TextWrapped(supplyItem.MidCollectableRating.ToString());
                             ImGui.TableNextColumn();
@@ -1084,7 +1084,7 @@ namespace InventoryTools.Ui
 
                             ImGui.TableNextRow();
                             ImGui.TableNextColumn();
-                            ImGui.TextWrapped("High");
+                            ImGui.TextWrapped("高级");
                             ImGui.TableNextColumn();
                             ImGui.TextWrapped(supplyItem.HighCollectableRating.ToString());
                             ImGui.TableNextColumn();
@@ -1102,7 +1102,7 @@ namespace InventoryTools.Ui
         {
             if (MobDrops.Length != 0)
             {
-                if (ImGui.CollapsingHeader("Mob Drops (" + MobDrops.Length + ")", ImGuiTreeNodeFlags.CollapsingHeader))
+                if (ImGui.CollapsingHeader("魔物掉落 (" + MobDrops.Length + ")", ImGuiTreeNodeFlags.CollapsingHeader))
                 {
                      var mobDrops = MobDrops;
                      for (var index = 0; index < mobDrops.Length; index++)
@@ -1123,13 +1123,13 @@ namespace InventoryTools.Ui
                                      {
                                          ImGuiTable.DrawTable("MobSpawns" + index, mobSpawns, DrawMobSpawn,
                                              ImGuiTableFlags.None,
-                                             new[] { "Map", "Spawn Locations" });
+                                             new[] { "地图", "出生点位置" });
                                      }
                                  }
                              }
                              else
                              {
-                                 ImGui.TextUnformatted("No locations known.");
+                                 ImGui.TextUnformatted("无已知位置。");
                              }
                          }
                      }
@@ -1144,7 +1144,7 @@ namespace InventoryTools.Ui
                 return;
             }
 
-            if (ImGui.CollapsingHeader("Uses (" + Item.Uses.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
+            if (ImGui.CollapsingHeader("用途 (" + Item.Uses.Count + ")", ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
             {
                 var messages = _itemInfoRenderService.DrawItemUseIcons("Uses", new Vector2(32, 32) * ImGui.GetIO().FontGlobalScale, Item.Uses.ToList());
                 MediatorService.Publish(messages);
@@ -1218,7 +1218,7 @@ namespace InventoryTools.Ui
                     _gameInterface.OpenGatheringLog(_itemId);
                 }
 
-                ImGuiUtil.HoverTooltip(source.NameString + " - Open in Gathering Log");
+                ImGuiUtil.HoverTooltip(source.NameString + " - 在采集手册中打开");
                 ImGui.TableNextColumn();
                 ImGui.TextUnformatted(obj.GatheringItem.Base.GatheringItemLevel.RowId.ToString());
                 ImGui.TableNextColumn();

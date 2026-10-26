@@ -17,27 +17,27 @@ public class ItemPvpSeriesSourceRenderer : ItemInfoRenderer<ItemPVPSeriesSource>
 
     public override RendererType RendererType { get; } = RendererType.Source;
     public override ItemInfoType Type { get; } = ItemInfoType.PVPSeries;
-    public override string SingularName { get; } = "PVP Series";
-    public override string HelpText { get; } = "Is this item rewarded from a PVP series?";
+    public override string SingularName { get; } = "PVP 赛季";
+    public override string HelpText { get; } = "该物品是否为 PVP 赛季奖励？";
     public override bool ShouldGroup { get; } = true;
 
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.Text("Reward in PVP Series " + asSource.PvpSeries.Value.RowId);
-        ImGui.Text("Unlocks at level " + asSource.Level);
+        ImGui.Text("PVP 赛季 " + asSource.PvpSeries.Value.RowId + " 奖励");
+        ImGui.Text("于等级 " + asSource.Level + " 解锁");
     };
 
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = AsSource(source);
-        return $"Series {asSource.PvpSeries.Value.RowId} Level {asSource.Level}";
+        return $"赛季 {asSource.PvpSeries.Value.RowId} 等级 {asSource.Level}";
     };
 
     public override Func<ItemSource, int> GetIcon => _ => Icons.PVPIcon;
     public override Func<ItemSource, string> GetDescription => source =>
     {
         var asSource = AsSource(source);
-        return $"Series {asSource.PvpSeries.Value.RowId} Level {asSource.Level}";
+        return $"赛季 {asSource.PvpSeries.Value.RowId} 等级 {asSource.Level}";
     };
 }

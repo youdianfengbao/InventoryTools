@@ -45,11 +45,11 @@ public class SampleFilterDuplicateItems : BooleanSetting, ISampleFilter
     public override bool AppearsInConfigWindow => false;
 
     public override string Key { get; set; } = "sample2";
-    public override string Name { get; set; } = "Duplicate Items";
-    public override string HelpText { get; set; } = "Finds any items where there are 2 seperate stacks in retainers & characters and attempts to sort them into a single stack. This is great for making sure your retainers are as compacted as possible.";
-    public string SampleDefaultName => "Duplicated items";
+    public override string Name { get; set; } = "重复物品";
+    public override string HelpText { get; set; } = "查找在雇员与角色处各有一份堆叠的物品，并尝试将其整理为单一堆叠。非常适合让雇员库存尽可能紧凑。";
+    public string SampleDefaultName => "重复物品";
     public string SampleDescription =>
-        "This will add a list that will provide a list of all the distinct stacks that appear in 2 sets of inventories. You can use this to make sure only one retainer has a specific type of item.";
+        "此选项会添加一个清单，列出出现在两组库存中的所有独立堆叠。可用它确保同一种物品只存在于一名雇员处。";
     public SampleFilterType SampleFilterType => SampleFilterType.Sample;
     public override string Version => "1.7.0.0";
     public bool ShouldAdd => _shouldAdd;

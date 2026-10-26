@@ -355,32 +355,32 @@ public class CharacterScopePicker
         var scopeName = "";
         if (scope.Mode == CharacterSearchScopeMode.Invert)
         {
-            scopeName += "Exclude ";
+            scopeName += "排除 ";
         }
         if (scope.CharacterId != null && scope.CharacterId != 0)
         {
             var character = _characterMonitor.GetCharacterById(scope.CharacterId.Value);
-            scopeName += character?.FormattedName ?? "Unknown Character";
+            scopeName += character?.FormattedName ?? "未知角色";
         }
         if (scope.ActiveCharacter != null)
         {
-            scopeName += "Active Character";
+            scopeName += "当前角色";
         }
 
         if (scope.WorldId != null && scope.WorldId != 0)
         {
             var world = _worldSheet.GetRowOrDefault(scope.WorldId.Value);
-            scopeName += world?.Name.ExtractText() ?? "Unknown World";
+            scopeName += world?.Name.ExtractText() ?? "未知世界";
         }
 
         if (scopeName == "")
         {
-            scopeName = "All";
+            scopeName = "全部";
         }
 
         if (scope.Invert)
         {
-            scopeName += " (Invert)";
+            scopeName += " (反转)";
         }
 
         return scopeName;
@@ -392,7 +392,7 @@ public class CharacterScopePicker
     {
 
         var changed = false;
-        var fakeRef = searchScopes.Count + " items selected.";
+        var fakeRef = searchScopes.Count + " 个已选项";
         using (ImRaii.Disabled())
         {
             ImGui.InputText(label, ref fakeRef, 200);
@@ -431,7 +431,7 @@ public class CharacterScopePicker
         {
             if (combo)
             {
-                ImGui.Text("Character Scope Editor");
+                ImGui.Text("角色范围编辑器");
                 using(var child = ImRaii.Child("selected", new Vector2(200, 0) * ImGui.GetIO().FontGlobalScale , true, ImGuiWindowFlags.NoScrollbar))
                 {
                     if (child)
@@ -442,7 +442,7 @@ public class CharacterScopePicker
                             {
                                 if (searchScopes.Count == 0)
                                 {
-                                    ImGui.TextWrapped("No scopes defined yet. Press add to start.");
+                                    ImGui.TextWrapped("尚未定义任何范围。点击添加即可开始。");
                                 }
 
                                 for (var index = 0; index < searchScopes.Count; index++)
@@ -473,14 +473,14 @@ public class CharacterScopePicker
                         {
                             if (commandBar)
                             {
-                                if (ImGui.Button("Add"))
+                                if (ImGui.Button("添加"))
                                 {
                                     _selectedScope = new CharacterSearchScope();
                                     searchScopes.Add(_selectedScope);
                                     changed = true;
                                 }
                                 ImGui.SameLine();
-                                if (ImGui.Button("Save"))
+                                if (ImGui.Button("保存"))
                                 {
                                     ImGui.CloseCurrentPopup();
                                 }
@@ -494,9 +494,9 @@ public class CharacterScopePicker
                 {
                     if (_selectedScope == null)
                     {
-                        ImGui.TextWrapped("The character scope editor allows you define which characters you want to search across.");
-                        ImGui.TextWrapped("By default, every character Allagan Tools knows about is searched.");
-                        ImGui.TextWrapped("By providing a set of scopes, you are narrowing down from which characters are displayed/counted.");
+                        ImGui.TextWrapped("角色范围编辑器用于定义要跨哪些角色进行搜索。");
+                        ImGui.TextWrapped("默认情况下，Allagan Tools 已知的所有角色都会被搜索。");
+                        ImGui.TextWrapped("提供一组范围后，将缩小显示/统计物品时涉及的角色范围。");
                     }
                     else
                     {
@@ -509,29 +509,29 @@ public class CharacterScopePicker
                                     var isCharacter = _selectedScope.CharacterId != null;
                                     var isWorld = _selectedScope.WorldId != null;
                                     var isActiveCharacter = _selectedScope.ActiveCharacter != null;
-                                    ImGui.Text("Search Scope:");
+                                    ImGui.Text("搜索范围：");
                                     ImGui.Separator();
-                                    if (ImGui.RadioButton("All",!isCharacter && !isWorld && !isActiveCharacter))
+                                    if (ImGui.RadioButton("全部",!isCharacter && !isWorld && !isActiveCharacter))
                                     {
                                         _selectedScope.Reset();
                                     }
                                     ImGui.SameLine();
-                                    _imGuiService.HelpMarker("Match against all characters");
+                                    _imGuiService.HelpMarker("匹配所有角色");
                                     ImGui.NewLine();
 
-                                    if (ImGui.RadioButton("Character",isCharacter))
+                                    if (ImGui.RadioButton("角色",isCharacter))
                                     {
                                         _selectedScope.Reset();
                                         _selectedScope.CharacterId = 0;
                                     }
                                     ImGui.SameLine();
-                                    _imGuiService.HelpMarker("Match against a specific character(player character, retainer, free company, etc)");
+                                    _imGuiService.HelpMarker("匹配特定角色（玩家角色、雇员、部队等）");
 
                                     if (_selectedScope.CharacterId != null)
                                     {
                                         var selectedCharacter = _characterMonitor.GetCharacterById(_selectedScope.CharacterId.Value);
                                         using (var characterSelector = ImRaii.Combo("##character",
-                                                   selectedCharacter?.FormattedName ?? "Select Character"))
+                                                   selectedCharacter?.FormattedName ?? "选择角色"))
                                         {
                                             if (characterSelector)
                                             {
@@ -554,27 +554,27 @@ public class CharacterScopePicker
                                         }
                                     }
                                     ImGui.NewLine();
-                                    if (ImGui.RadioButton("Active Character",isActiveCharacter))
+                                    if (ImGui.RadioButton("当前角色",isActiveCharacter))
                                     {
                                         _selectedScope.Reset();
                                         _selectedScope.ActiveCharacter = true;
                                     }
                                     ImGui.SameLine();
-                                    _imGuiService.HelpMarker("Match against the currently logged in character.");
+                                    _imGuiService.HelpMarker("匹配当前登录的角色。");
                                     ImGui.NewLine();
 
-                                    if (ImGui.RadioButton("World",isWorld))
+                                    if (ImGui.RadioButton("世界",isWorld))
                                     {
                                         _selectedScope.Reset();
                                         _selectedScope.WorldId = 0;
                                     }
                                     ImGui.SameLine();
-                                    _imGuiService.HelpMarker("Match against a specific world");
+                                    _imGuiService.HelpMarker("匹配特定世界");
                                     if (_selectedScope.WorldId != null)
                                     {
                                         var selectedWorld = _selectedScope.WorldId == 0 ? null : _worldSheet.GetRowOrDefault(_selectedScope.WorldId.Value);
                                         using (var worldSelector = ImRaii.Combo("##world",
-                                                   selectedWorld?.Name.ExtractText() ?? "Select World"))
+                                                   selectedWorld?.Name.ExtractText() ?? "选择世界"))
                                         {
                                             if (worldSelector)
                                             {
@@ -599,10 +599,10 @@ public class CharacterScopePicker
                                         }
                                         else
                                         {
-                                            characterTypesPreview = "Select character types";
+                                            characterTypesPreview = "选择角色类型";
                                         }
 
-                                        ImGui.LabelText("##characterTypesLabel", "Character Types: ");
+                                        ImGui.LabelText("##characterTypesLabel", "角色类型：");
                                         using (var characterTypeSelector =
                                                ImRaii.Combo("##characterTypes", characterTypesPreview))
                                         {
@@ -639,20 +639,20 @@ public class CharacterScopePicker
                                             }
                                         }
                                         ImGui.SameLine();
-                                        _imGuiService.HelpMarker("When 'All' or 'World' is selected, choose the types of characters you want to filter against. Select an item again to unselect it.");
+                                        _imGuiService.HelpMarker("选择“全部”或“世界”时，选择要筛选的角色类型。再次点击已选项可取消选择。");
                                     }
 
                                     ImGui.Separator();
                                     ImGui.NewLine();
                                     var invert = _selectedScope.Invert;
-                                    if (ImGui.Checkbox("Invert", ref invert))
+                                    if (ImGui.Checkbox("反转", ref invert))
                                     {
                                         _selectedScope.Invert = invert;
                                         changed = true;
                                     }
 
                                     ImGui.SameLine();
-                                    _imGuiService.HelpMarker("When checked, match against the opposite of what is selected.");
+                                    _imGuiService.HelpMarker("勾选后，匹配与所选内容相反的对象。");
                                 }
                             }
 
@@ -660,13 +660,13 @@ public class CharacterScopePicker
                             {
                                 if (commandBar)
                                 {
-                                    if (ImGui.Button("Save"))
+                                    if (ImGui.Button("保存"))
                                     {
                                         _selectedScope = null;
                                         changed = true;
                                     }
                                     ImGui.SameLine();
-                                    if (ImGui.Button("Delete") && _selectedScope != null)
+                                    if (ImGui.Button("删除") && _selectedScope != null)
                                     {
                                         searchScopes.Remove(_selectedScope);
                                         _selectedScope = null;

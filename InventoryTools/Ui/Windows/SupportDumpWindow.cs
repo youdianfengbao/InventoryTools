@@ -17,7 +17,7 @@ namespace InventoryTools.Ui
         private readonly IFileDialogManager _fileDialogManager;
         private readonly IChatUtilities _chatUtilities;
 
-        public SupportDumpWindow(ILogger<SupportDumpWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, SupportDumpService supportDumpService, IFileDialogManager fileDialogManager, IChatUtilities chatUtilities, string name = "Generate Support Dump") : base(logger, mediator, imGuiService, configuration, name)
+        public SupportDumpWindow(ILogger<SupportDumpWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, SupportDumpService supportDumpService, IFileDialogManager fileDialogManager, IChatUtilities chatUtilities, string name = "生成支持转储") : base(logger, mediator, imGuiService, configuration, name)
         {
             _supportDumpService = supportDumpService;
             _fileDialogManager = fileDialogManager;
@@ -26,7 +26,7 @@ namespace InventoryTools.Ui
 
         public override void Initialize()
         {
-            WindowName = "Generate Support Dump";
+            WindowName = "生成支持转储";
             Key = "supportdump";
         }
 
@@ -35,20 +35,20 @@ namespace InventoryTools.Ui
         public override Vector2? MaxSize { get; } = new Vector2(800, 400);
         public override Vector2? MinSize { get; } = new Vector2(300, 150);
         public override string GenericKey { get; } = "supportdump";
-        public override string GenericName { get; } = "Generate Support Dump";
+        public override string GenericName { get; } = "生成支持转储";
         public override bool DestroyOnClose => true;
 
         public override void DrawWindow()
         {
             ImGui.PushTextWrapPos();
             ImGui.TextWrapped(
-                "Only press this if you have been instructed to, it will generate a zip file containing your inventory, the allagan tools configuration, and your logs. If you are attempting to provide this information to help fix a bug, turn on Verbose Logging in File, replicate the bug and then generate this dump. Proceed?");
+                "只有在被明确指示时才点击此按钮，它会生成一个 zip 文件，其中包含你的库存、Allagan Tools 配置以及日志。如果你准备提供这些信息来帮助修复 bug，请先在 File 中开启详细日志（Verbose Logging），复现该 bug 后再生成此转储。是否继续？");
             ImGui.PopTextWrapPos();
             ImGui.NewLine();
 
-            if (ImGui.Button("Proceed"))
+            if (ImGui.Button("继续"))
             {
-                _fileDialogManager.SaveFileDialog("Save support dump", "*.zip", "support_dump.zip", ".zip",
+                _fileDialogManager.SaveFileDialog("保存支持转储", "*.zip", "support_dump.zip", ".zip",
                     (success, path) =>
                     {
                         if (success)
@@ -60,7 +60,7 @@ namespace InventoryTools.Ui
 
             ImGui.SameLine();
 
-            if (ImGui.Button("Cancel"))
+            if (ImGui.Button("取消"))
             {
                 this.IsOpen = false;
             }
@@ -71,16 +71,16 @@ namespace InventoryTools.Ui
             var result = _supportDumpService.GenerateDump(path);
             if (result.Success)
             {
-                var included = result.IncludedFiles.Any() ? string.Join(", ", result.IncludedFiles) : "no files";
-                _chatUtilities.Print($"Support dump saved to {result.ZipPath} ({included}).");
+                var included = result.IncludedFiles.Any() ? string.Join(", ", result.IncludedFiles) : "无文件";
+                _chatUtilities.Print($"支持转储已保存至 {result.ZipPath}（{included}）。");
                 if (result.MissingFiles.Any())
                 {
-                    _chatUtilities.PrintError($"The following files could not be included in the support dump: {string.Join(", ", result.MissingFiles)}.");
+                    _chatUtilities.PrintError($"以下文件未能包含在支持转储中：{string.Join(", ", result.MissingFiles)}。");
                 }
             }
             else
             {
-                _chatUtilities.PrintError("Failed to generate the support dump. Please check your Dalamud log for details.");
+                _chatUtilities.PrintError("生成支持转储失败。详情请查看 Dalamud 日志。");
             }
 
             this.IsOpen = false;

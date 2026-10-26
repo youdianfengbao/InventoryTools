@@ -50,7 +50,7 @@ public class LevelViewSection : ViewSection
         }
 
         var icon = _relatedObjectType?.GetIcon(entry.Value.Object.RowId).Item2 ?? Icons.FlagIcon;
-        var name = _relatedObjectType?.GetName(entry.Value.Object.RowId) ?? "Location";
+        var name = _relatedObjectType?.GetName(entry.Value.Object.RowId) ?? "位置";
 
         var iconSize = 32f * ImGui.GetIO().FontGlobalScale;
 
@@ -103,6 +103,6 @@ public class LevelViewSection : ViewSection
 
 public record LevelViewSectionOptions : SectionOptions
 {
-    public override required string SectionName { get; init; } = "Location";
+    public override required string SectionName { get; init; } = "位置";
     public RowRef<Level> Level { get; init; }
 }

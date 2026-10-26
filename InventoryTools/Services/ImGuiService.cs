@@ -186,7 +186,7 @@ public class ImGuiService : AllaganLib.Interface.Services.ImGuiService
         }
         else
         {
-            ImGui.Text("Invalid Icon ID");
+            ImGui.Text("无效的图标 ID");
         }
     }
 

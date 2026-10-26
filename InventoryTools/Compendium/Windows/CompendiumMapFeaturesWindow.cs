@@ -39,7 +39,7 @@ public class CompendiumMapFeaturesWindow : UintWindow
         MediatorService mediator,
         ImGuiService imGuiService,
         InventoryToolsConfiguration configuration)
-        : base(logger, mediator, imGuiService, configuration, "Territory Compendium")
+        : base(logger, mediator, imGuiService, configuration, "地区图鉴")
     {
         _compendiumTypes = compendiumTypes;
         _territoryTypeCompendiumType = territoryTypeCompendiumType;
@@ -51,8 +51,8 @@ public class CompendiumMapFeaturesWindow : UintWindow
         base.Initialize(windowId);
 
         var relatedRows = _territoryTypeCompendiumType.GetRow(windowId);
-        _territoryName = relatedRows?.FirstOrDefault()?.Base.PlaceName.ValueNullable?.Name.ToImGuiString() ?? "Unknown Territory";
-        WindowName = _territoryName + " - " + "POIs";
+        _territoryName = relatedRows?.FirstOrDefault()?.Base.PlaceName.ValueNullable?.Name.ToImGuiString() ?? "未知地区";
+        WindowName = _territoryName + " - " + "地点标记";
         var relatedIds = relatedRows?.Select(c => c.RowId).ToHashSet() ?? [];
 
         _results.Clear();
@@ -93,7 +93,7 @@ public class CompendiumMapFeaturesWindow : UintWindow
     {
         if (_results.Count == 0)
         {
-            ImGui.TextUnformatted("No entries found for this territory.");
+            ImGui.TextUnformatted("该地区没有找到任何条目。");
             return;
         }
 
@@ -173,7 +173,7 @@ public class CompendiumMapFeaturesWindow : UintWindow
                 {
                     var rowId = rows[i];
 
-                    var name = _selectedType.GetName(rowId) ?? "Unknown";
+                    var name = _selectedType.GetName(rowId) ?? "未知";
                     var subtitle = _selectedType.GetSubtitle(rowId);
                     var location = _selectedType.GetLocation(rowId);
                     var icon = _selectedType.GetIcon(rowId);
@@ -249,7 +249,7 @@ public class CompendiumMapFeaturesWindow : UintWindow
     public override FilterConfiguration? SelectedConfiguration => null;
 
     public override string GenericKey => "territory_compendium";
-    public override string GenericName => "Territory Compendium";
+    public override string GenericName => "地区图鉴";
     public override bool DestroyOnClose => true;
     public override bool SaveState => true;
     public override Vector2? DefaultSize => new Vector2(700, 600);

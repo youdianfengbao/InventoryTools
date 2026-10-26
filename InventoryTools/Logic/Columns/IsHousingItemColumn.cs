@@ -15,10 +15,10 @@ namespace InventoryTools.Logic.Columns
         {
             return Helpers.HousingCategoryIds.Contains(searchResult.Item.Base.ItemUICategory.RowId);
         }
-        public override string Name { get; set; } = "Is Housing Item?";
-        public override string RenderName => "Is Housing?";
+        public override string Name { get; set; } = "房屋物品？";
+        public override string RenderName => "房屋物品？";
         public override float Width { get; set; } = 100;
-        public override string HelpText { get; set; } = "Is this item a housing item? This might be slightly inaccurate for the time being.";
+        public override string HelpText { get; set; } = "该物品是否为房屋家具？目前判定可能略有偏差。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

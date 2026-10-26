@@ -27,10 +27,10 @@ public class HistoryChangeDateColumn : DateTimeColumn
         return CurrentValue(columnConfiguration, searchResult)?.ToString(CultureInfo.InvariantCulture) ?? "";
     }
 
-    public override string Name { get; set; } = "History Event Date/Time";
-    public override string RenderName => "Date/Time";
+    public override string Name { get; set; } = "库存变动时间";
+    public override string RenderName => "日期/时间";
     public override float Width { get; set; } = 50;
-    public override string HelpText { get; set; } = "When did the historical inventory event happen?";
+    public override string HelpText { get; set; } = "该次库存变动发生在什么时候？";
     public override bool HasFilter { get; set; } = true;
     public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     public override FilterType AvailableIn { get; } = Logic.FilterType.HistoryFilter;

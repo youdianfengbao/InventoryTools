@@ -26,9 +26,9 @@ public class ItemDungeonBossChestSourceRenderer : ItemInfoRenderer<ItemDungeonBo
 
     public override RendererType RendererType => RendererType.Source;
     public override ItemInfoType Type => ItemInfoType.DungeonBossChest;
-    public override string SingularName => "Dungeon Boss Chest";
-    public override string PluralName => "Dungeon Boss Chests";
-    public override string HelpText => "Can the item appear in a dungeon boss chest?";
+    public override string SingularName => "副本 BOSS 宝箱";
+    public override string PluralName => "副本 BOSS 宝箱";
+    public override string HelpText => "该物品是否可能出现在副本 BOSS 宝箱中？";
     public override bool ShouldGroup => true;
     public override IReadOnlyList<ItemInfoRenderCategory> Categories => [ItemInfoRenderCategory.Duty];
 
@@ -41,10 +41,10 @@ public class ItemDungeonBossChestSourceRenderer : ItemInfoRenderer<ItemDungeonBo
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = AsSource(source);
-        ImGui.Text("Dungeon: " + asSource.ContentFinderCondition.FormattedName);
+        ImGui.Text("副本：" + asSource.ContentFinderCondition.FormattedName);
         using (ImRaii.PushIndent())
         {
-            ImGui.Text(asSource.BNpcName.Base.Singular.ExtractText().ToTitleCase() + " (Boss " + (asSource.DungeonBoss.FightNo + 1) + ")");
+            ImGui.Text(asSource.BNpcName.Base.Singular.ExtractText().ToTitleCase() + "（BOSS " + (asSource.DungeonBoss.FightNo + 1) + "）");
         }
     };
 
@@ -61,12 +61,12 @@ public class ItemDungeonBossChestSourceRenderer : ItemInfoRenderer<ItemDungeonBo
         var groupedByDungeon = asSources.GroupBy(c => c.DungeonBoss.ContentFinderCondition.RowId);
         foreach (var dungeon in groupedByDungeon)
         {
-            ImGui.Text("Dungeon: " + dungeon.First().DungeonBoss.ContentFinderCondition.Value.Name.ExtractText());
+            ImGui.Text("副本：" + dungeon.First().DungeonBoss.ContentFinderCondition.Value.Name.ExtractText());
             using (ImRaii.PushIndent())
             {
                 foreach (var itemSource in dungeon.DistinctBy(c => c.DungeonBoss.BNpcName.RowId))
                 {
-                    ImGui.Text(itemSource.BNpcName.Base.Singular.ExtractText().ToTitleCase() + " (Boss " + (itemSource.DungeonBoss.FightNo + 1) + ")");
+                    ImGui.Text(itemSource.BNpcName.Base.Singular.ExtractText().ToTitleCase() + "（BOSS " + (itemSource.DungeonBoss.FightNo + 1) + "）");
                 }
             }
         }

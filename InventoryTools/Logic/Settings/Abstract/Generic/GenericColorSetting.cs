@@ -32,7 +32,7 @@ public abstract class GenericColorSetting : Setting<Vector4?>
 
         var enabled = value != null;
 
-        if (ImGui.Checkbox("Enable##"+Key+"Boolean", ref enabled))
+        if (ImGui.Checkbox("启用##"+Key+"Boolean", ref enabled))
         {
             if (value == null)
             {
@@ -60,7 +60,7 @@ public abstract class GenericColorSetting : Setting<Vector4?>
         if (disableReset != true && HasValueSet(configuration))
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 Reset(configuration);
             }

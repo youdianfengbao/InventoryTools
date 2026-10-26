@@ -26,12 +26,12 @@ namespace InventoryTools.Logic.Columns
             return _unlockTrackerService.IsUnlocked(searchResult.Item);
         }
 
-        public override string Name { get; set; } = "Has Been Acquired?";
-        public override string RenderName => "Acquired?";
+        public override string Name { get; set; } = "是否已获得？";
+        public override string RenderName => "已获得？";
         public override float Width { get; set; } = 125.0f;
 
         public override string HelpText { get; set; } =
-            "If a item can be acquired(mounts, minions, etc) this shows whether or not it has been acquired on the currently logged in character.";
+            "若物品可被获得（坐骑、宠物等），显示当前登录的角色是否已获得该物品。";
 
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Boolean;

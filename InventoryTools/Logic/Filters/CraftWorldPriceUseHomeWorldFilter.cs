@@ -14,8 +14,8 @@ public class CraftWorldPriceUseHomeWorldFilter : BooleanFilter
     }
 
     public override string Key { get; set; } = "CraftWorldPriceUseHomeWorld";
-    public override string Name { get; set; } = "Use Home World?";
-    public override string HelpText { get; set; } = "Should your currently logged in character's home world be used as a pricing source?";
+    public override string Name { get; set; } = "使用主世界？";
+    public override string HelpText { get; set; } = "是否使用当前登录角色的主世界作为价格来源？";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.WorldPricePreference;
     public override FilterType AvailableIn { get; set; } = FilterType.CraftFilter;
     public override bool? DefaultValue { get; set; } = true;

@@ -93,11 +93,11 @@ namespace InventoryTools.Logic.Columns
                 ImGui.NewLine();
                 ImGui.Separator();
                 ImGui.SetNextItemWidth(220);
-                ImGui.LabelText("##" + configuration.Key + "Search", "Characters to search in:");
+                ImGui.LabelText("##" + configuration.Key + "Search", "要搜索的角色：");
                 ImGui.SetNextItemWidth(250);
                 ImGui.SameLine();
                 _scopePickerColumnSetting.Draw(columnConfiguration,
-                    "This lets you set which characters you want to generate a total based off.");
+                    "设置汇总数量时要计入哪些角色。");
                 base.DrawEditor(columnConfiguration, configuration);
             }
             return null;
@@ -138,13 +138,13 @@ namespace InventoryTools.Logic.Columns
             return base.Draw(configuration, columnConfiguration, searchResult, rowIndex, columnIndex);
         }
 
-        public override string Name { get; set; } = "Quantity/Total Quantity Available";
-        public override string RenderName => "Quantity";
+        public override string Name { get; set; } = "数量/可用总量";
+        public override string RenderName => "数量";
 
         public override float Width { get; set; } = 70.0f;
 
         public override string HelpText { get; set; } =
-            "The quantity of the item. If viewing from a game items or craft filter, this will show the total number of items available in all inventories.";
+            "物品的数量。在游戏物品或制作筛选器视图中，显示所有库存中该物品的可用总数。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
 

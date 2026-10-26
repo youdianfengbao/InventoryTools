@@ -138,7 +138,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_moreInformationSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "More Information";
+                menuItem.Name = "更多信息";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += clickedArgs => MoreInformationClicked(clickedArgs, itemId);
                 args.AddMenuItem(menuItem);
@@ -147,7 +147,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_itemSearchSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "Search";
+                menuItem.Name = "搜索";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += clickedArgs => ItemSearchClicked(clickedArgs, itemId);
                 args.AddMenuItem(menuItem);
@@ -156,7 +156,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_copyNameSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "Copy Name to Clipboard";
+                menuItem.Name = "复制名称到剪贴板";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += clickedArgs => CopyNameClicked(clickedArgs, itemId);
                 args.AddMenuItem(menuItem);
@@ -168,7 +168,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
                 if (activeList != null)
                 {
                     var menuItem = new MenuItem();
-                    menuItem.Name = "Add to Active Craft List";
+                    menuItem.Name = "添加到当前制作清单";
                     menuItem.PrefixChar = 'A';
                     menuItem.OnClicked += clickedArgs => AddToCraftList(activeList, clickedArgs, itemId);
                     args.AddMenuItem(menuItem);
@@ -178,7 +178,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_addToCraftListSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "Add to Craft List";
+                menuItem.Name = "添加到制作清单";
                 menuItem.PrefixChar = 'A';
                 menuItem.IsSubmenu = true;
                 menuItem.OnClicked += clickedArgs => OpenAddCraftListSubmenu(clickedArgs, itemId);
@@ -188,7 +188,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_curatedListSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "Add to Curated List";
+                menuItem.Name = "添加到精选清单";
                 menuItem.PrefixChar = 'A';
                 menuItem.IsSubmenu = true;
                 menuItem.OnClicked += clickedArgs => OpenAddCuratedListSubmenu(clickedArgs, itemId);
@@ -198,7 +198,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_addToFavouritesSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = _configuration.IsFavouriteItem(itemId.Value) ? "Remove from Favourites" : "Add to Favourites";
+                menuItem.Name = _configuration.IsFavouriteItem(itemId.Value) ? "从收藏中移除" : "添加到收藏";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += _ => _configuration.ToggleFavouriteItem(itemId.Value);
                 args.AddMenuItem(menuItem);
@@ -210,7 +210,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
                 if (item != null && item.CanOpenCraftingLog)
                 {
                     var menuItem = new MenuItem();
-                    menuItem.Name = "Open Crafting Log";
+                    menuItem.Name = "打开制作日志";
                     menuItem.PrefixChar = 'A';
                     menuItem.OnClicked += _ => _gameInterface.OpenCraftingLog(itemId.Value);
                     args.AddMenuItem(menuItem);
@@ -223,7 +223,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
                 if (item != null && item.CanOpenGatheringLog)
                 {
                     var menuItem = new MenuItem();
-                    menuItem.Name = "Open Gathering Log";
+                    menuItem.Name = "打开采集日志";
                     menuItem.PrefixChar = 'A';
                     menuItem.OnClicked += _ => _gameInterface.OpenGatheringLog(itemId.Value);
                     args.AddMenuItem(menuItem);
@@ -235,7 +235,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
                 if (item != null && item.CanOpenFishingLog)
                 {
                     var menuItem = new MenuItem();
-                    menuItem.Name = "Open Fishing Log";
+                    menuItem.Name = "打开钓鱼日志";
                     menuItem.PrefixChar = 'A';
                     menuItem.OnClicked += _ => _gameInterface.OpenFishingLog(itemId.Value, item.ObtainedSpearFishing);
                     args.AddMenuItem(menuItem);
@@ -247,7 +247,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_moreInformationNpcsSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "More Information";
+                menuItem.Name = "更多信息";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += _ => MediatorService.Publish(new OpenUintWindowMessage(typeof(ENpcWindow), eNpcResidentId.Value));
                 args.AddMenuItem(menuItem);
@@ -258,7 +258,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
             if (_moreInformationMonstersSetting.CurrentValue(_configuration))
             {
                 var menuItem = new MenuItem();
-                menuItem.Name = "More Information";
+                menuItem.Name = "更多信息";
                 menuItem.PrefixChar = 'A';
                 menuItem.OnClicked += _ => MediatorService.Publish(new OpenUintWindowMessage(typeof(BNpcWindow), bNpcNameId.Value));
                 args.AddMenuItem(menuItem);
@@ -428,12 +428,12 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
         }
 
         var newButton = new MenuItem();
-        newButton.Name = "Add to New Craft List";
+        newButton.Name = "添加到新的制作清单";
         newButton.OnClicked += args => AddToNewCraftList(args, itemId);
         menuItems.Add(newButton);
 
         newButton = new MenuItem();
-        newButton.Name = "Add to New Ephemeral Craft List";
+        newButton.Name = "添加到新的临时制作清单";
         newButton.OnClicked += args => AddToNewEphemeralCraftList(args, itemId);
         menuItems.Add(newButton);
         obj.OpenSubmenu(menuItems);
@@ -455,7 +455,7 @@ public class ContextMenuService : DisposableMediatorSubscriberBase, IHostedServi
         }
 
         var newButton = new MenuItem();
-        newButton.Name = "Add to New Curated List";
+        newButton.Name = "添加到新的精选清单";
         newButton.OnClicked += args => AddToNewCuratedList(args, itemId);
         menuItems.Add(newButton);
 

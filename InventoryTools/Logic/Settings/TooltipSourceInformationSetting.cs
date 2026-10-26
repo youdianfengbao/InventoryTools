@@ -33,18 +33,18 @@ public enum TooltipSourceModifier
 
 public class TooltipSourceInformationEnabledSetting : GenericBooleanSetting
 {
-    public TooltipSourceInformationEnabledSetting(ILogger<TooltipSourceInformationEnabledSetting> logger, ImGuiService imGuiService) : base("TooltipSourceInformationEnabled", "Source Information Enabled", "Should source information be shown in the tooltip? For example that an item can be sourced via crafting, shops, monsters etc", true, "1.11.0.11", logger, imGuiService)
+    public TooltipSourceInformationEnabledSetting(ILogger<TooltipSourceInformationEnabledSetting> logger, ImGuiService imGuiService) : base("TooltipSourceInformationEnabled", "启用来源信息", "是否在提示中显示来源信息？例如物品可通过制作、商店、魔物掉落等途径获得。", true, "1.11.0.11", logger, imGuiService)
     {
     }
 
-    public override string WizardName { get; } = "Show Source Information";
+    public override string WizardName { get; } = "显示来源信息";
 }
 
 public class TooltipSourceInformationModifierSetting : GenericEnumChoiceSetting<TooltipSourceModifier>
 {
-    public TooltipSourceInformationModifierSetting(ILogger<TooltipSourceInformationModifierSetting> logger, ImGuiService imGuiService) : base("TooltipSourceInformationModifier", "Source Information Modifier Key", "Should the tooltip only be shown if a modifier key is pressed?", TooltipSourceModifier.Always, new()
+    public TooltipSourceInformationModifierSetting(ILogger<TooltipSourceInformationModifierSetting> logger, ImGuiService imGuiService) : base("TooltipSourceInformationModifier", "来源信息修饰键", "是否仅在按住修饰键时才显示提示？", TooltipSourceModifier.Always, new()
     {
-        {TooltipSourceModifier.Always, "Always"},
+        {TooltipSourceModifier.Always, "总是"},
         {TooltipSourceModifier.Control, "Control"},
         {TooltipSourceModifier.Shift, "Shift"},
     }, "1.11.0.11", logger, imGuiService)
@@ -64,9 +64,9 @@ public class TooltipSourceInformationSetting : Setting<Dictionary<ItemInfoType, 
         _itemInfoRenderers = itemInfoRenderers.Where(c => c.RendererType == RendererType.Source).ToDictionary(c => c.Type, c => c);
         _choices = new Dictionary<SourceIconGrouping, string>()
         {
-            {SourceIconGrouping.Default, "Default"},
-            {SourceIconGrouping.Grouped, "Grouped"},
-            {SourceIconGrouping.Ungrouped, "Ungrouped"}
+            {SourceIconGrouping.Default, "默认"},
+            {SourceIconGrouping.Grouped, "分组"},
+            {SourceIconGrouping.Ungrouped, "不分组"}
         };
     }
 
@@ -117,9 +117,9 @@ public class TooltipSourceInformationSetting : Setting<Dictionary<ItemInfoType, 
 
 
                 ImGui.TableSetupColumn("Settings", ImGuiTableColumnFlags.NoHeaderLabel);
-                ImGui.TableSetupColumn("Name");
-                ImGui.TableSetupColumn("Show");
-                ImGui.TableSetupColumn("Group Mode");
+                ImGui.TableSetupColumn("名称");
+                ImGui.TableSetupColumn("显示");
+                ImGui.TableSetupColumn("分组模式");
 
                 ImGui.TableHeadersRow();
 
@@ -271,10 +271,10 @@ public class TooltipSourceInformationSetting : Setting<Dictionary<ItemInfoType, 
     }
 
     public override string Key { get; set; } = "TooltipSourceInformation";
-    public override string Name { get; set; } = "Source Information Configuration";
+    public override string Name { get; set; } = "来源信息配置";
 
     public override string HelpText { get; set; } =
-        "If the source information tooltip is enabled, how should the various sources be ordered/displayed/etc?";
+        "若启用了来源信息提示，各来源应如何排序/显示等？";
 
     public override string Version { get; } = "1.11.0.11";
 }

@@ -36,7 +36,7 @@ public class TerritoryTypeCompendiumType : CompendiumType<IGrouping<string, Terr
             Columns = BuiltColumns,
             CompendiumType = this,
             Key = "territory_types",
-            Name = "Territory Types",
+            Name = "地区",
         });
     }
 
@@ -75,8 +75,8 @@ public class TerritoryTypeCompendiumType : CompendiumType<IGrouping<string, Terr
         builder.AddCompendiumOpenViewColumn(new()
         {
             Key = "icon",
-            Name = "Icon",
-            HelpText = "Territory icon",
+            Name = "图标",
+            HelpText = "地区图标",
             Version = "14.0.3",
             CompendiumType = this,
             RowIdSelector = row => row.First().RowId,
@@ -86,8 +86,8 @@ public class TerritoryTypeCompendiumType : CompendiumType<IGrouping<string, Terr
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the territory",
+            Name = "名称",
+            HelpText = "地区名称",
             Version = "14.0.3",
             ValueSelector = GetName
         });
@@ -105,9 +105,9 @@ public class TerritoryTypeCompendiumType : CompendiumType<IGrouping<string, Terr
 
     public override bool ShowInListing => true;
 
-    public override string Singular => "Territory";
-    public override string Plural => "Territories";
-    public override string Description => "Territories available in the game";
+    public override string Singular => "地区";
+    public override string Plural => "地区";
+    public override string Description => "游戏中的各个地区";
     public override string Key => "territories";
     public override (string?, uint?) Icon => (null, Icons.FlagIcon);
 }

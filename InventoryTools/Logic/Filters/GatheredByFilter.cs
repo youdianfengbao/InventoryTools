@@ -20,8 +20,8 @@ public class GatheredByFilter : UintMultipleChoiceFilter
     }
 
     public override string Key { get; set; } = "GatheredByFilter";
-    public override string Name { get; set; } = "Gathered By?";
-    public override string HelpText { get; set; } = "How is this item gathered?";
+    public override string Name { get; set; } = "采集方式？";
+    public override string HelpText { get; set; } = "该物品如何采集？";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.Gathering;
 
     public override List<uint> DefaultValue { get; set; } = new();
@@ -52,7 +52,7 @@ public class GatheredByFilter : UintMultipleChoiceFilter
     public override Dictionary<uint, string> GetChoices(FilterConfiguration configuration)
     {
         var dictionary = _gatheringTypeSheet.Where(c => c.RowId < 4).ToDictionary(c => c.RowId, c => c.Name.ExtractText());
-        dictionary.Add(10, "Fishing");
+        dictionary.Add(10, "捕鱼");
         return dictionary;
     }
 

@@ -13,10 +13,10 @@ namespace InventoryTools.Logic.Filters
         public override FilterType AvailableIn { get; set; } =
             FilterType.SearchFilter | FilterType.CraftFilter | FilterType.SortingFilter | FilterType.GameItemFilter | FilterType.HistoryFilter | FilterType.CuratedList;
         public override string Key { get; set; } = "TabHighlightColor";
-        public override string Name { get; set; } = "Tab Highlight Color";
+        public override string Name { get; set; } = "标签页高亮颜色";
 
         public override string HelpText { get; set; } =
-            "The color to set the highlighted tabs(which contain filtered items) to for this specific filter. If not overridden the tab highlighting color will be used.";
+            "此筛选器中高亮标签页（包含筛选物品的标签页）的着色。若未覆盖，将使用标签页高亮颜色。";
 
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Display;
 

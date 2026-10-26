@@ -39,9 +39,9 @@ public class CraftSoulCrystalCompendiumType : CompendiumType<ItemCraftSoulCrysta
         _staticIcon = new Lazy<(string?, uint?)>(BuildStaticIcon, LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
-    public override string Singular => "Craft Soul Crystal";
-    public override string Plural => "Craft Soul Crystals";
-    public override string Description => "Crystals allow specialization in a crafting class.";
+    public override string Singular => "能工灵魂水晶";
+    public override string Plural => "能工灵魂水晶";
+    public override string Description => "让角色专精于能工职业的灵魂水晶。";
     public override string Key => "craft_soul_crystals";
     public override (string?, uint?) Icon => _staticIcon.Value;
 
@@ -71,7 +71,7 @@ public class CraftSoulCrystalCompendiumType : CompendiumType<ItemCraftSoulCrysta
         {
             Key = "icon",
             Name = "##Icon",
-            HelpText = "The icon of the soul crystal",
+            HelpText = "灵魂水晶图标",
             Version = "15.0.6",
             ValueSelector = GetIcon,
             CompendiumType = this,
@@ -80,16 +80,16 @@ public class CraftSoulCrystalCompendiumType : CompendiumType<ItemCraftSoulCrysta
         builder.AddStringColumn(new()
         {
             Key = "name",
-            Name = "Name",
-            HelpText = "The name of the soul crystal",
+            Name = "名称",
+            HelpText = "灵魂水晶名称",
             Version = "15.0.6",
             ValueSelector = row => row.Item.NameString,
         });
         builder.AddStringColumn(new()
         {
             Key = "class",
-            Name = "Class",
-            HelpText = "The crafting class this soul crystal specializes",
+            Name = "职业",
+            HelpText = "此灵魂水晶专精的能工职业",
             Version = "15.0.6",
             ValueSelector = row => row.ClassJob.Base.Name.ToImGuiString().FirstCharToUpper(),
         });
@@ -102,24 +102,24 @@ public class CraftSoulCrystalCompendiumType : CompendiumType<ItemCraftSoulCrysta
         viewBuilder.AddInfoTableSection(new InfoTableSectionOptions()
         {
             SectionKey = "info",
-            SectionName = "Info",
+            SectionName = "信息",
             Items =
             [
-                ("Class", row.ClassJob.Base.Name.ToImGuiString(), true),
+                ("职业", row.ClassJob.Base.Name.ToImGuiString(), true),
             ],
         });
 
         viewBuilder.AddSingleRowRefSection(new SingleRowRefSectionOptions()
         {
             SectionKey = "class_job",
-            SectionName = "Class",
+            SectionName = "职业",
             RelatedRef = (RowRef)row.ClassJob.RowRef,
         });
 
         viewBuilder.AddItemListSection(new ItemListSectionOptions()
         {
             SectionKey = "soul_crystal_item",
-            SectionName = "Soul Crystal",
+            SectionName = "灵魂水晶",
             Items = [new ItemInfo(row.Item)],
         });
 
@@ -127,7 +127,7 @@ public class CraftSoulCrystalCompendiumType : CompendiumType<ItemCraftSoulCrysta
         viewBuilder.AddItemSourcesSection(new ItemSourcesSectionOptions()
         {
             SectionKey = "soul_crystal_sources",
-            SectionName = "Obtain",
+            SectionName = "获取途径",
             Sources = itemSources ?? [],
             SourceType = SourceType.Source,
         });

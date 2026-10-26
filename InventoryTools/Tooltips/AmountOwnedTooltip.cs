@@ -147,7 +147,7 @@ public class AmountOwnedTooltip : BaseTooltip
                 }
                 if (ownedItems.Count > Configuration.TooltipLocationLimit)
                 {
-                    locations.Add(ownedItems.Count - Configuration.TooltipLocationLimit + " other locations.");
+                    locations.Add(ownedItems.Count - Configuration.TooltipLocationLimit + " 个其他位置。");
                 }
             }
             if (Configuration.TooltipLocationDisplayMode ==
@@ -173,7 +173,7 @@ public class AmountOwnedTooltip : BaseTooltip
                 }
                 if (ownedItems.Count > Configuration.TooltipLocationLimit)
                 {
-                    locations.Add(ownedItems.Count - Configuration.TooltipLocationLimit + " other locations.");
+                    locations.Add(ownedItems.Count - Configuration.TooltipLocationLimit + " 个其他位置。");
                 }
             }
             else if (Configuration.TooltipLocationDisplayMode == TooltipLocationDisplayMode.CharacterCategoryQuantityQuality)
@@ -210,7 +210,7 @@ public class AmountOwnedTooltip : BaseTooltip
                 }
                 if (groupedItems.Count > Configuration.TooltipLocationLimit)
                 {
-                    locations.Add(groupedItems.Count - Configuration.TooltipLocationLimit + " other locations.");
+                    locations.Add(groupedItems.Count - Configuration.TooltipLocationLimit + " 个其他位置。");
                 }
             }
             else if (Configuration.TooltipLocationDisplayMode == TooltipLocationDisplayMode.CharacterWorldCategoryQuantityQuality)
@@ -259,7 +259,7 @@ public class AmountOwnedTooltip : BaseTooltip
                 }
                 if (groupedItems.Count > Configuration.TooltipLocationLimit)
                 {
-                    locations.Add(groupedItems.Count - Configuration.TooltipLocationLimit + " other locations.");
+                    locations.Add(groupedItems.Count - Configuration.TooltipLocationLimit + " 个其他位置。");
                 }
             }
             else if (Configuration.TooltipLocationDisplayMode == TooltipLocationDisplayMode.CharacterQuantityQuality)
@@ -302,8 +302,8 @@ public class AmountOwnedTooltip : BaseTooltip
 
             if (storageCount > 0)
             {
-                textLines.Add($"Owned: {storageCount}\n");
-                textLines.Add($"Locations:\n");
+                textLines.Add($"持有：{storageCount}\n");
+                textLines.Add($"所在位置：\n");
                 for (var index = 0; index < locations.Count; index++)
                 {
                     var location = locations[index];

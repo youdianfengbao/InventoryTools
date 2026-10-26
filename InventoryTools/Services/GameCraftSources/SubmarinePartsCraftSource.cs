@@ -21,7 +21,7 @@ namespace InventoryTools.Services.GameCraftSources
                 return [];
             }
 
-            return [new GameCraftCategory("Submarine Parts", GetItems)];
+            return [new GameCraftCategory("潜艇部件", GetItems)];
         }
 
         private unsafe IReadOnlyList<GameCraftItem> GetItems()

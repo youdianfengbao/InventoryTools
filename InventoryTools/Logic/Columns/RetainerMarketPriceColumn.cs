@@ -19,12 +19,12 @@ namespace InventoryTools.Logic.Columns
 
             return null;
         }
-        public override string Name { get; set; } = "Retainer Selling Unit Price";
-        public override string RenderName => "Retainer Unit Price";
+        public override string Name { get; set; } = "雇员挂售单价";
+        public override string RenderName => "雇员挂售单价";
         public override float Width { get; set; } = 100;
 
         public override string HelpText { get; set; } =
-            "If the item is selling on the market, this is the unit price it has been put up for.";
+            "若该物品正在市场板出售，这是其挂出的单价。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
     }

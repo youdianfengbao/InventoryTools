@@ -63,7 +63,7 @@ namespace InventoryTools.Logic.Columns
                     configuration.CraftList.RemoveCraftItem(searchResult.CraftItem.ItemId);
                     configuration.NeedsRefresh = true;
                 }
-                OtterGui.ImGuiUtil.HoverTooltip("Delete item");
+                OtterGui.ImGuiUtil.HoverTooltip("删除物品");
 
             }
 
@@ -88,14 +88,14 @@ namespace InventoryTools.Logic.Columns
                                 ImGui.SameLine();
                                 ImGui.Image(ImGuiService.GetIconTexture(Icons.QuestionMarkIcon).Handle, new Vector2(16, 16));
                                 OtterGui.ImGuiUtil.HoverTooltip(
-                                    "The market price of this item is cheaper than buying it from a vendor and you prefer vendors over the current ingredient preference.");
+                                    "该物品的市场板价格低于商人售价，且你当前的素材偏好更倾向于商人。");
                             }
                         }
                     }
                 }
                 else
                 {
-                    ImGui.Text("N/A");
+                    ImGui.Text("无");
                 }
 
                 var craftPrices = searchResult.CraftItem.CraftPrices;
@@ -113,18 +113,18 @@ namespace InventoryTools.Logic.Columns
                                 var world = _worldSheet.GetRowOrDefault(price.WorldId);
                                 if (world != null)
                                 {
-                                    ImGui.Text(price.Left + " available at " + price.UnitPrice +
-                                               (price.IsHq ? " (HQ)" : "") + " (" + world.Value.Name.ExtractText() + ")");
+                                    ImGui.Text(price.Left + " 个，单价 " + price.UnitPrice +
+                                               (price.IsHq ? "（HQ）" : "") + "（" + world.Value.Name.ExtractText() + "）");
                                 }
 
                                 totalAvailable += price.Left;
                             }
 
-                            ImGui.Text("Available: " + totalAvailable);
+                            ImGui.Text("可用：" + totalAvailable);
 
                             if (searchResult.CraftItem.MarketAvailable != searchResult.CraftItem.QuantityNeeded)
                             {
-                                ImGui.Text("Missing: " + (searchResult.CraftItem.QuantityNeeded - searchResult.CraftItem.MarketAvailable));
+                                ImGui.Text("缺少：" + (searchResult.CraftItem.QuantityNeeded - searchResult.CraftItem.MarketAvailable));
                             }
                         }
                     }
@@ -141,7 +141,7 @@ namespace InventoryTools.Logic.Columns
                 if (ImGui.IsItemHovered(ImGuiHoveredFlags.None))
                 {
                     using var tt = ImRaii.Tooltip();
-                    ImGui.Text("Missing Ingredients: ");
+                    ImGui.Text("缺少的材料：");
                     foreach (var missingIngredient in searchResult.CraftItem.MissingIngredients)
                     {
                         var itemId = missingIngredient.Key.Item1;
@@ -159,14 +159,14 @@ namespace InventoryTools.Logic.Columns
             return null;
         }
 
-        public override string Name { get; set; } = "Next Step in Craft";
-        public override string RenderName => "Next Step";
+        public override string Name { get; set; } = "制作下一步";
+        public override string RenderName => "下一步";
 
         public override float Width { get; set; } = 200;
         public override bool? CraftOnly => true;
 
         public override string HelpText { get; set; } =
-            "Shows a simplified version of what you should do next in your craft";
+            "以简化方式显示制作中下一步该做什么";
         public override bool HasFilter { get; set; } = false;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
         public override FilterType AvailableIn { get; } = Logic.FilterType.CraftFilter;

@@ -9,11 +9,11 @@ public class ChocoboItemSourceTypeLocalizer : ILocalizer<ChocoboItemSourceType>
         switch (itemSourceType)
         {
             case ChocoboItemSourceType.BuddyItem:
-                return "Consumable";
+                return "消耗品";
             case ChocoboItemSourceType.BuddyEquip:
-                return "Equipment";
+                return "装备";
         }
 
-        return "Unknown";
+        return "未知";
     }
 }

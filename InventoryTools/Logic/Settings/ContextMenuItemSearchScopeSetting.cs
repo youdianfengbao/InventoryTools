@@ -54,7 +54,7 @@ public class ContextMenuItemSearchScopeSetting : Setting<List<InventorySearchSco
         if (disableReset != true && HasValueSet(configuration))
         {
             ImGui.SameLine();
-            if (ImGui.Button("Reset##" + Key + "Reset"))
+            if (ImGui.Button("重置##" + Key + "Reset"))
             {
                 Reset(configuration);
             }
@@ -67,9 +67,9 @@ public class ContextMenuItemSearchScopeSetting : Setting<List<InventorySearchSco
     }
 
     public override string Key { get; set; } = "ItemSearchScope";
-    public override string Name { get; set; } = "Context Menu - Search Scope";
-    public override string HelpText { get; set; } = "When searching for an item across the inventories AT knows about, which inventories should be searched?";
+    public override string Name { get; set; } = "右键菜单 - 搜索范围";
+    public override string HelpText { get; set; } = "在亚拉戈工具已知的所有库存中搜索物品时，应搜索哪些库存？";
 
-    public override string WizardName { get; } = "Search Scope";
+    public override string WizardName { get; } = "搜索范围";
     public override string Version => "1.7.0.13";
 }

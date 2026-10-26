@@ -151,8 +151,8 @@ public class CraftListTrackingService : IHostedService
                 activeCraftList.CraftList.MarkCrafted(itemId, itemFlags, (uint)qtyIncrease);
                 if (activeCraftList is { IsEphemeralCraftList: true, CraftList.IsCompleted: true })
                 {
-                    _chatUtilities.Print("Ephemeral craft list '" + activeCraftList.Name +
-                                         "' completed. List has been removed.");
+                    _chatUtilities.Print("临时制作清单 '" + activeCraftList.Name +
+                                         "' 已完成。该清单已被移除。");
                     _listService.RemoveList(activeCraftList);
                 }
                 else
@@ -198,15 +198,15 @@ public class CraftListTrackingService : IHostedService
         string? amountText;
         if (IsToggleOn(_completionOnlyFilter, activeCraftList))
         {
-            amountText = complete ? $"completed" : null;
+            amountText = complete ? $"已完成" : null;
         }
         else if (complete)
         {
-            amountText = $"completed";
+            amountText = $"已完成";
         }
         else
         {
-            amountText = $"{remaining} remaining";
+            amountText = $"剩余 {remaining}";
         }
 
         if (amountText == null)

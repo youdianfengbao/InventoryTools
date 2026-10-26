@@ -25,7 +25,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
     private readonly ItemInfoCache _itemInfoCache;
     private readonly ItemSheet _itemSheet;
 
-    public AirshipsWindow(ILogger<AirshipsWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, AirshipExplorationPointSheet airshipExplorationPointSheet, ItemInfoCache itemInfoCache, ItemSheet itemSheet, string name = "Airships Window") : base(logger, mediator, imGuiService, configuration, name)
+    public AirshipsWindow(ILogger<AirshipsWindow> logger, MediatorService mediator, ImGuiService imGuiService, InventoryToolsConfiguration configuration, AirshipExplorationPointSheet airshipExplorationPointSheet, ItemInfoCache itemInfoCache, ItemSheet itemSheet, string name = "飞空艇窗口") : base(logger, mediator, imGuiService, configuration, name)
     {
         _airshipExplorationPointSheet = airshipExplorationPointSheet;
         _itemInfoCache = itemInfoCache;
@@ -37,7 +37,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
         Key = GenericKey;
         _columns = new List<TableColumn<AirshipExplorationPointRow>>()
         {
-            new("Icon", 32, ImGuiTableColumnFlags.WidthFixed)
+            new("图标", 32, ImGuiTableColumnFlags.WidthFixed)
             {
                 OnLeftClick = OnLeftClick,
                 Draw = (ex, contentTypeId) =>
@@ -49,7 +49,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     }
                 }
             },
-            new("Name", 150, ImGuiTableColumnFlags.WidthFixed)
+            new("名称", 150, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -73,7 +73,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     ImGui.TextUnformatted(ex.Base.NameShort.ExtractText().ToString());
                 }
             },
-            new("Unlock Zone", 150, ImGuiTableColumnFlags.WidthFixed)
+            new("解锁区域", 150, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -100,7 +100,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     }
                 }
             },
-            new("Rank Required", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("所需等级", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -124,7 +124,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     ImGui.TextUnformatted((ex.Base.RankReq.ToString() ?? "").ToString());
                 }
             },
-            new("Ceruleum Required", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("所需青磷", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -148,7 +148,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     ImGui.TextUnformatted((ex.Base.CeruleumTankReq.ToString() ?? "").ToString());
                 }
             },
-            new("Survey Duration (minutes)", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("勘察时长（分钟）", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -172,7 +172,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     ImGui.TextUnformatted((ex.Base.SurveyDurationmin.ToString() ?? "").ToString());
                 }
             },
-            new("Surveillance Required", 100, ImGuiTableColumnFlags.WidthFixed)
+            new("所需监视", 100, ImGuiTableColumnFlags.WidthFixed)
             {
                 Sort = (specs, exes) =>
                 {
@@ -196,7 +196,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
                     ImGui.TextUnformatted((ex.Base.SurveillanceReq.ToString() ?? "").ToString());
                 }
             },
-            new("Drops", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
+            new("掉落", 200, ImGuiTableColumnFlags.WidthFixed | ImGuiTableColumnFlags.NoSort)
             {
                 Sort = (specs, exes) =>
                 {
@@ -256,7 +256,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
         };
         _tabs = new Dictionary<uint, string>()
         {
-            {0, "All"}
+            {0, "全部"}
         };
         _items = new Dictionary<uint, List<AirshipExplorationPointRow>>();
         _filteredItems = new Dictionary<uint, List<AirshipExplorationPointRow>>();
@@ -269,7 +269,7 @@ public class AirshipsWindow : GenericTabbedTable<AirshipExplorationPointRow>, IM
     }
 
     public override string GenericKey => "airships";
-    public override string GenericName => "Airships";
+    public override string GenericName => "飞空艇";
     public override bool DestroyOnClose => false;
     public override bool SaveState => true;
     public override Vector2? MaxSize { get; } = new(2000, 2000);

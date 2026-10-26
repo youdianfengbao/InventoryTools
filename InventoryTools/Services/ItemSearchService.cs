@@ -54,7 +54,7 @@ public class ItemSearchService(MediatorService mediatorService, IClientState cli
 
 
 
-        stringBuilder.Append("Searching for ");
+        stringBuilder.Append("正在搜索 ");
 
         stringBuilder.AddUiForeground(0x0225)
             .AddUiGlow(0x0226)
@@ -84,7 +84,7 @@ public class ItemSearchService(MediatorService mediatorService, IClientState cli
             var character = characterMonitor.GetCharacterById(itemByRetainer.Key);
             if(character == null) continue;
             var itemsByCategories = itemByRetainer.GroupBy(c => c.SortedCategory);
-            searchResults.Add("  " + character.FormattedName + ":");
+            searchResults.Add("  " + character.FormattedName + "：");
             foreach (var itemByCategory in itemsByCategories)
             {
                 var normalQuantity = itemByCategory.Where(c => c.Flags == InventoryItem.ItemFlags.None).Sum(c => c.Quantity);
@@ -93,17 +93,17 @@ public class ItemSearchService(MediatorService mediatorService, IClientState cli
 
                 normalTotal = (uint)(normalTotal + normalQuantity);
                 hqTotal = (uint)(hqTotal + hqQuantity);
-                searchResults.Add($"    {(normalQuantity != 0 ? normalQuantity.ToString() :  "")}{(hqQuantity != 0 ? (normalQuantity != 0 ? "," : "") + hqQuantity + "\uE03c" : "")} found in {itemByCategory.Key.FormattedName()}");
+                searchResults.Add($"    {(normalQuantity != 0 ? normalQuantity.ToString() :  "")}{(hqQuantity != 0 ? (normalQuantity != 0 ? "," : "") + hqQuantity + "\uE03c" : "")} 存放于 {itemByCategory.Key.FormattedName()}");
             }
         }
 
         if (normalTotal == 0 && hqTotal == 0)
         {
-            searchResults.Add("No results found.");
+            searchResults.Add("未找到结果。");
         }
         else
         {
-            searchResults.Add($"Total: {(normalTotal != 0 ? normalTotal.ToString() :  "")}{(hqTotal != 0 ? "," + hqTotal + "\uE03c" : "")} found.");
+            searchResults.Add($"总计: {(normalTotal != 0 ? normalTotal.ToString() :  "")}{(hqTotal != 0 ? "," + hqTotal + "\uE03c" : "")}");
         }
 
         stringBuilder.Append(String.Join("\n", searchResults));

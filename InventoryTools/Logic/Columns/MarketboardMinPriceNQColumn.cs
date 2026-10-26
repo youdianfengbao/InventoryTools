@@ -27,8 +27,8 @@ namespace InventoryTools.Logic.Columns
         }
         public override ColumnCategory ColumnCategory => ColumnCategory.Market;
 
-        protected readonly string LoadingString = "loading...";
-        protected readonly string UntradableString = "untradable";
+        protected readonly string LoadingString = "加载中...";
+        protected readonly string UntradableString = "不可交易";
         protected readonly int Loading = -1;
         protected readonly int Untradable = -2;
         public override bool IsConfigurable => true;
@@ -101,10 +101,10 @@ namespace InventoryTools.Logic.Columns
 
             return Loading;
         }
-        public override string Name { get; set; } = "Market Board Minimum Price NQ";
-        public override string RenderName => "MB Min. Price NQ";
+        public override string Name { get; set; } = "市场板最低价 NQ";
+        public override string RenderName => "市场板最低价 NQ";
         public override string HelpText { get; set; } =
-            "Shows the minimum price of the NQ form of the item. If no world is selected, your home world is used. This data is sourced from universalis.";
+            "显示该物品 NQ 形态的最低价格。若未选择世界，则使用主世界。数据来自 Universalis。";
         public override float Width { get; set; } = 250.0f;
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;

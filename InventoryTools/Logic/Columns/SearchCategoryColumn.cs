@@ -19,12 +19,12 @@ namespace InventoryTools.Logic.Columns
 
             return "";
         }
-        public override string Name { get; set; } = "Category (Marketboard)";
-        public override string RenderName => "MB Category";
+        public override string Name { get; set; } = "分类（市场板）";
+        public override string RenderName => "市场板分类";
         public override float Width { get; set; } = 200.0f;
 
         public override string HelpText { get; set; } =
-            "The category of the item based off the market board search categories.";
+            "按市场板搜索分类划分的物品分类。";
         public override bool HasFilter { get; set; } = true;
         public override ColumnFilterType FilterType { get; set; } = ColumnFilterType.Text;
         public override FilterType DefaultIn => Logic.FilterType.GameItemFilter;

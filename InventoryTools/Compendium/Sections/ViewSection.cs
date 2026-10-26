@@ -37,7 +37,7 @@ public abstract class ViewSection : ICompendiumViewSection
                 _headerButtons.Add(new ImGuiService.HeaderButton()
                 {
                     Id = "Menu",
-                    Label = "Menu",
+                    Label = "菜单",
                     Image = "menu",
                     Callback = () => { },
                 });
@@ -48,7 +48,7 @@ public abstract class ViewSection : ICompendiumViewSection
                 {
                     Id = "Settings",
                     Image = "wrench-icon",
-                    Label = "Settings",
+                    Label = "设置",
                     Callback = () => { },
                 });
             }

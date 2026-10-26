@@ -19,10 +19,10 @@ namespace InventoryTools.Logic.Settings
         }
 
         public override string Key { get; set; } = "TooltipCharacterName";
-        public override string Name { get; set; } = "Add Item Locations (Affix with Character Name)";
+        public override string Name { get; set; } = "添加物品位置（附带角色名）";
 
         public override string HelpText { get; set; } =
-            "When hovering an item and you have an amount owned by a retainer, should the owner of that retainer be affixed to that item?";
+            "悬停物品时，若持有者中包含雇员，是否在位置信息后附上雇员主人的角色名？";
         
         public override string Version => "1.7.0.0";
 

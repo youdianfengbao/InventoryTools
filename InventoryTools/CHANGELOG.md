@@ -8,6 +8,13 @@ Instead the changelog reader and automation surrounding plugin PRs will add the 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.html).
 
+## [15.0.13-cn] - 2026-10-05
+
+### Changed
+- 中文汉化版：界面、菜单、设置、提示（tooltip）与聊天消息等用户可见文本已全部翻译为中文
+- 游戏内容类型名称改用国服官方译名（如 Hall of Novice→新人馆、The Diadem→无名岛）
+- 物品名、地名等游戏数据仍随客户端语言自动显示，未做修改
+
 ## [15.0.13] - 2026-09-13
 
 ### Changed

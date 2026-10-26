@@ -39,7 +39,7 @@ namespace InventoryTools.Ui
             ItemInfoCache itemInfoCache,
             ENpcResidentSheet eNpcResidentSheet,
             IListService listService,
-            string name = "NPC Window") : base(logger,
+            string name = "NPC 窗口") : base(logger,
             mediator,
             imGuiService,
             configuration,
@@ -63,7 +63,7 @@ namespace InventoryTools.Ui
             }
             else
             {
-                WindowName = "Invalid NPC";
+                WindowName = "无效 NPC";
                 Key = "enpc_unknown";
             }
         }
@@ -72,13 +72,13 @@ namespace InventoryTools.Ui
         private uint _eNpcId;
         private ENpcResidentRow? ENpcResidentRow => _eNpcResidentSheet.GetRowOrDefault(_eNpcId);
         public List<IShop>? Shops;
-        public override string GenericName => "Npcs";
+        public override string GenericName => "NPC";
         public override bool DestroyOnClose => true;
         public override void DrawWindow()
         {
             if (ENpcResidentRow == null)
             {
-                ImGui.TextUnformatted("eNpc with the ID " + _eNpcId + " could not be found.");
+                ImGui.TextUnformatted("找不到 ID 为 " + _eNpcId + " 的 NPC。");
             }
             else
             {
@@ -90,7 +90,7 @@ namespace InventoryTools.Ui
                     $"https://www.garlandtools.org/db/#npc/{_eNpcId}".OpenBrowser();
                 }
 
-                ImGuiUtil.HoverTooltip("Open in Garland Tools");
+                ImGuiUtil.HoverTooltip("在 Garland Tools 中打开");
                 ImGui.SameLine();
                 if (ImGui.ImageButton(ImGuiService.GetImageTexture("teamcraft").Handle,
                         new Vector2(32, 32) * ImGui.GetIO().FontGlobalScale))
@@ -98,11 +98,11 @@ namespace InventoryTools.Ui
                     $"https://ffxivteamcraft.com/db/en/eNpc/{_eNpcId}".OpenBrowser();
                 }
 
-                ImGuiUtil.HoverTooltip("Open in Teamcraft");
+                ImGuiUtil.HoverTooltip("在 Teamcraft 中打开");
 
                 ImGui.Separator();
 
-                if (Shops != null && ImGui.CollapsingHeader("Shops (" + Shops.Count + ")",
+                if (Shops != null && ImGui.CollapsingHeader("商店 (" + Shops.Count + ")",
                         ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.CollapsingHeader))
                 {
                     float windowVisibleX2 = ImGui.GetWindowPos().X + ImGui.GetWindowContentRegionMax().X;
@@ -179,7 +179,7 @@ namespace InventoryTools.Ui
 
                 if (ENpcResidentRow.ENpcBase.GetRelatedItems().Count != 0)
                 {
-                    using var treeNode = ImRaii.TreeNode("Shared Models", flags);
+                    using var treeNode = ImRaii.TreeNode("共享模型", flags);
 
                     // TODO: Coming later
                     // ImGui.SameLine();
@@ -218,10 +218,10 @@ namespace InventoryTools.Ui
                 }
 
 #if DEBUG
-                if (ImGui.CollapsingHeader("Debug"))
+                if (ImGui.CollapsingHeader("调试"))
                 {
-                    ImGui.TextUnformatted("eNpc ID: " + _eNpcId);
-                    if (ImGui.Button("Copy"))
+                    ImGui.TextUnformatted("NPC ID: " + _eNpcId);
+                    if (ImGui.Button("复制"))
                     {
                         _clipboardService.CopyToClipboard(_eNpcId.ToString());
                     }
@@ -240,7 +240,7 @@ namespace InventoryTools.Ui
                                 c.FilterType == Logic.FilterType.CraftFilter && !c.CraftListDefault).ToArray();
                         if (craftFilters.Length != 0)
                         {
-                            using var menu = ImRaii.Menu("Add to Craft List");
+                            using var menu = ImRaii.Menu("添加到制作清单");
                             if (menu)
                             {
                                 foreach (var filter in craftFilters)
@@ -263,7 +263,7 @@ namespace InventoryTools.Ui
                             }
                         }
 
-                        if (ImGui.MenuItem("Add to new Craft List"))
+                        if (ImGui.MenuItem("添加到新制作清单"))
                         {
                             var filter = _listService.AddNewCraftList();
                             foreach (var slot in _equipSlots)
@@ -281,7 +281,7 @@ namespace InventoryTools.Ui
                             filter.NeedsRefresh = true;
                         }
 
-                        if (ImGui.MenuItem("Add to new Craft List (ephemeral)"))
+                        if (ImGui.MenuItem("添加到新制作清单（临时）"))
                         {
                             var filter = _listService.AddNewCraftList(null, true);
                             foreach (var slot in _equipSlots)

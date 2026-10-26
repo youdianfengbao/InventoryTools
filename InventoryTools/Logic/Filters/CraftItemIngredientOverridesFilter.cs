@@ -50,8 +50,8 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
     }
 
     public override string Key { get; set; } = "CraftItemIngredientOverrides";
-    public override string Name { get; set; } = "Per-Item Ingredient Source Overrides";
-    public override string HelpText { get; set; } = "Override the ingredient source for specific items. Overrides set here take precedence over the list's default ingredient sourcing order.";
+    public override string Name { get; set; } = "按物品覆盖素材来源";
+    public override string HelpText { get; set; } = "为特定物品覆盖素材来源。此处设置的覆盖优先于清单默认的素材获取顺序。";
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.ItemIngredientOverrides;
     public override FilterType AvailableIn { get; set; } = FilterType.CraftFilter;
     public override bool DefaultValue { get; set; } = false;
@@ -101,12 +101,12 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
         ImGuiService.HelpMarker(HelpText);
         ImGui.Separator();
 
-        ImGui.TextUnformatted("Add Override:");
+        ImGui.TextUnformatted("添加覆盖: ");
         ImGui.SameLine();
 
         var selectedItemName = _selectedItemId != null
-            ? _itemSheet.GetRowOrDefault(_selectedItemId.Value)?.NameString ?? "Unknown"
-            : "Select Item...";
+            ? _itemSheet.GetRowOrDefault(_selectedItemId.Value)?.NameString ?? "未知"
+            : "选择物品...";
 
         ImGui.SetNextItemWidth(LabelSize);
         using (var itemCombo = ImRaii.Combo("##ItemOverrideItemSearch", selectedItemName, ImGuiComboFlags.HeightLarge))
@@ -123,7 +123,7 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
                 ImGui.Separator();
                 if (_itemSearchString == "")
                 {
-                    ImGui.TextUnformatted("Start typing to search...");
+                    ImGui.TextUnformatted("输入以进行搜索...");
                 }
                 foreach (var item in SearchItems)
                 {
@@ -140,7 +140,7 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
 
         var previewSource = _selectedPreference != null
             ? _localizer.FormattedName(_selectedPreference)
-            : "Select Source...";
+            : "选择来源...";
 
         using (ImRaii.Disabled(_selectedItemId == null))
         {
@@ -169,7 +169,7 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
 
         using (ImRaii.Disabled(_selectedItemId == null || _selectedPreference == null))
         {
-            if (ImGui.Button("Add##ItemOverride"))
+            if (ImGui.Button("添加##ItemOverride"))
             {
                 configuration.CraftList.UpdateIngredientPreference(_selectedItemId!.Value, _selectedPreference);
                 configuration.NeedsRefresh = true;
@@ -182,12 +182,12 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
 
         if (configuration.CraftList.IngredientPreferences.Count > 0)
         {
-            var clearButtonWidth = ImGui.CalcTextSize("Clear All").X + ImGui.GetStyle().FramePadding.X * 2;
+            var clearButtonWidth = ImGui.CalcTextSize("全部清除").X + ImGui.GetStyle().FramePadding.X * 2;
             ImGui.SameLine(ImGui.GetContentRegionMax().X - clearButtonWidth);
-            if (ImGui.Button("Clear All##ItemOverrides"))
+            if (ImGui.Button("全部清除##ItemOverrides"))
             {
                 _popupService.AddPopup(new ConfirmPopup(typeof(CraftsWindow), "clearAllItemOverrides",
-                    "Are you sure you want to clear all per-item overrides?",
+                    "确定要清除所有按物品覆盖吗？",
                     confirmed =>
                     {
                         if (!confirmed)
@@ -210,7 +210,7 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
         var overrides = configuration.CraftList.IngredientPreferences;
         if (overrides.Count == 0)
         {
-            ImGui.TextUnformatted("No per-item overrides set.");
+            ImGui.TextUnformatted("未设置按物品覆盖。");
             return;
         }
 
@@ -220,8 +220,8 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
         {
             if (table.Success)
             {
-            ImGui.TableSetupColumn("Item", ImGuiTableColumnFlags.WidthStretch);
-            ImGui.TableSetupColumn("Source Preference", ImGuiTableColumnFlags.WidthStretch);
+            ImGui.TableSetupColumn("物品", ImGuiTableColumnFlags.WidthStretch);
+            ImGui.TableSetupColumn("来源偏好", ImGuiTableColumnFlags.WidthStretch);
             ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthFixed, 24);
             ImGui.TableHeadersRow();
 
@@ -241,7 +241,7 @@ public class CraftItemIngredientOverridesFilter : Filter<bool>
                 }
                 else
                 {
-                    ImGui.TextUnformatted("Unknown Item (" + itemId + ")");
+                    ImGui.TextUnformatted("未知物品 (" + itemId + ")");
                 }
 
                 ImGui.TableNextColumn();

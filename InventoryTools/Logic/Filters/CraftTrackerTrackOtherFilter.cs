@@ -17,10 +17,10 @@ public class CraftTrackerTrackOtherFilter : BooleanFilter
     public override FilterType AvailableIn { get; set; } = FilterType.CraftFilter;
     
     public override string Key { get; set; } = "CraftTrackerTrackOther";
-    public override string Name { get; set; } = "Track Other?";
+    public override string Name { get; set; } = "跟踪其他？";
     
     public override string HelpText { get; set; } =
-        "When any other event causes you to gain an item and it matches one of the output items in this craft list, should it reduce the quantity of that item? The craft list must be active for this to count.";
+        "其他任何事件获得且匹配此清单中的成品物品时，是否减少该物品的数量？制作清单须处于激活状态才会生效。";
     
     public override FilterCategory FilterCategory { get; set; } = FilterCategory.CompletionTracking;
     public override bool? FilterItem(FilterConfiguration configuration, InventoryItem item)

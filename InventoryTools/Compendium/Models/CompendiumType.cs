@@ -164,11 +164,11 @@ public abstract class CompendiumType<TData> : ICompendiumType<TData>
         switch (value)
         {
             case false:
-                return "No";
+                return "否";
             case true:
-                return "Yes";
+                return "是";
             case null:
-                return "N/A";
+                return "不适用";
         }
     }
 

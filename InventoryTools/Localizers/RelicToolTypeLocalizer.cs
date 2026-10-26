@@ -10,17 +10,17 @@ public class RelicToolTypeLocalizer : ILocalizer<RelicToolType>
         switch (relicToolType)
         {
             case RelicToolType.Unknown:
-                return "Unknown";
+                return "未知";
             case RelicToolType.MastercraftBase:
-                return "Mastercraft";
+                return "名匠";
             case RelicToolType.MastercraftSupra:
                 return "Supra";
             case RelicToolType.MastercraftLucis:
                 return "Lucis";
             case RelicToolType.SkysteelBase:
-                return "Skysteel";
+                return "天钢";
             case RelicToolType.SkysteelBase1:
-                return "Skysteel + 1";
+                return "天钢 + 1";
             case RelicToolType.SkysteelDragonsung:
                 return "Dragonsung";
             case RelicToolType.SkysteelAugmentedDragonsung:
@@ -30,11 +30,11 @@ public class RelicToolTypeLocalizer : ILocalizer<RelicToolType>
             case RelicToolType.SkysteelSkybuilders:
                 return "Skybuilders";
             case RelicToolType.Resplendent:
-                return "Resplendent";
+                return "曜晶";
             case RelicToolType.SplendorousBase:
-                return "Spendorous";
+                return "耀晶";
             case RelicToolType.SplendorousAugmented:
-                return "Augmented Splendorous";
+                return "改良耀晶";
             case RelicToolType.SplendorousCrystalline:
                 return "Crystalline";
             case RelicToolType.SplendorousChoraZoiCrystalline:
@@ -46,31 +46,31 @@ public class RelicToolTypeLocalizer : ILocalizer<RelicToolType>
             case RelicToolType.SplendorousLodestar:
                 return "Lodestar";
             case RelicToolType.CosmicPrototype01:
-                return "Prototype v0.1";
+                return "原型 v0.1";
             case RelicToolType.CosmicPrototype02:
-                return "Prototype v0.2";
+                return "原型 v0.2";
             case RelicToolType.CosmicPrototype03:
-                return "Prototype v0.3";
+                return "原型 v0.3";
             case RelicToolType.CosmicPrototype04:
-                return "Prototype v0.4";
+                return "原型 v0.4";
             case RelicToolType.CosmicPrototype05:
-                return "Prototype v0.5";
+                return "原型 v0.5";
             case RelicToolType.CosmicPrototype06:
-                return "Prototype v0.6";
+                return "原型 v0.6";
             case RelicToolType.CosmicPrototype07:
-                return "Prototype v0.7";
+                return "原型 v0.7";
             case RelicToolType.CosmicPrototype08:
-                return "Prototype v0.8";
+                return "原型 v0.8";
             case RelicToolType.CosmicCosmic:
-                return "Cosmic";
+                return "星海";
             case RelicToolType.CosmicCosmic11:
-                return "Cosmic v1.1";
+                return "星海 v1.1";
             case RelicToolType.CosmicCosmic12:
-                return "Cosmic v1.2";
+                return "星海 v1.2";
             case RelicToolType.CosmicCosmic13:
-                return "Cosmic v1.3";
+                return "星海 v1.3";
             case RelicToolType.CosmicCosmic14:
-                return "Cosmic v1.4";
+                return "星海 v1.4";
             case RelicToolType.CosmicStellar:
                 return "Stellar";
             case RelicToolType.CosmicStellar11:

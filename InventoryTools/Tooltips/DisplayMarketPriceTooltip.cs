@@ -89,21 +89,21 @@ public class DisplayMarketPriceTooltip : BaseTooltip
                             var marketData = _marketCache.GetPricing((uint)hoverItemId, activeCharacter.WorldId, false);
                             if (marketData != null)
                             {
-                                textLines.Add("Market Board Data:\n");
+                                textLines.Add("市场板数据：\n");
                                 if (Configuration.TooltipDisplayMarketAveragePrice)
                                 {
                                     textLines.Add(
-                                        $"{indentation}Average Price: {Math.Round(marketData.AveragePriceNq, 0)}\n");
+                                        $"{indentation}平均价格：{Math.Round(marketData.AveragePriceNq, 0)}\n");
                                     textLines.Add(
-                                        $"{indentation}Average Price (HQ): {Math.Round(marketData.AveragePriceHq, 0)}\n");
+                                        $"{indentation}平均价格（HQ）：{Math.Round(marketData.AveragePriceHq, 0)}\n");
                                 }
 
                                 if (Configuration.TooltipDisplayMarketLowestPrice)
                                 {
                                     textLines.Add(
-                                        $"{indentation}Minimum Price: {Math.Round(marketData.MinPriceNq, 0)}\n");
+                                        $"{indentation}最低价格：{Math.Round(marketData.MinPriceNq, 0)}\n");
                                     textLines.Add(
-                                        $"{indentation}Minimum Price (HQ): {Math.Round(marketData.MinPriceHq, 0)}\n");
+                                        $"{indentation}最低价格（HQ）：{Math.Round(marketData.MinPriceHq, 0)}\n");
                                 }
                             }
                         }

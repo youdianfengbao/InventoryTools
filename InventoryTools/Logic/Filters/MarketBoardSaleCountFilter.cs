@@ -22,16 +22,16 @@ namespace InventoryTools.Logic.Filters
             _configuration = configuration;
             _characterMonitor = characterMonitor;
             _marketCache = marketCache;
-            Name = "Marketboard " + configuration.MarketSaleHistoryLimit + " Sale Counter";
-            HelpText = "Shows the number of sales that have been made within " + configuration.MarketSaleHistoryLimit +
-                       " days.";
+            Name = "市场板 " + configuration.MarketSaleHistoryLimit + " 日销售计数";
+            HelpText = "显示过去 " + configuration.MarketSaleHistoryLimit +
+                       " 天内的销售数量。";
             ShowOperatorTooltip = true;
         }
 
         public override string Key { get; set; } = "MBSaleCount";
-        public override string Name { get; set; } = "Marketboard Sale Counter";
+        public override string Name { get; set; } = "市场板销售计数";
 
-        public override string HelpText { get; set; } = "Shows the number of sales that have been made within X days.";
+        public override string HelpText { get; set; } = "显示 X 天内完成的销售数量。";
 
         public override FilterCategory FilterCategory { get; set; } = FilterCategory.Market;
 
